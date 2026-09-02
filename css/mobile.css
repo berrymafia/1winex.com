@@ -2854,6 +2854,10 @@ p {
   align-items: center;
 }
 
+.showcase-btns {
+  justify-content: flex-start;
+}
+
 .mobile-mockup {
   width: 290px;
   height: 580px;
