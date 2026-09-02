@@ -127,6 +127,7 @@ p {
 
 .section {
   padding: var(--spacing-3xl) 0;
+  scroll-margin-top: 88px;
 }
 
 .section-title {
@@ -3100,28 +3101,6 @@ p {
 
 .mockup-download-btn svg {
   flex-shrink: 0;
-}
-
-.review-screenshot {
-  margin: var(--spacing-lg) 0 0;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(0,0,0,0.35);
-  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-}
-
-.review-screenshot img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.review-screenshot figcaption {
-  padding: 12px 16px;
-  font-size: 0.82rem;
-  color: var(--color-text-muted);
-  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
 .shot-gallery {

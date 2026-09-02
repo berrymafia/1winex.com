@@ -795,11 +795,11 @@ p { line-height: 1.7; color: var(--color-text-secondary); }
 .deposit-card:nth-child(4) .deposit-step-num { background: linear-gradient(135deg, #10b981, #6ee7b7); box-shadow: 0 4px 16px rgba(52,211,153,0.3); }
 
 .deposit-percent {
-  font-size: 2.4rem;
+  font-size: clamp(1.15rem, 3.6vw, 1.55rem);
   font-weight: 800;
   font-family: 'Montserrat', var(--font-primary);
   letter-spacing: -0.03em;
-  line-height: 1;
+  line-height: 1.15;
   background: linear-gradient(135deg, #dbeafe, var(--color-primary-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -832,6 +832,28 @@ p { line-height: 1.7; color: var(--color-text-secondary); }
 .deposit-card:nth-child(2) .deposit-progress-fill { background: linear-gradient(90deg, #3b82f6, #93c5fd); box-shadow: 0 0 8px rgba(96,165,250,0.3); }
 .deposit-card:nth-child(3) .deposit-progress-fill { background: linear-gradient(90deg, #059669, #34d399); box-shadow: 0 0 8px rgba(16,185,129,0.35); }
 .deposit-card:nth-child(4) .deposit-progress-fill { background: linear-gradient(90deg, #10b981, #6ee7b7); box-shadow: 0 0 8px rgba(52,211,153,0.3); }
+
+.review-screenshot {
+  margin: var(--spacing-2xl) 0 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.35);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+}
+
+.review-screenshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.review-screenshot figcaption {
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
 
 /* === STATS STRIP (NEW) === */
 .stats-strip {

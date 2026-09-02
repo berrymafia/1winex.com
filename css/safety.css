@@ -1880,7 +1880,7 @@ p {
 
 .pin-down-row {
   display: grid;
-  grid-template-columns: minmax(8.5rem, 12.5rem) auto 1fr;
+  grid-template-columns: 10.5rem 11rem minmax(0, 1fr);
   gap: 8px 16px;
   align-items: center;
   padding: 14px 18px;
@@ -1929,6 +1929,7 @@ p {
 
 .pin-down-why {
   margin: 0;
+  min-width: 0;
   font-size: 0.86rem;
   line-height: 1.5;
   font-weight: 500;
@@ -1948,10 +1949,6 @@ p {
 .pin-down--notes .pin-down-row {
   grid-template-columns: minmax(9rem, 15rem) 1fr;
   align-items: start;
-}
-
-.complaint-themes-wrap {
-  padding: 8px 8px 4px;
 }
 
 @media (max-width: 640px) {
@@ -1978,10 +1975,6 @@ p {
 
   .pin-down--notes .pin-down-why {
     grid-column: 1;
-  }
-
-  .complaint-themes-wrap {
-    padding: 4px 0 8px;
   }
 }
 
