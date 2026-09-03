@@ -366,10 +366,8 @@ p {
   .header-auth-btn { padding: 0 10px; font-size: 11px; }
 }
 .review-hero-bonus-btn {
-  margin-top: 10px;
+  margin-top: 12px;
   align-self: center;
-  padding: 8px 14px;
-  font-size: 11px;
 }
 .page-hero .review-hero-bonus-btn {
   margin-top: 24px;
