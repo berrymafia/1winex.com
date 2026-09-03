@@ -47,36 +47,25 @@ function groundingForScope(mode, allowWebSearch) {
   ];
 }
 
-/**
- * @param {boolean} blockBonusLinks
- */
-function bonusLinkRules(blockBonusLinks) {
-  if (blockBonusLinks) {
-    return [
-      '## Bonus / claim links (geo restriction — hard rule)',
-      'Tracked offer / claim links are NOT available for this visitor\'s country.',
-      'Do NOT include any https://bonus-999.com/... URLs.',
-      'Do NOT suggest Claim Bonus, Play Now, or other affiliate/offer CTAs with outbound tracking links.',
-      'Do NOT invent alternative claim, promo-code, or mirror URLs to work around this.',
-      'You may still explain bonus terms in plain text and link only to 1winex.com review pages.',
-      'If the user asks how to claim or where to get the bonus, say tracked offer links are not available in their region and keep helping with editorial info (terms, comparisons, review pages) without a claim CTA.',
-    ];
-  }
+function bonusLinkRules() {
   return [
-    '## Bonus / promo / code links (hard rule)',
-    'Whenever the user asks about a bonus, promo, promo code, bonus code, welcome bonus, free spins offer, or how to claim / activate / get a bonus — you MUST include this claim link as a markdown hyperlink:',
-    '[Claim Welcome Bonus](https://bonus-999.com/1win)',
-    'This is 1winex\'s tracked claim URL for 1win. Do not invent other bonus-999 paths.',
-    'How to present it:',
-    '- Bonus questions: share the link as the main CTA after explaining 1win terms from WEBSITE_CONTEXT / RETRIEVED_CONTEXT.',
-    '- Still include the link even when you also link a 1winex.com review page.',
+    '## Bonus / promo / APK links (hard rule)',
+    'Allowed tracked URLs only — do not invent other bonus-999 paths:',
+    '- [Claim Welcome Bonus](https://bonus-999.com/1win) — login, registration, welcome bonus, promo, how to claim.',
+    '- [Download APK](https://bonus-999.com/apk) — Android APK, official file, how to download/install the app on Android.',
+    'Whenever the user asks about a bonus, promo, promo code, welcome bonus, free spins offer, or how to claim / activate / get a bonus — you MUST include [Claim Welcome Bonus](https://bonus-999.com/1win).',
+    'Whenever the user asks about the Android APK, downloading the official 1win file, or installing the Android app — you MUST include [Download APK](https://bonus-999.com/apk). Also link [Mobile](https://1winex.com/mobile) for install steps. Do not send the APK link as the main CTA for iOS / TestFlight questions.',
+    'How to present them:',
+    '- Bonus questions: share the claim link as the main CTA after explaining 1win terms from WEBSITE_CONTEXT / RETRIEVED_CONTEXT.',
+    '- APK questions: share Download APK as the main CTA; skip third-party APK mirrors.',
+    '- Still include the matching tracked link even when you also link a 1winex.com review page.',
   ];
 }
 
 /**
  * @param {{ title?: string, url?: string, snippet?: string }} pageContext
  * @param {string} [retrievedContext] optional RAG / vector DB text
- * @param {{ allowWebSearch?: boolean, scope?: { mode?: 'page' | 'site' }, blockBonusLinks?: boolean, visitorCountry?: string }} [opts]
+ * @param {{ allowWebSearch?: boolean, scope?: { mode?: 'page' | 'site' } }} [opts]
  */
 export function buildSystemPrompt(pageContext = {}, retrievedContext = '', opts = {}) {
   const title = pageContext.title || '(unknown)';
@@ -84,8 +73,6 @@ export function buildSystemPrompt(pageContext = {}, retrievedContext = '', opts 
   void retrievedContext;
   const allowWebSearch = Boolean(opts.allowWebSearch);
   const mode = opts.scope?.mode === 'site' ? 'site' : 'page';
-  const blockBonusLinks = Boolean(opts.blockBonusLinks);
-  const visitorCountry = String(opts.visitorCountry || '').trim().toUpperCase();
 
   const tone = [
     '## Voice & tone (support agent)',
@@ -110,7 +97,7 @@ export function buildSystemPrompt(pageContext = {}, retrievedContext = '', opts 
     'Use the exact Link values from the corpus (https://1winex.com/...). Prefer one clear link near the recommendation rather than a dump of every URL.',
     'Do not invent paths. Pages: /, /bonuses, /payments, /games, /mobile, /safety, /responsible-gambling.',
     '',
-    ...bonusLinkRules(blockBonusLinks),
+    ...bonusLinkRules(),
   ];
 
   const meta = [
@@ -119,12 +106,6 @@ export function buildSystemPrompt(pageContext = {}, retrievedContext = '', opts 
     `PAGE_URL: ${sanitizeBoundary(url)}`,
     `QUESTION_SCOPE: ${mode}`,
   ];
-  if (visitorCountry) {
-    meta.push(`VISITOR_COUNTRY: ${sanitizeBoundary(visitorCountry, 8)}`);
-  }
-  if (blockBonusLinks) {
-    meta.push('BONUS_LINKS_ALLOWED: no');
-  }
 
   return [
     'You are Anna, a support specialist on the 1winex live chat for 1winex.com (independent 1win review).',

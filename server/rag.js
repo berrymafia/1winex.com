@@ -31,7 +31,7 @@ let cacheMtimeMs = 0;
 
 /**
  * @typedef {{ slug: string, url: string, link?: string, name: string, aliases?: string[], title?: string, description?: string, text: string, bonusClaim?: { url: string, label?: string, brand?: string } }} CorpusPage
- * @typedef {{ brand: string, url: string, label?: string, aliases?: string[] }} SiteOffer
+ * @typedef {{ brand: string, url: string, label?: string, kind?: string, aliases?: string[] }} SiteOffer
  */
 
 const DEFAULT_ORIGIN = 'https://1winex.com';
@@ -50,7 +50,7 @@ function pageLink(page, siteOrigin = DEFAULT_ORIGIN) {
 }
 
 /**
- * Single site-wide claim CTA (no brand-specific bonus-999 URLs).
+ * Pick tracked CTAs that match the question (bonus vs APK).
  * @param {string} queryNorm
  * @param {SiteOffer[]} offers
  * @param {CorpusPage[]} _pickedPages
@@ -61,8 +61,19 @@ function selectOffers(queryNorm, offers, _pickedPages) {
     /bonus|promo|claim|welcome|500%|coupon|код|бонус|промо|получить|забрать|акци/i.test(
       queryNorm
     );
-  if (!bonusIntent) return [];
-  return [offers[0]];
+  const apkIntent =
+    /apk|android|sideload|download.?app|\bapp\b|скачать|приложен|установ/i.test(queryNorm);
+
+  return offers.filter((o) => {
+    const kind = String(o.kind || 'bonus').toLowerCase();
+    const aliasHit = (o.aliases || []).some((a) => {
+      const n = normalize(a);
+      return n.length >= 3 && queryNorm.includes(n);
+    });
+    if (aliasHit) return true;
+    if (kind === 'apk') return apkIntent;
+    return bonusIntent;
+  });
 }
 
 function loadCorpus() {
@@ -155,11 +166,9 @@ function scorePage(page, terms, queryNorm, scope) {
 /**
  * @param {string} query user question (untrusted)
  * @param {{ title?: string, url?: string, snippet?: string }} pageContext
- * @param {{ omitBonusClaims?: boolean }} [opts]
  * @returns {Promise<{ text: string, sufficient: boolean, topScore: number, scope: import('./question-scope.js').QuestionScope }>}
  */
-export async function retrieveWithMeta(query, pageContext = {}, opts = {}) {
-  const omitBonusClaims = Boolean(opts.omitBonusClaims);
+export async function retrieveWithMeta(query, pageContext = {}) {
   const corpus = loadCorpus();
   const brands = brandEntriesFromPages(corpus?.pages || []);
   const scope = classifyQuestionScope(query, pageContext, { brands });
@@ -216,7 +225,7 @@ export async function retrieveWithMeta(query, pageContext = {}, opts = {}) {
       page.description ? `Summary: ${page.description}` : '',
       `When you mention this page or brand, include this markdown link: [${page.name}](${link})`,
     ];
-    if (!omitBonusClaims && page.bonusClaim?.url) {
+    if (page.bonusClaim?.url) {
       const bl = page.bonusClaim.label || 'Claim bonus';
       blockLines.push(
         `Bonus claim link: ${page.bonusClaim.url}`,
@@ -232,14 +241,12 @@ export async function retrieveWithMeta(query, pageContext = {}, opts = {}) {
   }
 
   const pickedPages = picks.map((p) => p.page);
-  const offers = omitBonusClaims
-    ? []
-    : selectOffers(queryNorm, corpus.offers || [], pickedPages);
+  const offers = selectOffers(queryNorm, corpus.offers || [], pickedPages);
   if (offers.length) {
     const offerLines = [
-      '### Bonus claim CTA (include on bonus/promo questions)',
-      'Use this single site-wide claim link. Do not invent brand-specific bonus-999 URLs.',
-      'If the user asked about a specific brand, explain that brand\'s terms first, then share this claim link without presenting it as that brand\'s exclusive official URL.',
+      '### Tracked CTAs (include when the question matches)',
+      'Use only these tracked URLs. Do not invent other bonus-999 paths.',
+      'Bonus/promo questions → Claim Welcome Bonus. APK/Android download questions → Download APK.',
       ...offers.map(
         (o) =>
           `- ${o.label || 'Claim bonus'} → ${o.url} (markdown: [${o.label || 'Claim bonus'}](${o.url}))`

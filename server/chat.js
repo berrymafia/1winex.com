@@ -8,7 +8,6 @@ import OpenAI from 'openai';
 import { parseChatRequest } from './validate.js';
 import { buildSystemPrompt, buildInputItems } from './prompt.js';
 import { retrieveWithMeta } from './rag.js';
-import { isBonusLinkBlocked, readVisitorCountry } from './geo.js';
 
 const MODEL = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
 /** Web search on weak corpus hits. Set CHAT_WEB_SEARCH=0 to disable. */
@@ -50,28 +49,21 @@ export async function chatHandler(req, res) {
   }
 
   const { messages, pageContext } = parsed.data;
-  const visitorCountry = readVisitorCountry(req);
-  const blockBonusLinks = isBonusLinkBlocked(visitorCountry);
   const lastUser = [...messages].reverse().find((m) => m.role === 'user');
   const { text: retrieved, sufficient, topScore, scope } = await retrieveWithMeta(
     lastUser?.content || '',
-    pageContext,
-    { omitBonusClaims: blockBonusLinks }
+    pageContext
   );
 
   const allowWebSearch = WEB_SEARCH_ENABLED && !sufficient;
   console.log(
     `[chat] scope=${scope.mode} reasons=${scope.reasons.join(',') || '-'} topScore=${topScore}` +
-      (visitorCountry ? ` country=${visitorCountry}` : ' country=-') +
-      (blockBonusLinks ? ' bonusLinks=blocked' : '') +
       (allowWebSearch ? ' web_search=1' : '')
   );
 
   const instructions = buildSystemPrompt(pageContext, retrieved, {
     allowWebSearch,
     scope,
-    blockBonusLinks,
-    visitorCountry,
   });
   const input = buildInputItems(messages, pageContext, retrieved, { scope });
 

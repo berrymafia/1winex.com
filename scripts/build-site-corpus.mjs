@@ -63,7 +63,15 @@ const SITE_OFFERS = [
     brand: '1win',
     url: 'https://bonus-999.com/1win',
     label: 'Claim Welcome Bonus',
+    kind: 'bonus',
     aliases: ['welcome bonus', 'claim bonus', 'best bonus', 'bonus', 'бонус', 'промо'],
+  },
+  {
+    brand: '1win',
+    url: 'https://bonus-999.com/apk',
+    label: 'Download APK',
+    kind: 'apk',
+    aliases: ['apk', 'android', 'download apk', 'скачать apk', 'приложение'],
   },
 ];
 
