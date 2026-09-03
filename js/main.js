@@ -251,4 +251,44 @@
     });
   });
 
+  function isExternalHttpLink(href) {
+    if (!href) return false;
+    try {
+      var url = new URL(href, window.location.href);
+      if (url.protocol !== 'http:' && url.protocol !== 'https:') return false;
+      return url.hostname.replace(/^www\./, '') !== window.location.hostname.replace(/^www\./, '');
+    } catch (err) {
+      return false;
+    }
+  }
+
+  function ensureExternalNofollow(root) {
+    var nodes = [];
+    if (root && root.tagName === 'A') {
+      nodes = [root];
+    } else if (root && root.querySelectorAll) {
+      nodes = root.querySelectorAll('a[href]');
+    }
+    nodes.forEach(function(a) {
+      if (!isExternalHttpLink(a.getAttribute('href'))) return;
+      var rel = (a.getAttribute('rel') || '').toLowerCase().split(/\s+/).filter(Boolean);
+      if (rel.indexOf('nofollow') === -1) rel.push('nofollow');
+      if (rel.indexOf('noopener') === -1) rel.push('noopener');
+      if (rel.indexOf('noreferrer') === -1) rel.push('noreferrer');
+      a.setAttribute('rel', rel.join(' '));
+    });
+  }
+
+  ensureExternalNofollow(document);
+  if (document.body) {
+    new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType !== 1) return;
+          ensureExternalNofollow(node);
+        });
+      });
+    }).observe(document.body, { childList: true, subtree: true });
+  }
+
 })();
