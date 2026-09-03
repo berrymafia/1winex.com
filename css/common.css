@@ -155,55 +155,49 @@
   }
 }
 
-/* Hero CTA — wins over page .header-bonus-btn media queries */
+/* Hero CTA — same box and type as navbar Registration */
 .header-bonus-btn.review-hero-bonus-btn {
   margin-top: 12px;
   align-self: center;
-  min-height: 44px;
-  padding: 11px 22px;
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  padding: 0 16px;
+  font-family: var(--font-primary);
   font-size: 13px;
-  letter-spacing: 0.6px;
-  gap: 8px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  text-shadow: none;
+  gap: 6px;
+  box-sizing: border-box;
 }
 
 .header-bonus-btn-icon {
-  font-size: 1.05rem;
+  font-size: 14px;
   line-height: 1;
   flex-shrink: 0;
 }
 
-@media (min-width: 1025px) {
-  .header-bonus-btn.review-hero-bonus-btn {
-    min-height: 46px;
-    padding: 12px 24px;
-    font-size: 13.5px;
-  }
-}
-
 @media (max-width: 768px) {
   .header-bonus-btn.review-hero-bonus-btn {
-    min-height: 44px;
-    padding: 11px 20px;
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .header-bonus-btn-icon {
     font-size: 13px;
   }
 }
 
 @media (max-width: 480px) {
   .header-bonus-btn.review-hero-bonus-btn {
-    min-height: 44px;
-    padding: 12px 18px;
-    font-size: 12.5px;
-    letter-spacing: 0.5px;
-  }
-
-  .review-hero-score {
-    gap: 12px;
-  }
-}
-
-@media (max-width: 360px) {
-  .review-hero-score {
-    flex-direction: column;
+    padding: 0 10px;
+    font-size: 11px;
   }
 }
 
