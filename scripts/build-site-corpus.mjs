@@ -24,7 +24,7 @@ const PAGES = [
     slug: 'bonuses',
     file: 'bonuses.html',
     name: '1win Bonuses',
-    aliases: ['bonus', 'bonuses', 'promo', 'welcome bonus', '500%', 'wagering'],
+    aliases: ['bonus', 'bonuses', 'promo', 'promo code', 'промокод', '1WINEX500', 'welcome bonus', '500%', 'wagering'],
   },
   {
     slug: 'payments',
@@ -64,7 +64,7 @@ const SITE_OFFERS = [
     url: 'https://bonus-999.com/1win',
     label: 'Claim Welcome Bonus',
     kind: 'bonus',
-    aliases: ['welcome bonus', 'claim bonus', 'best bonus', 'bonus', 'бонус', 'промо'],
+    aliases: ['welcome bonus', 'claim bonus', 'best bonus', 'bonus', 'бонус', 'промо', 'promo code', 'промокод', '1WINEX500', 'coupon'],
   },
   {
     brand: '1win',
