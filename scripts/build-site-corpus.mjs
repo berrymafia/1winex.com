@@ -75,6 +75,17 @@ const SITE_OFFERS = [
   },
 ];
 
+function decodeEntities(s) {
+  return s
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&#?\w+;/g, ' ');
+}
+
 function stripHtml(html) {
   let s = html;
   s = s.replace(/<script[\s\S]*?<\/script>/gi, ' ');
@@ -82,23 +93,19 @@ function stripHtml(html) {
   s = s.replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ');
   s = s.replace(/<!--[\s\S]*?-->/g, ' ');
   s = s.replace(/<[^>]+>/g, ' ');
-  s = s.replace(/&nbsp;/gi, ' ');
-  s = s.replace(/&amp;/gi, '&');
-  s = s.replace(/&lt;/gi, '<');
-  s = s.replace(/&gt;/gi, '>');
-  s = s.replace(/&#?\w+;/g, ' ');
+  s = decodeEntities(s);
   return s.replace(/\s+/g, ' ').trim();
 }
 
 function extractTitle(html) {
   const m = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-  return m ? m[1].replace(/\s+/g, ' ').trim() : '';
+  return m ? decodeEntities(m[1]).replace(/\s+/g, ' ').trim() : '';
 }
 
 function extractMetaDescription(html) {
   const m = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']*)["']/i)
     || html.match(/<meta[^>]+content=["']([^"']*)["'][^>]+name=["']description["']/i);
-  return m ? m[1].trim() : '';
+  return m ? decodeEntities(m[1]).trim() : '';
 }
 
 const entries = [];
