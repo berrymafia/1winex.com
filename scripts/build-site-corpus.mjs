@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Build a static site corpus for the 1winex chat assistant (no vector DB).
+ * Build the 1winex chat corpus from this site's HTML.
+ * Writes to the sibling api-chat.net repo (the live API reads it there).
  * Usage: node scripts/build-site-corpus.mjs
  */
 import fs from 'fs';
@@ -9,7 +10,8 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
-const OUT = path.join(ROOT, 'server', 'data', 'site-corpus.json');
+const API_ROOT = path.resolve(ROOT, '..', 'api-chat.net');
+const OUT = path.join(API_ROOT, 'server', 'data', 'site-corpus.json');
 const SITE_ORIGIN = (process.env.SITE_ORIGIN || 'https://1winex.com').replace(/\/+$/, '');
 const MAX_TEXT = 4500;
 
@@ -141,6 +143,10 @@ const corpus = {
   pages: entries,
 };
 
+if (!fs.existsSync(API_ROOT)) {
+  console.error(`[corpus] missing API repo: ${API_ROOT}`);
+  process.exit(1);
+}
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(corpus, null, 2), 'utf8');
 console.log(`[corpus] wrote ${OUT} pages=${entries.length} bytes=${fs.statSync(OUT).size}`);
