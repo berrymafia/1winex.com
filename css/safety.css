@@ -1863,6 +1863,33 @@ p {
   box-shadow: 0 16px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07), 0 0 40px rgba(59,130,246,0.03);
 }
 
+.review-screenshot {
+  margin: 0 0 var(--spacing-lg);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.35);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+}
+
+.review-screenshot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.review-screenshot figcaption {
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.review-art {
+  border-color: rgba(59,130,246,0.22);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35), 0 0 40px rgba(59,130,246,0.12);
+}
+
 .pin-down {
   margin-bottom: var(--spacing-xl);
   background:

@@ -952,6 +952,12 @@ p { line-height: 1.7; color: var(--color-text-secondary); }
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
+.review-art {
+  margin: 0 0 var(--spacing-2xl);
+  border-color: rgba(59,130,246,0.22);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35), 0 0 40px rgba(59,130,246,0.12);
+}
+
 /* === STATS STRIP (NEW) === */
 .stats-strip {
   display: grid;
