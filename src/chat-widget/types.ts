@@ -19,6 +19,7 @@ export interface PageContext {
 export interface ChatRequestBody {
   messages: Array<{ role: Role; content: string }>;
   pageContext: PageContext;
+  site?: '1winex' | '1winazer';
 }
 
 export type ThemeMode = 'dark' | 'light';

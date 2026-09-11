@@ -2,7 +2,7 @@
  * Floating 1winex AI chat widget UI.
  * Mounted lazily after idle — see js/chat-widget-loader.js.
  */
-import { MAX_MESSAGE_LENGTH, WIDGET_ID } from './constants';
+import { CHAT_SITE, MAX_MESSAGE_LENGTH, WIDGET_ID } from './constants';
 import { streamChat } from './api';
 import { collectPageContext } from './context';
 import { createFocusTrap } from './focus-trap';
@@ -212,7 +212,7 @@ export function mountChatWidget(): void {
       ).join('');
       empty.innerHTML = `
         <strong>Hi, I&rsquo;m Anna — how can I help?</strong>
-        <p>Ask about casino reviews, bonuses, or payments — or pick a suggestion:</p>
+        <p>Ask about bonuses, payments, or the app — or pick a suggestion:</p>
         <div class="aw-chat__suggests" role="group" aria-label="Suggested questions">${chips}</div>
       `;
       messagesEl.appendChild(empty);
@@ -279,6 +279,7 @@ export function mountChatWidget(): void {
         .filter((m) => m.status !== 'error')
         .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_MESSAGE_LENGTH) })),
       pageContext: collectPageContext(),
+      site: CHAT_SITE,
     };
 
     await streamChat(

@@ -19,8 +19,8 @@ const PAGES = [
   {
     slug: 'index',
     file: 'index.html',
-    name: '1win Review',
-    aliases: ['home', '1win', 'onewin', '1winex', 'review'],
+    name: '1win',
+    aliases: ['home', '1win', 'onewin', '1winex'],
   },
   {
     slug: 'bonuses',

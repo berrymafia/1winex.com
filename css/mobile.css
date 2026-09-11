@@ -843,6 +843,11 @@ p {
 .card:hover p { color: rgba(255,255,255,0.68); }
 .card a { color: rgba(147, 197, 253, 0.9); font-size: 0.85rem; font-weight: 500; transition: color 0.2s ease; }
 .card a:hover { color: #fff; }
+.card a.btn-primary,
+.card a.btn-primary:hover,
+.card a.btn-primary:visited {
+  color: #fff;
+}
 
 /* === FEATURE GRID === */
 .feature-grid {

@@ -29,8 +29,8 @@ export default defineConfig({
   base: './',
   server: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:8787',
+      '/api/chat': {
+        target: 'https://api-chat.net',
         changeOrigin: true,
         timeout: 0,
         proxyTimeout: 0,

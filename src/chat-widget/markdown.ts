@@ -60,7 +60,7 @@ const PURIFY_CONFIG = {
   ALLOWED_ATTR: ['href', 'title', 'target', 'rel', 'class', 'data-lang', 'type', 'aria-label'],
 };
 
-/** External http(s) links (bonus partners, third-party). */
+/** External http(s) links (cabinet, APK, third-party). */
 export const EXTERNAL_LINK_REL = 'nofollow noopener noreferrer';
 
 const SITE_HOSTS = new Set(['1winex.com', 'www.1winex.com']);

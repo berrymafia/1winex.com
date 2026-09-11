@@ -3,7 +3,7 @@ import type { PageContext } from './types';
 const MAX_SNIPPET = 3500;
 
 /**
- * Collect a short, visible-text snippet from the current review page.
+ * Collect a short, visible-text snippet from the current page.
  * Skips nav/footer/script noise so the model gets useful body copy only.
  */
 export function collectPageContext(): PageContext {

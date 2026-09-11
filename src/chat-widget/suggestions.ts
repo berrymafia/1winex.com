@@ -1,5 +1,5 @@
 const GLOBAL_SUGGESTIONS = [
-  'Is 1win legit?',
+  'What license does 1win have?',
   'How does the 500% bonus work?',
   'How fast are withdrawals?',
   'Does 1win have a mobile app?',
@@ -65,7 +65,7 @@ export function getSuggestedQuestions(
 
   if (slug === 'games') {
     return uniqueSuggestions([
-      'Which 1win slots are worth trying?',
+      'What slots does 1win have?',
       'What is Aviator RTP?',
       'Does 1win have live casino?',
       'How does the 500% bonus work?',
@@ -74,8 +74,8 @@ export function getSuggestedQuestions(
 
   if (slug === 'safety') {
     return uniqueSuggestions([
-      'Is 1win legit?',
       'What license does 1win have?',
+      'How long does KYC take?',
       'Is my money safe at 1win?',
       'Does 1win have 2FA?',
     ]);
@@ -95,7 +95,7 @@ export function getSuggestedQuestions(
       'What responsible gambling tools does 1win offer?',
       'How do I set a deposit limit?',
       'How does self-exclusion work?',
-      'Is 1win legit?',
+      'What license does 1win have?',
     ]);
   }
 
