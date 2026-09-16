@@ -636,13 +636,13 @@ h3 {
   margin-bottom: 8px;
 }
 
-#faq .container {
+.section:has(> .container > .faq-item) > .container {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-#faq .container > h2 {
+.section:has(> .container > .faq-item) > .container > h2 {
   margin-bottom: 6px;
 }
 
@@ -2166,7 +2166,8 @@ html.is-android .aw-chat {
     z-index: auto;
   }
 
-  .info-table--stack td:first-child {
+  .info-table--stack td:first-child,
+  .info-table--stack tr:last-child td:first-child {
     padding-bottom: 12px;
     margin-bottom: 4px;
     border-bottom: 1px solid var(--line);

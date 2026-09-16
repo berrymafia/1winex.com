@@ -159,17 +159,17 @@
         <h2>Delayed, declined or missing payments</h2>
         <p class="muted">Read the cashier status before trying again. Another deposit can create a duplicate charge. A new withdrawal may restart the review.</p>
         <div class="table-wrapper" style="margin-top:18px">
-          <table class="info-table">
+          <table class="info-table info-table--stack">
             <thead>
               <tr><th scope="col">Status or symptom</th><th scope="col">Possible reason</th><th scope="col">What to do</th></tr>
             </thead>
             <tbody>
-              <tr><td>Card declined</td><td>Billing error, low available balance, issuer limit, payment restriction, or failed 3-D Secure</td><td>Read the issuer or 3-D Secure message and correct any error before retrying</td></tr>
-              <tr><td>Card, e-wallet, or bank deposit missing</td><td>Authorization or settlement is still pending, or the reference differs</td><td>Compare the provider and cashier status; do not send the payment again</td></tr>
-              <tr><td>Crypto deposit missing</td><td>Confirmations are pending, or a payment detail does not match</td><td>Open the transaction hash and compare the asset, network, address, and memo or tag</td></tr>
-              <tr><td>Withdrawal still processing</td><td>KYC, AML, bonus, account, or provider review</td><td>Read the verification area and any account message, email, or document request</td></tr>
-              <tr><td>Approved but not received</td><td>Bank, wallet, or blockchain settlement is still pending</td><td>Review the current estimate, recipient details, and provider reference or transaction hash</td></tr>
-              <tr><td>Withdrawal returned or failed</td><td>Wrong recipient details, a name mismatch, an unsupported method, or a provider restriction</td><td>Read the reason shown and contact 1win support before trying again</td></tr>
+              <tr><td>Card declined</td><td data-label="Possible reason">Billing error, low available balance, issuer limit, payment restriction, or failed 3-D Secure</td><td data-label="What to do">Read the issuer or 3-D Secure message and correct any error before retrying</td></tr>
+              <tr><td>Card, e-wallet, or bank deposit missing</td><td data-label="Possible reason">Authorization or settlement is still pending, or the reference differs</td><td data-label="What to do">Compare the provider and cashier status; do not send the payment again</td></tr>
+              <tr><td>Crypto deposit missing</td><td data-label="Possible reason">Confirmations are pending, or a payment detail does not match</td><td data-label="What to do">Open the transaction hash and compare the asset, network, address, and memo or tag</td></tr>
+              <tr><td>Withdrawal still processing</td><td data-label="Possible reason">KYC, AML, bonus, account, or provider review</td><td data-label="What to do">Read the verification area and any account message, email, or document request</td></tr>
+              <tr><td>Approved but not received</td><td data-label="Possible reason">Bank, wallet, or blockchain settlement is still pending</td><td data-label="What to do">Review the current estimate, recipient details, and provider reference or transaction hash</td></tr>
+              <tr><td>Withdrawal returned or failed</td><td data-label="Possible reason">Wrong recipient details, a name mismatch, an unsupported method, or a provider restriction</td><td data-label="What to do">Read the reason shown and contact 1win support before trying again</td></tr>
             </tbody>
           </table>
         </div>
