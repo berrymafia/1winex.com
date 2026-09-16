@@ -44,6 +44,7 @@ export default defineConfig({
         safety: resolve(__dirname, 'safety.html'),
         bonuses: resolve(__dirname, 'bonuses.html'),
         games: resolve(__dirname, 'games.html'),
+        sports: resolve(__dirname, 'sports.html'),
         payments: resolve(__dirname, 'payments.html'),
         mobile: resolve(__dirname, 'mobile.html'),
         'responsible-gambling': resolve(__dirname, 'responsible-gambling.html'),

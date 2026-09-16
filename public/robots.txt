@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+Disallow: /go
+Disallow: /go/
+Disallow: /apk
+Disallow: /apk/
+
 Sitemap: https://1winex.com/sitemap.xml

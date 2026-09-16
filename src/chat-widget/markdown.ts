@@ -72,13 +72,25 @@ function isNavigationalHref(href: string): boolean {
   return true;
 }
 
+/** First-party hops to the live cabinet / APK — same host, but open in a new tab. */
+export function isCtaHop(href: string): boolean {
+  try {
+    const base = typeof location !== 'undefined' ? location.href : 'https://1winex.com/';
+    const p = new URL(href, base).pathname.replace(/\/+$/, '') || '/';
+    return p === '/go' || p === '/apk';
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Internal = 1winex.com / www, current location.hostname, or relative path
- * (/, ./, ../, or hostless path like casinos.html).
+ * (/, ./, ../, or hostless path like casinos.html). CTA hops are not internal.
  */
 export function isInternalHref(href: string): boolean {
   const h = href.trim();
   if (!isNavigationalHref(h)) return false;
+  if (isCtaHop(h)) return false;
 
   // Relative / same-document path (no scheme, not protocol-relative)
   if (!/^https?:\/\//i.test(h) && !h.startsWith('//')) {

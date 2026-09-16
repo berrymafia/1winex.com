@@ -26,7 +26,7 @@ const PAGES = [
     slug: 'bonuses',
     file: 'bonuses.html',
     name: '1win Bonuses',
-    aliases: ['bonus', 'bonuses', 'promo', 'promo code', 'промокод', '1WINEX500', 'welcome bonus', '500%', 'wagering'],
+    aliases: ['bonus', 'bonuses', 'promo', 'promo code', 'промокод', 'WINEX600', 'welcome bonus', '600%', '500%', '500 FS', 'wagering'],
   },
   {
     slug: 'payments',
@@ -39,6 +39,12 @@ const PAGES = [
     file: 'games.html',
     name: '1win Games',
     aliases: ['games', 'slots', 'aviator', 'crash', 'live casino', 'rtp'],
+  },
+  {
+    slug: 'sports',
+    file: 'sports.html',
+    name: '1win Sports',
+    aliases: ['sports', 'sportsbook', 'betting', 'pre-match', 'live betting', 'esports', 'football'],
   },
   {
     slug: 'mobile',
@@ -63,19 +69,36 @@ const PAGES = [
 const SITE_OFFERS = [
   {
     brand: '1win',
-    url: 'https://bonus-999.com/1win',
-    label: 'Claim Welcome Bonus',
+    url: 'https://1winex.com/go',
+    label: 'Register / Login',
     kind: 'bonus',
-    aliases: ['welcome bonus', 'claim bonus', 'best bonus', 'bonus', 'бонус', 'промо', 'promo code', 'промокод', '1WINEX500', 'coupon'],
+    aliases: [
+      'welcome bonus',
+      'claim bonus',
+      'best bonus',
+      'bonus',
+      'бонус',
+      'промо',
+      'promo code',
+      'промокод',
+      'WINEX600',
+      '600%',
+      '500 FS',
+      'coupon',
+      'register',
+      'login',
+      'registration',
+    ],
   },
   {
     brand: '1win',
-    url: 'https://bonus-999.com/apk',
+    url: 'https://1winex.com/apk',
     label: 'Download APK',
     kind: 'apk',
-    aliases: ['apk', 'android', 'download apk', 'скачать apk', 'приложение'],
+    aliases: ['apk', 'android', 'download apk', 'скачать apk', 'приложение', 'app'],
   },
 ];
+const CTA_PREFIX = 'Register / Login: https://1winex.com/go. APK: https://1winex.com/apk. ';
 
 function decodeEntities(s) {
   return s
@@ -94,6 +117,7 @@ function stripHtml(html) {
   s = s.replace(/<style[\s\S]*?<\/style>/gi, ' ');
   s = s.replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ');
   s = s.replace(/<!--[\s\S]*?-->/g, ' ');
+  s = s.replace(/<div[^>]*\bdata-welcome-timer\b[^>]*>[\s\S]*?<\/div>/gi, ' ');
   s = s.replace(/<[^>]+>/g, ' ');
   s = decodeEntities(s);
   return s.replace(/\s+/g, ' ').trim();
@@ -118,7 +142,7 @@ for (const page of PAGES) {
     continue;
   }
   const html = fs.readFileSync(filePath, 'utf8');
-  const text = stripHtml(html).slice(0, MAX_TEXT);
+  const text = (CTA_PREFIX + stripHtml(html)).slice(0, MAX_TEXT);
   const title = extractTitle(html) || page.name;
   const pathUrl = page.slug === 'index' ? '/' : `/${page.slug}`;
   const link = `${SITE_ORIGIN}${pathUrl === '/' ? '/' : pathUrl}`;

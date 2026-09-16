@@ -20,6 +20,7 @@ AddType application/xml .xml
   Header set X-Frame-Options "SAMEORIGIN"
   Header set X-XSS-Protection "1; mode=block"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Robots-Tag "noindex, nofollow" env=cta_hop
 </IfModule>
 
 <IfModule mod_deflate.c>
@@ -42,6 +43,17 @@ AddType application/xml .xml
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # Canonical host first, then CTA hops (so /go and /apk 302 from https://1winex.com)
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  RewriteCond %{HTTP_HOST} ^www\.1winex\.com$ [NC]
+  RewriteRule ^ https://1winex.com%{REQUEST_URI} [R=301,L]
+
+  RewriteRule ^go/?$ https://bonus-999.com/1win [R=302,L,NE,E=cta_hop:1]
+  RewriteRule ^apk/?$ https://bonus-999.com/apk [R=302,L,NE,E=cta_hop:1]
 
   # Chat API is Node — never map /api/chat to a .html 404
   RewriteRule ^api/ - [L]

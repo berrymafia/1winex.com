@@ -1,6 +1,6 @@
 const GLOBAL_SUGGESTIONS = [
   'What license does 1win have?',
-  'How does the 500% bonus work?',
+  'How does the 600% bonus work?',
   'How fast are withdrawals?',
   'Does 1win have a mobile app?',
 ] as const;
@@ -38,9 +38,9 @@ export function getSuggestedQuestions(
 
   if (slug === 'bonuses') {
     return uniqueSuggestions([
-      'How does the 500% bonus work?',
+      'How does the 600% bonus work?',
       'What are the wagering requirements?',
-      'Is there a no-deposit bonus?',
+      'Where do I enter WINEX600?',
       'How do I claim the welcome package?',
     ]);
   }
@@ -68,7 +68,16 @@ export function getSuggestedQuestions(
       'What slots does 1win have?',
       'What is Aviator RTP?',
       'Does 1win have live casino?',
-      'How does the 500% bonus work?',
+      'How does the 600% bonus work?',
+    ]);
+  }
+
+  if (slug === 'sports') {
+    return uniqueSuggestions([
+      'How do I place a 1win sports bet?',
+      'Can I cash out a sports bet?',
+      'What is Express booster?',
+      'Do casino and sports bonuses share a balance?',
     ]);
   }
 
@@ -85,7 +94,7 @@ export function getSuggestedQuestions(
     return uniqueSuggestions([
       'How do I register at 1win?',
       'How fast are withdrawals?',
-      'How does the 500% bonus work?',
+      'How does the 600% bonus work?',
       'Does 1win have a mobile app?',
     ]);
   }

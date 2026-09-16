@@ -67,7 +67,7 @@ export function mountChatWidget(): void {
           <img class="aw-chat__brand-avatar" src="${ANNA_AVATAR_SRC}" alt="Anna" width="48" height="48" decoding="async" />
           <div class="aw-chat__brand-text">
             <strong id="aw-chat-title">Anna</strong>
-            <span>Ask about 1win bonuses, payouts &amp; the app</span>
+            <span>Virtual 1win assistant</span>
           </div>
         </div>
         <div class="aw-chat__header-actions">
@@ -211,8 +211,8 @@ export function mountChatWidget(): void {
           `<button type="button" class="aw-chat__suggest" data-suggest="${escapeAttr(q)}">${escapeAttr(q)}</button>`
       ).join('');
       empty.innerHTML = `
-        <strong>Hi, I&rsquo;m Anna — how can I help?</strong>
-        <p>Ask about bonuses, payments, or the app — or pick a suggestion:</p>
+        <strong>Hi! I&rsquo;m Anna. How can I help?</strong>
+        <p>I can help with registration, promo code WINEX600, deposits, withdrawals, and the Android APK.</p>
         <div class="aw-chat__suggests" role="group" aria-label="Suggested questions">${chips}</div>
       `;
       messagesEl.appendChild(empty);

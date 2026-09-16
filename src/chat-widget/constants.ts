@@ -2,7 +2,7 @@
 
 export const MAX_MESSAGE_LENGTH = 2000;
 export const MAX_STORED_MESSAGES = 60;
-export const STORAGE_KEY = '1winex-chat-v1';
+export const STORAGE_KEY = '1winex-chat-v2';
 export const THEME_KEY = '1winex-chat-theme';
 
 /** Local Vite proxies /api → chat server. Production hits the shared API. */

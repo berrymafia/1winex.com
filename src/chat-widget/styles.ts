@@ -1,32 +1,32 @@
 /**
  * Chat widget styles — uses 1winex design tokens when available.
- * Dark navy / primary blue (not purple AI cliché). Optional light panel theme.
+ * Charcoal / 1win blue (not purple AI cliché). Optional light panel theme.
  */
 
 const css = /* css */ `
 .aw-chat {
-  --aw-bg: var(--color-bg-secondary, #101827);
-  --aw-panel: var(--color-bg-card, #1a2332);
-  --aw-elevated: var(--color-bg-elevated, #1e2a3d);
-  --aw-elevated-hover: var(--color-bg-card-hover, #243044);
-  --aw-text: var(--color-text-primary, #f1f5f9);
-  --aw-text-secondary: var(--color-text-secondary, #cbd5e1);
-  --aw-muted: var(--color-text-muted, #94a3b8);
-  --aw-border: var(--color-border-light, rgba(255,255,255,0.1));
+  --aw-bg: var(--bg, var(--color-bg-secondary, #141415));
+  --aw-panel: var(--card, var(--color-bg-card, #1c1c1e));
+  --aw-elevated: var(--card-2, var(--color-bg-elevated, #222224));
+  --aw-elevated-hover: var(--color-bg-card-hover, #2a2a2c);
+  --aw-text: var(--text, var(--color-text-primary, #f0f2f5));
+  --aw-text-secondary: var(--color-text-secondary, #c5c9d0);
+  --aw-muted: var(--muted, var(--color-text-muted, #8b8f97));
+  --aw-border: var(--line, var(--color-border-light, rgba(255,255,255,0.08)));
   --aw-border-soft: var(--color-border, rgba(255,255,255,0.06));
-  --aw-primary: var(--color-primary, #4b8ff8);
-  --aw-primary-light: var(--color-primary-light, #60a5fa);
-  --aw-primary-hover: var(--color-primary-hover, #2563eb);
+  --aw-primary: var(--blue, var(--color-primary, #0075ff));
+  --aw-primary-light: var(--blue-hover, var(--color-primary-light, #1f84ff));
+  --aw-primary-hover: var(--blue-press, var(--color-primary-hover, #0062d6));
   --aw-danger: var(--color-error, #ef4444);
-  --aw-radius: var(--radius-lg, 16px);
-  --aw-radius-md: var(--radius-md, 12px);
-  --aw-radius-sm: var(--radius-sm, 8px);
-  --aw-shadow: 0 18px 50px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.28), 0 0 0 1px rgba(75,143,248,0.08);
-  --aw-font: var(--font-primary, 'Inter', system-ui, sans-serif);
-  --aw-font-display: var(--font-display, 'Montserrat', 'Inter', system-ui, sans-serif);
+  --aw-radius: var(--radius, var(--radius-lg, 20px));
+  --aw-radius-md: var(--radius-btn, var(--radius-md, 12px));
+  --aw-radius-sm: var(--radius-sm, 14px);
+  --aw-shadow: 0 18px 50px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.28), 0 0 0 1px rgba(0,117,255,0.08);
+  --aw-font: var(--font, var(--font-primary, 'Inter', system-ui, sans-serif));
+  --aw-font-display: var(--display, var(--font-display, 'Poppins', 'Inter', system-ui, sans-serif));
   --aw-transition: var(--transition-normal, 0.3s cubic-bezier(0.22, 1, 0.36, 1));
-  --aw-gradient-btn: var(--gradient-btn-primary, linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%));
-  --aw-gradient-btn-hover: var(--gradient-btn-primary-hover, linear-gradient(135deg, #2563eb 0%, #1e40af 100%));
+  --aw-gradient-btn: var(--gradient-btn-primary, linear-gradient(135deg, #0075ff 0%, #0062d6 100%));
+  --aw-gradient-btn-hover: var(--gradient-btn-primary-hover, linear-gradient(135deg, #1f84ff 0%, #0075ff 100%));
   position: fixed;
   z-index: 99990;
   right: 20px;
@@ -58,19 +58,19 @@ const css = /* css */ `
   width: 56px;
   height: 56px;
   border-radius: var(--radius-full, 9999px);
-  border: 1px solid var(--color-primary-a25, rgba(75,143,248,0.25));
+  border: 1px solid var(--color-primary-a25, rgba(0,117,255,0.25));
   background: linear-gradient(135deg, var(--aw-primary-light) 0%, var(--aw-primary) 45%, var(--aw-primary-hover) 100%);
   color: #fff;
   cursor: pointer;
   display: grid;
   place-items: center;
   transform-origin: center;
-  box-shadow: var(--shadow-glow, 0 4px 30px rgba(75,143,248,0.15)), 0 8px 28px rgba(0,0,0,0.35);
+  box-shadow: var(--shadow-glow, 0 4px 30px rgba(0,117,255,0.15)), 0 8px 28px rgba(0,0,0,0.35);
   transition: transform var(--aw-transition), box-shadow var(--transition-fast, 0.15s ease);
 }
 .aw-chat__toggle:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow: var(--shadow-glow-strong, 0 8px 40px rgba(75,143,248,0.25)), 0 10px 32px rgba(0,0,0,0.4);
+  box-shadow: var(--shadow-glow-strong, 0 8px 40px rgba(0,117,255,0.25)), 0 10px 32px rgba(0,0,0,0.4);
 }
 .aw-chat__toggle:focus-visible {
   outline: 2px solid var(--aw-primary);
@@ -123,7 +123,7 @@ const css = /* css */ `
   display: flex;
   flex-direction: column;
   background:
-    linear-gradient(180deg, rgba(75,143,248,0.04) 0%, transparent 28%),
+    linear-gradient(180deg, rgba(0,117,255,0.04) 0%, transparent 28%),
     var(--aw-panel);
   border: 1px solid var(--aw-border);
   border-radius: var(--aw-radius);
@@ -169,7 +169,7 @@ const css = /* css */ `
   right: 16px;
   bottom: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-primary-a20, rgba(75,143,248,0.2)), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-primary-a20, rgba(0,117,255,0.2)), transparent);
   pointer-events: none;
 }
 .aw-chat__brand {
@@ -186,8 +186,8 @@ const css = /* css */ `
   border-radius: 9999px;
   object-fit: cover;
   object-position: center top;
-  border: 1px solid var(--color-primary-a25, rgba(75,143,248,0.25));
-  box-shadow: 0 2px 10px var(--color-primary-a10, rgba(75,143,248,0.1));
+  border: 1px solid var(--color-primary-a25, rgba(0,117,255,0.25));
+  box-shadow: 0 2px 10px var(--color-primary-a10, rgba(0,117,255,0.1));
   background: var(--aw-elevated);
 }
 .aw-chat__brand-text {
@@ -245,8 +245,8 @@ const css = /* css */ `
   gap: 14px;
   scroll-behavior: smooth;
   background:
-    radial-gradient(ellipse 80% 50% at 100% 0%, var(--color-primary-a08, rgba(75,143,248,0.08)), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 0% 100%, var(--color-primary-a03, rgba(75,143,248,0.03)), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 100% 0%, var(--color-primary-a08, rgba(0,117,255,0.08)), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, var(--color-primary-a03, rgba(0,117,255,0.03)), transparent 50%),
     var(--aw-panel);
   scrollbar-width: thin;
   scrollbar-color: var(--color-white-a12, rgba(255,255,255,0.12)) transparent;
@@ -344,7 +344,7 @@ const css = /* css */ `
   background: linear-gradient(145deg, var(--aw-primary-light) 0%, var(--aw-primary) 55%, var(--aw-primary-hover) 100%);
   color: #fff;
   border-bottom-right-radius: 5px;
-  box-shadow: 0 4px 14px var(--color-primary-a20, rgba(75,143,248,0.2));
+  box-shadow: 0 4px 14px var(--color-primary-a20, rgba(0,117,255,0.2));
 }
 .aw-msg--assistant .aw-msg__bubble {
   background: var(--aw-elevated);
@@ -470,8 +470,8 @@ const css = /* css */ `
 }
 .aw-chat__composer textarea:focus {
   outline: none;
-  border-color: var(--color-border-focus, rgba(75,143,248,0.4));
-  box-shadow: 0 0 0 3px var(--color-primary-a15, rgba(75,143,248,0.15));
+  border-color: var(--color-border-focus, rgba(0,117,255,0.4));
+  box-shadow: 0 0 0 3px var(--color-primary-a15, rgba(0,117,255,0.15));
 }
 .aw-chat__send,
 .aw-chat__stop {
