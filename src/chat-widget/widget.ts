@@ -212,7 +212,7 @@ export function mountChatWidget(): void {
       ).join('');
       empty.innerHTML = `
         <strong>Hi! I&rsquo;m Anna. How can I help?</strong>
-        <p>I can help with registration, promo code WINEX600, deposits, withdrawals, and the Android APK.</p>
+        <p>I can help with casino and sports betting, promo code WINEX600, deposits, withdrawals, and the Android APK.</p>
         <div class="aw-chat__suggests" role="group" aria-label="Suggested questions">${chips}</div>
       `;
       messagesEl.appendChild(empty);

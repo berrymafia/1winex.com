@@ -11,6 +11,18 @@ function htmlRewritePlugin() {
           next();
           return;
         }
+        if (url === '/go' || url === '/go/') {
+          res.statusCode = 302;
+          res.setHeader('Location', 'https://bonus-999.com/1win');
+          res.end();
+          return;
+        }
+        if (url === '/apk' || url === '/apk/') {
+          res.statusCode = 302;
+          res.setHeader('Location', 'https://bonus-999.com/apk');
+          res.end();
+          return;
+        }
         if (
           url !== '/' &&
           !url.includes('.') &&
@@ -44,6 +56,8 @@ export default defineConfig({
         safety: resolve(__dirname, 'safety.html'),
         bonuses: resolve(__dirname, 'bonuses.html'),
         games: resolve(__dirname, 'games.html'),
+        aviator: resolve(__dirname, 'aviator.html'),
+        'lucky-jet': resolve(__dirname, 'lucky-jet.html'),
         sports: resolve(__dirname, 'sports.html'),
         payments: resolve(__dirname, 'payments.html'),
         mobile: resolve(__dirname, 'mobile.html'),

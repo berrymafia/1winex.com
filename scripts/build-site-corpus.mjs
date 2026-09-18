@@ -38,7 +38,19 @@ const PAGES = [
     slug: 'games',
     file: 'games.html',
     name: '1win Games',
-    aliases: ['games', 'slots', 'aviator', 'crash', 'live casino', 'rtp'],
+    aliases: ['games', 'slots', 'crash', 'live casino', 'rtp'],
+  },
+  {
+    slug: 'aviator',
+    file: 'aviator.html',
+    name: '1win Aviator',
+    aliases: ['aviator', 'spribe', 'crash game', 'авиатор'],
+  },
+  {
+    slug: 'lucky-jet',
+    file: 'lucky-jet.html',
+    name: '1win Lucky Jet',
+    aliases: ['lucky jet', 'luckyjet', '1win originals', 'crash game', 'лаки джет'],
   },
   {
     slug: 'sports',

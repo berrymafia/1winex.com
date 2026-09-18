@@ -196,6 +196,60 @@
     wrap.appendChild(inner);
   });
 
+  (function () {
+    var key = "1winex-cookie-ok";
+    try {
+      if (window.localStorage.getItem(key) === "1") return;
+    } catch (err) {}
+
+    var box = document.createElement("div");
+    box.id = "cookie-notice";
+    box.className = "cookie-notice";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-label", "Cookie notice");
+    box.innerHTML =
+      '<p>This site uses cookies and local storage to keep pages working. See the <a href="responsible-gambling#cookies">cookie policy</a>.</p>' +
+      '<button type="button" class="cookie-notice__ok">OK</button>';
+    document.body.appendChild(box);
+
+    function hide() {
+      try {
+        window.localStorage.setItem(key, "1");
+      } catch (err) {}
+      box.classList.remove("is-visible");
+      window.setTimeout(function () {
+        if (box.parentNode) box.parentNode.removeChild(box);
+      }, 220);
+    }
+
+    box.querySelector(".cookie-notice__ok").addEventListener("click", hide);
+    window.requestAnimationFrame(function () {
+      box.classList.add("is-visible");
+    });
+  })();
+
+  (function () {
+    var stage = document.querySelector("[data-aviator-demo]");
+    if (!stage) return;
+    var start = stage.querySelector("[data-aviator-demo-start]");
+    if (!start) return;
+    start.addEventListener("click", function () {
+      if (stage.querySelector("iframe")) return;
+      var holder = stage.querySelector(".aviator-demo__stage") || stage;
+      var frame = document.createElement("iframe");
+      frame.title = "Aviator demo by Spribe";
+      frame.src =
+        "https://demo.spribe.io/launch/aviator?currency=USD&lang=EN&return_url=" +
+        encodeURIComponent(location.origin + location.pathname);
+      frame.setAttribute("allow", "autoplay; fullscreen");
+      frame.setAttribute("allowfullscreen", "");
+      frame.setAttribute("scrolling", "no");
+      frame.setAttribute("referrerpolicy", "origin-when-cross-origin");
+      holder.appendChild(frame);
+      stage.classList.add("is-playing");
+    });
+  })();
+
   document.querySelectorAll("[data-copy]").forEach(function (el) {
     el.addEventListener("click", function () {
       var value = el.getAttribute("data-copy");

@@ -72,6 +72,24 @@ export function getSuggestedQuestions(
     ]);
   }
 
+  if (slug === 'aviator') {
+    return uniqueSuggestions([
+      'What is Aviator RTP?',
+      'Is Aviator a 1win Original?',
+      'Does Aviator count toward bonus wagering?',
+      'What is auto cash-out in Aviator?',
+    ]);
+  }
+
+  if (slug === 'lucky-jet') {
+    return uniqueSuggestions([
+      'What is Lucky Jet RTP?',
+      'Is Lucky Jet the same as Aviator?',
+      'Does Lucky Jet count toward bonus wagering?',
+      'What is auto cash-out in Lucky Jet?',
+    ]);
+  }
+
   if (slug === 'sports') {
     return uniqueSuggestions([
       'How do I place a 1win sports bet?',

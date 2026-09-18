@@ -13,9 +13,9 @@
 
   var loaderSrc =
     (document.currentScript && document.currentScript.src) ||
-    './js/chat-widget-loader.js?v=13';
+    './js/chat-widget-loader.js?v=14';
   var widgetSrc = loaderSrc.replace(/chat-widget-loader\.js/i, 'chat-widget.js');
-  if (widgetSrc === loaderSrc) widgetSrc = './js/chat-widget.js?v=13';
+  if (widgetSrc === loaderSrc) widgetSrc = './js/chat-widget.js?v=14';
 
   function loadWidget() {
     var script = document.createElement('script');
