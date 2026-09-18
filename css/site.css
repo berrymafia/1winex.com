@@ -821,11 +821,18 @@ h3 {
 
 .section {
   padding: 36px 0;
-  scroll-margin-top: calc(var(--header) + 12px);
+  /* Offset sticky header, minus section padding so the h2 sits under the bar */
+  scroll-margin-top: calc(var(--header) + 16px - 36px);
 }
 
 .hero + .section {
   padding-top: 0;
+  scroll-margin-top: calc(var(--header) + 16px);
+}
+
+.prose article[id],
+h2[id] {
+  scroll-margin-top: calc(var(--header) + 16px);
 }
 
 .section h2 {
@@ -1670,14 +1677,24 @@ a.step:hover {
   line-height: 1.4;
   visibility: hidden;
   pointer-events: none;
+  opacity: 0;
   transform: translateY(calc(100% + 28px));
-  transition: transform 0.22s ease, visibility 0.22s ease;
+  transition: transform 0.22s ease, opacity 0.22s ease, visibility 0.22s ease;
 }
 
 .cookie-notice.is-visible {
   visibility: visible;
   pointer-events: auto;
+  opacity: 1;
   transform: none;
+}
+
+.cookie-notice.is-leaving {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: none;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
 }
 
 .cookie-notice p {

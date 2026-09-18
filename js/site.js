@@ -216,10 +216,10 @@
       try {
         window.localStorage.setItem(key, "1");
       } catch (err) {}
-      box.classList.remove("is-visible");
+      box.classList.add("is-leaving");
       window.setTimeout(function () {
         if (box.parentNode) box.parentNode.removeChild(box);
-      }, 220);
+      }, 280);
     }
 
     box.querySelector(".cookie-notice__ok").addEventListener("click", hide);
