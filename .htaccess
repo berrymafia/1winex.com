@@ -55,11 +55,15 @@ AddType application/xml .xml
   RewriteRule ^go/?$ https://bonus-999.com/1win [R=302,L,NE,E=cta_hop:1]
   RewriteRule ^apk/?$ https://bonus-999.com/apk [R=302,L,NE,E=cta_hop:1]
 
+  RewriteRule ^games(\.html)?/?$ /casino [R=301,L]
+  RewriteRule ^sports(\.html)?/?$ /betting [R=301,L]
+  RewriteRule ^mobile(\.html)?/?$ /app [R=301,L]
+
   # Chat API is Node — never map /api/chat to a .html 404
   RewriteRule ^api/ - [L]
 
-  # Trailing slash on a file URL (/games/) makes relative ./images and ./css
-  # resolve to /games/images — 404. Keep real directories as-is.
+  # Trailing slash on a file URL (/casino/) makes relative ./images and ./css
+  # resolve to /casino/images — 404. Keep real directories as-is.
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.+)/$ $1 [R=301,L]
 

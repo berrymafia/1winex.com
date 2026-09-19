@@ -3,6 +3,38 @@
     document.documentElement.classList.add("is-android");
   }
 
+  var apkCta = document.querySelector(".sticky-cta a");
+  if (apkCta) {
+    apkCta.setAttribute("aria-label", "Download Android APK");
+    apkCta.setAttribute("title", "Download Android APK");
+  }
+
+  document.querySelectorAll("a[href]").forEach(function (link) {
+    var href = (link.getAttribute("href") || "").trim();
+    if (!href) return;
+    var path = href.split("?")[0];
+    var isExit = path === "/go" || path === "/apk";
+    var isHttp = /^https?:\/\//i.test(href) || href.indexOf("//") === 0;
+    if (isHttp) {
+      try {
+        var host = new URL(href, location.href).hostname.replace(/^www\./i, "").toLowerCase();
+        var here = location.hostname.replace(/^www\./i, "").toLowerCase();
+        if (host === here || host === "1winex.com") return;
+      } catch (err) {
+        return;
+      }
+    } else if (!isExit) {
+      return;
+    }
+    var rel = (link.getAttribute("rel") || "").split(/\s+/).filter(Boolean);
+    if (rel.indexOf("nofollow") === -1) rel.push("nofollow");
+    if (link.getAttribute("target") === "_blank") {
+      if (rel.indexOf("noopener") === -1) rel.push("noopener");
+      if (rel.indexOf("noreferrer") === -1) rel.push("noreferrer");
+    }
+    link.setAttribute("rel", rel.join(" "));
+  });
+
   var toggle = document.querySelector(".mobile-toggle");
   var panel = document.querySelector(".header-panel");
 

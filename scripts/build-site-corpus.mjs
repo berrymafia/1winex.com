@@ -35,10 +35,10 @@ const PAGES = [
     aliases: ['payments', 'withdrawal', 'deposit', 'crypto', 'payout', 'kyc'],
   },
   {
-    slug: 'games',
-    file: 'games.html',
-    name: '1win Games',
-    aliases: ['games', 'slots', 'crash', 'live casino', 'rtp'],
+    slug: 'casino',
+    file: 'casino.html',
+    name: '1win Casino',
+    aliases: ['casino', 'games', 'slots', 'crash', 'live casino', 'rtp'],
   },
   {
     slug: 'aviator',
@@ -53,16 +53,16 @@ const PAGES = [
     aliases: ['lucky jet', 'luckyjet', '1win originals', 'crash game', 'лаки джет'],
   },
   {
-    slug: 'sports',
-    file: 'sports.html',
-    name: '1win Sports',
-    aliases: ['sports', 'sportsbook', 'betting', 'pre-match', 'live betting', 'esports', 'football'],
+    slug: 'betting',
+    file: 'betting.html',
+    name: '1win Betting',
+    aliases: ['betting', 'sports', 'sportsbook', 'pre-match', 'live betting', 'esports', 'football'],
   },
   {
-    slug: 'mobile',
-    file: 'mobile.html',
-    name: '1win Mobile App',
-    aliases: ['mobile', 'apk', 'android', 'ios', 'testflight', 'app'],
+    slug: 'app',
+    file: 'app.html',
+    name: '1win App',
+    aliases: ['app', 'mobile', 'apk', 'android', 'ios', 'testflight'],
   },
   {
     slug: 'safety',
@@ -75,6 +75,12 @@ const PAGES = [
     file: 'responsible-gambling.html',
     name: 'Responsible Gambling',
     aliases: ['responsible', 'self-exclusion', 'deposit limits', '18+'],
+  },
+  {
+    slug: 'not-working',
+    file: 'not-working.html',
+    name: '1win Not Working',
+    aliases: ['not working', 'blocked', 'mirror', 'site down', 'does not open', 'не открывается', 'не работает'],
   },
 ];
 

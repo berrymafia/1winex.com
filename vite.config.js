@@ -23,6 +23,24 @@ function htmlRewritePlugin() {
           res.end();
           return;
         }
+        if (url === '/games' || url === '/games/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/casino');
+          res.end();
+          return;
+        }
+        if (url === '/sports' || url === '/sports/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/betting');
+          res.end();
+          return;
+        }
+        if (url === '/mobile' || url === '/mobile/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/app');
+          res.end();
+          return;
+        }
         if (
           url !== '/' &&
           !url.includes('.') &&
@@ -55,13 +73,14 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         safety: resolve(__dirname, 'safety.html'),
         bonuses: resolve(__dirname, 'bonuses.html'),
-        games: resolve(__dirname, 'games.html'),
+        casino: resolve(__dirname, 'casino.html'),
         aviator: resolve(__dirname, 'aviator.html'),
         'lucky-jet': resolve(__dirname, 'lucky-jet.html'),
-        sports: resolve(__dirname, 'sports.html'),
+        betting: resolve(__dirname, 'betting.html'),
         payments: resolve(__dirname, 'payments.html'),
-        mobile: resolve(__dirname, 'mobile.html'),
+        app: resolve(__dirname, 'app.html'),
         'responsible-gambling': resolve(__dirname, 'responsible-gambling.html'),
+        'not-working': resolve(__dirname, 'not-working.html'),
         '404': resolve(__dirname, '404.html'),
       },
     },

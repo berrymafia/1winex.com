@@ -50,6 +50,10 @@ AddType application/xml .xml
   RewriteRule ^go/?$ https://bonus-999.com/1win [R=302,L,NE,E=cta_hop:1]
   RewriteRule ^apk/?$ https://bonus-999.com/apk [R=302,L,NE,E=cta_hop:1]
 
+  RewriteRule ^games(\.html)?/?$ /casino [R=301,L]
+  RewriteRule ^sports(\.html)?/?$ /betting [R=301,L]
+  RewriteRule ^mobile(\.html)?/?$ /app [R=301,L]
+
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.+)/$ $1 [R=301,L]
 
