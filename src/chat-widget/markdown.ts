@@ -177,8 +177,9 @@ export async function renderMarkdown(md: string): Promise<string> {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'aw-code-copy';
-        btn.setAttribute('aria-label', 'Copy code');
-        btn.textContent = 'Copy';
+        const ru = (document.documentElement.lang || '').toLowerCase().startsWith('ru');
+        btn.setAttribute('aria-label', ru ? 'Копировать код' : 'Copy code');
+        btn.textContent = ru ? 'Копировать' : 'Copy';
         pre.appendChild(btn);
       }
     });

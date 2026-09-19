@@ -84,6 +84,13 @@ const PAGES = [
   },
 ];
 
+const RU_PAGES = PAGES.map((page) => ({
+  ...page,
+  slug: page.slug === 'index' ? 'ru-index' : `ru-${page.slug}`,
+  file: page.slug === 'index' ? 'ru/index.html' : `ru/${page.file}`,
+  name: `${page.name} RU`,
+}));
+
 const SITE_OFFERS = [
   {
     brand: '1win',
@@ -153,7 +160,7 @@ function extractMetaDescription(html) {
 }
 
 const entries = [];
-for (const page of PAGES) {
+for (const page of [...PAGES, ...RU_PAGES]) {
   const filePath = path.join(ROOT, page.file);
   if (!fs.existsSync(filePath)) {
     console.warn(`[corpus] missing ${page.file}`);
@@ -162,7 +169,14 @@ for (const page of PAGES) {
   const html = fs.readFileSync(filePath, 'utf8');
   const text = (CTA_PREFIX + stripHtml(html)).slice(0, MAX_TEXT);
   const title = extractTitle(html) || page.name;
-  const pathUrl = page.slug === 'index' ? '/' : `/${page.slug}`;
+  const pathUrl =
+    page.slug === 'index'
+      ? '/'
+      : page.slug === 'ru-index'
+        ? '/ru'
+        : page.slug.startsWith('ru-')
+          ? `/ru/${page.slug.slice(3)}`
+          : `/${page.slug}`;
   const link = `${SITE_ORIGIN}${pathUrl === '/' ? '/' : pathUrl}`;
   entries.push({
     slug: page.slug,

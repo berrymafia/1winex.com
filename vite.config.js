@@ -1,3 +1,4 @@
+import { existsSync } from 'fs';
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
@@ -41,12 +42,49 @@ function htmlRewritePlugin() {
           res.end();
           return;
         }
+        if (url === '/ru/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/ru');
+          res.end();
+          return;
+        }
+        if (url === '/ru') {
+          req.url = '/ru/index.html';
+          next();
+          return;
+        }
+        if (url === '/ru/games' || url === '/ru/games/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/ru/casino');
+          res.end();
+          return;
+        }
+        if (url === '/ru/sports' || url === '/ru/sports/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/ru/betting');
+          res.end();
+          return;
+        }
+        if (url === '/ru/mobile' || url === '/ru/mobile/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/ru/app');
+          res.end();
+          return;
+        }
         if (
           url !== '/' &&
           !url.includes('.') &&
           url !== '/favicon.ico'
         ) {
-          req.url = url + '.html';
+          const htmlFile = resolve(__dirname, url.slice(1) + '.html');
+          if (existsSync(htmlFile)) {
+            req.url = url + '.html';
+          } else if (url.startsWith('/ru/')) {
+            req.url = '/ru/404.html';
+            res.statusCode = 404;
+          } else {
+            req.url = url + '.html';
+          }
         }
         next();
       });
@@ -82,6 +120,18 @@ export default defineConfig({
         'responsible-gambling': resolve(__dirname, 'responsible-gambling.html'),
         'not-working': resolve(__dirname, 'not-working.html'),
         '404': resolve(__dirname, '404.html'),
+        'ru-main': resolve(__dirname, 'ru/index.html'),
+        'ru-safety': resolve(__dirname, 'ru/safety.html'),
+        'ru-bonuses': resolve(__dirname, 'ru/bonuses.html'),
+        'ru-casino': resolve(__dirname, 'ru/casino.html'),
+        'ru-aviator': resolve(__dirname, 'ru/aviator.html'),
+        'ru-lucky-jet': resolve(__dirname, 'ru/lucky-jet.html'),
+        'ru-betting': resolve(__dirname, 'ru/betting.html'),
+        'ru-payments': resolve(__dirname, 'ru/payments.html'),
+        'ru-app': resolve(__dirname, 'ru/app.html'),
+        'ru-responsible-gambling': resolve(__dirname, 'ru/responsible-gambling.html'),
+        'ru-not-working': resolve(__dirname, 'ru/not-working.html'),
+        'ru-404': resolve(__dirname, 'ru/404.html'),
       },
     },
   },

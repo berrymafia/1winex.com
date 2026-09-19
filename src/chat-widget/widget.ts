@@ -43,10 +43,62 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
+function isRu(): boolean {
+  return (document.documentElement.lang || '').toLowerCase().startsWith('ru');
+}
+
+function chatCopy() {
+  if (isRu()) {
+    return {
+      name: 'Анна',
+      subtitle: 'Виртуальный помощник 1win',
+      close: 'Закрыть чат',
+      placeholder: 'Задайте вопрос…',
+      message: 'Сообщение',
+      send: 'Отправить',
+      sendMessage: 'Отправить сообщение',
+      open: 'Открыть чат с Анной',
+      closeAnna: 'Закрыть чат с Анной',
+      openUnread: 'Открыть чат с Анной — новое сообщение',
+      typing: 'Анна печатает',
+      hello: 'Привет! Я Анна. Чем могу помочь?',
+      intro:
+        'Могу подсказать по казино, ставкам на спорт, промокоду WINEX600, депозитам, выводам и Android APK.',
+      suggests: 'Популярные вопросы',
+      noResponse: 'Не удалось получить ответ.',
+      copied: 'Скопировано',
+      copy: 'Копировать',
+      failed: 'Ошибка',
+    };
+  }
+  return {
+    name: 'Anna',
+    subtitle: 'Virtual 1win assistant',
+    close: 'Close chat',
+    placeholder: 'Ask a question…',
+    message: 'Message',
+    send: 'Send',
+    sendMessage: 'Send message',
+    open: 'Open chat with Anna',
+    closeAnna: 'Close chat with Anna',
+    openUnread: 'Open chat with Anna — new message',
+    typing: 'Anna is typing',
+    hello: 'Hi! I&rsquo;m Anna. How can I help?',
+    intro:
+      'I can help with casino and sports betting, promo code WINEX600, deposits, withdrawals, and the Android APK.',
+    suggests: 'Suggested questions',
+    noResponse: 'No response received.',
+    copied: 'Copied',
+    copy: 'Copy',
+    failed: 'Failed',
+  };
+}
+
 export function mountChatWidget(): void {
   if (document.getElementById(WIDGET_ID)) return;
 
   injectStyles();
+  const ui = chatCopy();
 
   let messages: ChatMessage[] = loadMessages();
   let open = false;
@@ -64,23 +116,23 @@ export function mountChatWidget(): void {
     <div class="aw-chat__panel" role="dialog" aria-modal="true" aria-labelledby="aw-chat-title" aria-hidden="true" hidden>
       <div class="aw-chat__header">
         <div class="aw-chat__brand">
-          <img class="aw-chat__brand-avatar" src="${ANNA_AVATAR_SRC}" alt="Anna" width="48" height="48" decoding="async" />
+          <img class="aw-chat__brand-avatar" src="${ANNA_AVATAR_SRC}" alt="${ui.name}" width="48" height="48" decoding="async" />
           <div class="aw-chat__brand-text">
-            <strong id="aw-chat-title">Anna</strong>
-            <span>Virtual 1win assistant</span>
+            <strong id="aw-chat-title">${ui.name}</strong>
+            <span>${ui.subtitle}</span>
           </div>
         </div>
         <div class="aw-chat__header-actions">
-          <button type="button" class="aw-chat__icon-btn" data-action="close" aria-label="Close chat">${ICONS.close}</button>
+          <button type="button" class="aw-chat__icon-btn" data-action="close" aria-label="${ui.close}">${ICONS.close}</button>
         </div>
       </div>
       <div class="aw-chat__messages" role="log" aria-live="polite" aria-relevant="additions"></div>
       <form class="aw-chat__composer" autocomplete="off">
-        <textarea name="message" rows="1" maxlength="${MAX_MESSAGE_LENGTH}" placeholder="Ask a question…" aria-label="Message"></textarea>
-        <button type="submit" class="aw-chat__send" aria-label="Send message">Send</button>
+        <textarea name="message" rows="1" maxlength="${MAX_MESSAGE_LENGTH}" placeholder="${ui.placeholder}" aria-label="${ui.message}"></textarea>
+        <button type="submit" class="aw-chat__send" aria-label="${ui.sendMessage}">${ui.send}</button>
       </form>
     </div>
-    <button type="button" class="aw-chat__toggle" aria-label="Open chat with Anna" aria-expanded="false" aria-controls="aw-chat-panel">
+    <button type="button" class="aw-chat__toggle" aria-label="${ui.open}" aria-expanded="false" aria-controls="aw-chat-panel">
       ${ICONS.chat}
       <span class="aw-chat__badge" hidden aria-hidden="true"></span>
     </button>
@@ -123,11 +175,11 @@ export function mountChatWidget(): void {
     badgeEl.hidden = !show;
     badgeEl.setAttribute('aria-hidden', show ? 'false' : 'true');
     if (open) {
-      toggleBtn.setAttribute('aria-label', 'Close chat with Anna');
+      toggleBtn.setAttribute('aria-label', ui.closeAnna);
     } else if (show) {
-      toggleBtn.setAttribute('aria-label', 'Open chat with Anna — new message');
+      toggleBtn.setAttribute('aria-label', ui.openUnread);
     } else {
-      toggleBtn.setAttribute('aria-label', 'Open chat with Anna');
+      toggleBtn.setAttribute('aria-label', ui.open);
     }
   }
 
@@ -175,7 +227,7 @@ export function mountChatWidget(): void {
 
     if (msg.role === 'assistant') {
       if (msg.status === 'streaming' && !msg.content) {
-        bubble.innerHTML = `<span class="aw-typing" aria-label="Anna is typing"><i></i><i></i><i></i></span>`;
+        bubble.innerHTML = `<span class="aw-typing" aria-label="${ui.typing}"><i></i><i></i><i></i></span>`;
       } else {
         try {
           const html = await renderMarkdown(msg.content || '');
@@ -211,9 +263,9 @@ export function mountChatWidget(): void {
           `<button type="button" class="aw-chat__suggest" data-suggest="${escapeAttr(q)}">${escapeAttr(q)}</button>`
       ).join('');
       empty.innerHTML = `
-        <strong>Hi! I&rsquo;m Anna. How can I help?</strong>
-        <p>I can help with casino and sports betting, promo code WINEX600, deposits, withdrawals, and the Android APK.</p>
-        <div class="aw-chat__suggests" role="group" aria-label="Suggested questions">${chips}</div>
+        <strong>${ui.hello}</strong>
+        <p>${ui.intro}</p>
+        <div class="aw-chat__suggests" role="group" aria-label="${ui.suggests}">${chips}</div>
       `;
       messagesEl.appendChild(empty);
       return;
@@ -231,10 +283,10 @@ export function mountChatWidget(): void {
 
   function setComposerStreaming(active: boolean) {
     sendBtn.className = 'aw-chat__send';
-    sendBtn.textContent = 'Send';
+    sendBtn.textContent = ui.send;
     sendBtn.type = 'submit';
     sendBtn.disabled = active;
-    sendBtn.setAttribute('aria-label', 'Send message');
+    sendBtn.setAttribute('aria-label', ui.sendMessage);
     sendBtn.onclick = null;
   }
 
@@ -295,7 +347,7 @@ export function mountChatWidget(): void {
         onDone: () => {
           const hadContent = Boolean(assistant.content);
           assistant.status = hadContent ? 'ok' : 'error';
-          if (!hadContent) assistant.content = 'No response received.';
+          if (!hadContent) assistant.content = ui.noResponse;
           streamingId = null;
           abort = null;
           setComposerStreaming(false);
@@ -399,12 +451,12 @@ export function mountChatWidget(): void {
     const text = code?.textContent || '';
     try {
       await navigator.clipboard.writeText(text);
-      btn.textContent = 'Copied';
+      btn.textContent = ui.copied;
       setTimeout(() => {
-        btn.textContent = 'Copy';
+        btn.textContent = ui.copy;
       }, 1200);
     } catch {
-      btn.textContent = 'Failed';
+      btn.textContent = ui.failed;
     }
   });
 

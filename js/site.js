@@ -3,10 +3,23 @@
     document.documentElement.classList.add("is-android");
   }
 
+  var isRu = (document.documentElement.lang || "").toLowerCase().indexOf("ru") === 0;
+  var t = {
+    apk: isRu ? "Скачать Android APK" : "Download Android APK",
+    openMenu: isRu ? "Открыть меню" : "Open menu",
+    closeMenu: isRu ? "Закрыть меню" : "Close menu",
+    cookieLabel: isRu ? "Уведомление об использовании cookie" : "Cookie notice",
+    cookieHtml: isRu
+      ? '<p>Сайт использует cookie и локальное хранилище для работы сайта. См. <a href="/ru/responsible-gambling#cookies">политику cookie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>'
+      : '<p>This site uses cookies and local storage to keep pages working. See the <a href="/responsible-gambling#cookies">cookie policy</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+    copied: isRu ? "Скопировано" : "Copied",
+    aviatorDemo: isRu ? "Демо Aviator от Spribe" : "Aviator demo by Spribe",
+  };
+
   var apkCta = document.querySelector(".sticky-cta a");
   if (apkCta) {
-    apkCta.setAttribute("aria-label", "Download Android APK");
-    apkCta.setAttribute("title", "Download Android APK");
+    apkCta.setAttribute("aria-label", t.apk);
+    apkCta.setAttribute("title", t.apk);
   }
 
   document.querySelectorAll("a[href]").forEach(function (link) {
@@ -42,7 +55,7 @@
     document.body.classList.toggle("nav-open", open);
     if (toggle) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      toggle.setAttribute("aria-label", open ? t.closeMenu : t.openMenu);
     }
   }
 
@@ -238,10 +251,8 @@
     box.id = "cookie-notice";
     box.className = "cookie-notice";
     box.setAttribute("role", "dialog");
-    box.setAttribute("aria-label", "Cookie notice");
-    box.innerHTML =
-      '<p>This site uses cookies and local storage to keep pages working. See the <a href="responsible-gambling#cookies">cookie policy</a>.</p>' +
-      '<button type="button" class="cookie-notice__ok">OK</button>';
+    box.setAttribute("aria-label", t.cookieLabel);
+    box.innerHTML = t.cookieHtml;
     document.body.appendChild(box);
 
     function hide() {
@@ -269,9 +280,11 @@
       if (stage.querySelector("iframe")) return;
       var holder = stage.querySelector(".aviator-demo__stage") || stage;
       var frame = document.createElement("iframe");
-      frame.title = "Aviator demo by Spribe";
+      frame.title = t.aviatorDemo;
       frame.src =
-        "https://demo.spribe.io/launch/aviator?currency=USD&lang=EN&return_url=" +
+        "https://demo.spribe.io/launch/aviator?currency=USD&lang=" +
+        (isRu ? "RU" : "EN") +
+        "&return_url=" +
         encodeURIComponent(location.origin + location.pathname);
       frame.setAttribute("allow", "autoplay; fullscreen");
       frame.setAttribute("allowfullscreen", "");
@@ -289,7 +302,7 @@
       var prev = label.textContent;
       var done = function () {
         el.classList.add("is-copied");
-        label.textContent = "Copied";
+        label.textContent = t.copied;
         setTimeout(function () {
           el.classList.remove("is-copied");
           label.textContent = prev;
@@ -315,5 +328,177 @@
         fallback();
       }
     });
+  });
+
+  function preferredSiteLang() {
+    var list = navigator.languages && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language || ""];
+    var i;
+    var code;
+    for (i = 0; i < list.length; i++) {
+      code = String(list[i] || "").toLowerCase();
+      if (code === "ru" || code.indexOf("ru-") === 0) return "ru";
+      if (code === "en" || code.indexOf("en-") === 0) return "en";
+    }
+    return "en";
+  }
+
+  function arrangeLangPanels() {
+    var want = preferredSiteLang();
+    document.querySelectorAll(".lang-panel").forEach(function (panel) {
+      var sections = panel.querySelectorAll(".lang-panel__section");
+      if (sections.length < 2) return;
+      var rec = sections[0];
+      var all = sections[1];
+      var recLink = null;
+      var otherLink = null;
+      panel.querySelectorAll("a[hreflang]").forEach(function (link) {
+        var lang = (link.getAttribute("hreflang") || "").toLowerCase();
+        if (lang === want || lang.indexOf(want + "-") === 0) recLink = link;
+        else otherLink = link;
+      });
+      if (!recLink || !otherLink) return;
+      rec.insertAdjacentElement("afterend", recLink);
+      all.insertAdjacentElement("afterend", otherLink);
+    });
+  }
+
+  arrangeLangPanels();
+
+  function footerSocialHref(href) {
+    try {
+      return new URL(href, location.href).href;
+    } catch (err) {
+      return href;
+    }
+  }
+
+  function expandFooterSocials() {
+    document.querySelectorAll(".footer-social-and-lang").forEach(function (row) {
+      var nav = row.querySelector(".footer-social");
+      var more = nav && nav.querySelector(".footer-social-more");
+      if (!nav || !more) return;
+      var seen = {};
+      nav.querySelectorAll(":scope > a[href]").forEach(function (link) {
+        seen[footerSocialHref(link.href)] = true;
+      });
+      more.querySelectorAll(".footer-social-panel__list a[href]").forEach(function (src) {
+        var href = footerSocialHref(src.href);
+        if (seen[href]) return;
+        var clone = document.createElement("a");
+        clone.href = src.getAttribute("href") || src.href;
+        if (src.target) clone.target = src.target;
+        if (src.rel) clone.rel = src.rel;
+        var label = src.getAttribute("aria-label");
+        if (label) clone.setAttribute("aria-label", label);
+        var svg = src.querySelector("svg");
+        if (svg) clone.appendChild(svg.cloneNode(true));
+        nav.insertBefore(clone, more);
+        seen[href] = true;
+      });
+    });
+  }
+
+  function fitFooterSocials() {
+    document.querySelectorAll(".footer-social-and-lang").forEach(function (row) {
+      var nav = row.querySelector(".footer-social");
+      var lang = row.querySelector(".footer-lang");
+      var more = nav && nav.querySelector(".footer-social-more");
+      if (!nav || !lang || !more) return;
+      var links = nav.querySelectorAll(":scope > a");
+      var i;
+      for (i = 0; i < links.length; i++) links[i].hidden = false;
+      more.hidden = false;
+      var available = row.clientWidth - lang.offsetWidth - 8;
+      function rowWidth(count, withMore) {
+        var n = count + (withMore ? 1 : 0);
+        if (n <= 0) return 0;
+        return n * 36 + (n - 1) * 4;
+      }
+      var show = links.length;
+      var showMore = false;
+      if (rowWidth(show, false) > available) {
+        showMore = true;
+        while (show > 1 && rowWidth(show, true) > available) show -= 1;
+      }
+      for (i = 0; i < links.length; i++) links[i].hidden = i >= show;
+      more.hidden = !showMore;
+      if (!showMore) more.open = false;
+    });
+  }
+
+  expandFooterSocials();
+  fitFooterSocials();
+  if (window.ResizeObserver) {
+    document.querySelectorAll(".footer-social-and-lang").forEach(function (row) {
+      new ResizeObserver(fitFooterSocials).observe(row);
+    });
+  }
+
+  function placeFloatingPanel(details) {
+    var panel = details && details.querySelector(".footer-social-panel, .lang-panel");
+    if (!panel) return;
+    if (!details.open) {
+      panel.style.position = "";
+      panel.style.left = "";
+      panel.style.top = "";
+      panel.style.bottom = "";
+      return;
+    }
+    panel.style.position = "fixed";
+    panel.style.bottom = "auto";
+    var btn = details.querySelector("summary");
+    var br = btn.getBoundingClientRect();
+    var w = panel.offsetWidth;
+    var h = panel.offsetHeight;
+    var gap = 10;
+    var left = details.classList.contains("lang-picker") ? br.right - w : br.left;
+    var top = details.classList.contains("lang-picker") ? br.bottom + gap : br.top - h - gap;
+    if (top < 12) top = br.bottom + gap;
+    if (top + h > window.innerHeight - 12) top = Math.max(12, window.innerHeight - h - 12);
+    if (left + w > window.innerWidth - 12) left = Math.max(12, window.innerWidth - w - 12);
+    if (left < 12) left = 12;
+    panel.style.left = left + "px";
+    panel.style.top = top + "px";
+  }
+
+  document.querySelectorAll(".footer-social-more__close, .lang-panel__close").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var details = btn.closest("details");
+      if (details) details.open = false;
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    var raw = e.target;
+    if (raw && raw.nodeType === 3) raw = raw.parentElement;
+    var closeBtn = raw && raw.closest ? raw.closest(".footer-social-more__close, .lang-panel__close") : null;
+    if (closeBtn) {
+      var panel = closeBtn.closest("details");
+      if (panel) panel.open = false;
+      e.preventDefault();
+      return;
+    }
+    document.querySelectorAll(".footer-lang[open], .lang-picker[open], .footer-social-more[open]").forEach(function (el) {
+      if (!el.contains(e.target)) el.open = false;
+    });
+  });
+
+  document.querySelectorAll(".footer-lang, .lang-picker, .footer-social-more").forEach(function (el) {
+    el.addEventListener("toggle", function () {
+      placeFloatingPanel(el);
+      if (!el.open) return;
+      document.querySelectorAll(".footer-lang, .lang-picker, .footer-social-more").forEach(function (other) {
+        if (other !== el) other.removeAttribute("open");
+      });
+    });
+  });
+
+  window.addEventListener("resize", function () {
+    fitFooterSocials();
+    document.querySelectorAll(".footer-lang[open], .lang-picker[open], .footer-social-more[open]").forEach(placeFloatingPanel);
   });
 })();
