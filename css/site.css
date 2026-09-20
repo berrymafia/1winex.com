@@ -517,6 +517,10 @@ a:hover {
   object-position: 92% 52%;
 }
 
+.hero-banner--crypto img {
+  object-position: 82% 48%;
+}
+
 .aviator-demo {
   position: relative;
   margin-top: 18px;
@@ -1874,40 +1878,6 @@ a.step:hover {
   display: block;
 }
 
-.footer-software {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: stretch;
-  gap: 6px;
-  margin-top: 20px;
-  width: 100%;
-}
-
-.footer-software a {
-  display: block;
-  line-height: 0;
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-.footer-software img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 120 / 36;
-}
-
-.footer-software a:hover,
-.footer-software a:focus-visible {
-  filter: brightness(1.08);
-}
-
-.footer-software a:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
-}
-
 .footer-nav {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) minmax(0, 1.1fr) minmax(0, 1.35fr);
@@ -2225,10 +2195,6 @@ a.step:hover {
   max-width: 420px;
 }
 
-.sticky-cta {
-  display: none;
-}
-
 @media (max-width: 980px) {
   .header-panel {
     position: fixed;
@@ -2393,6 +2359,7 @@ a.step:hover {
   .hero-banner--aviator::after,
   .hero-banner--lucky-jet::after,
   .hero-banner--payments::after,
+  .hero-banner--crypto::after,
   .hero-banner--mobile::after,
   .hero-banner--404::after,
   .hero-banner--not-working::after {
@@ -2462,64 +2429,6 @@ a.step:hover {
 
   .tile img {
     height: 150px;
-  }
-
-  html.is-android .sticky-cta {
-    display: block;
-    position: fixed;
-    left: auto;
-    right: 20px;
-    bottom: calc(20px + 56px + 12px);
-    z-index: 60;
-    padding: 0;
-    background: none;
-    border: 0;
-    backdrop-filter: none;
-  }
-
-  html.is-android .sticky-cta a,
-  html.is-android .sticky-cta a:hover {
-    position: relative;
-    display: block;
-    width: 56px;
-    height: 56px;
-    padding: 0;
-    overflow: hidden;
-    font-size: 0;
-    line-height: 0;
-    color: transparent;
-    background: var(--green);
-    border-radius: 999px;
-    box-shadow: 0 4px 30px rgba(0, 178, 75, 0.28), 0 8px 28px rgba(0, 0, 0, 0.35);
-  }
-
-  html.is-android .sticky-cta a:hover {
-    background: var(--green-hover);
-  }
-
-  html.is-android .sticky-cta a::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 28px;
-    height: 28px;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4v12m0 0-5-5m5 5 5-5'/%3E%3Cpath d='M5 20h14'/%3E%3C/svg%3E") center / contain no-repeat;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4v12m0 0-5-5m5 5 5-5'/%3E%3Cpath d='M5 20h14'/%3E%3C/svg%3E") center / contain no-repeat;
-  }
-
-  html.is-android .sticky-cta a:focus-visible {
-    outline: 2px solid var(--green);
-    outline-offset: 3px;
-  }
-}
-
-@media (max-width: 480px) {
-  html.is-android .sticky-cta {
-    right: 10px;
-    bottom: calc(10px + 56px + 12px);
   }
 }
 
@@ -2898,13 +2807,6 @@ a.page-card:hover {
     flex-basis: 254px;
   }
 }
-@media (max-width: 720px) {
-  html.is-android body:has(.aw-chat.is-open) .sticky-cta,
-  html.is-android body:has(.aw-chat[data-open="true"]) .sticky-cta {
-    display: none;
-  }
-}
-
 .table-wrapper {
   overflow: hidden;
   background-color: var(--card);

@@ -73,6 +73,24 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/payments"/>
   </url>
   <url>
+    <loc>https://1winex.com/crypto-casino</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/crypto-casino"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/crypto-casino"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/crypto-casino"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/ru/crypto-casino</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/crypto-casino"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/crypto-casino"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/crypto-casino"/>
+  </url>
+  <url>
     <loc>https://1winex.com/app</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>

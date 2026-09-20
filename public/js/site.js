@@ -5,22 +5,15 @@
 
   var isRu = (document.documentElement.lang || "").toLowerCase().indexOf("ru") === 0;
   var t = {
-    apk: isRu ? "Скачать Android APK" : "Download Android APK",
     openMenu: isRu ? "Открыть меню" : "Open menu",
     closeMenu: isRu ? "Закрыть меню" : "Close menu",
-    cookieLabel: isRu ? "Уведомление об использовании cookie" : "Cookie notice",
+    cookieLabel: isRu ? "Уведомление о cookie" : "Cookie notice",
     cookieHtml: isRu
-      ? '<p>Сайт использует cookie и локальное хранилище для работы сайта. См. <a href="/ru/responsible-gambling#cookies">политику cookie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>'
+      ? '<p>Мы используем cookie, чтобы сайт работал как нужно. Как именно — в <a href="/ru/responsible-gambling#cookies">политике cookie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>'
       : '<p>This site uses cookies and local storage to keep pages working. See the <a href="/responsible-gambling#cookies">cookie policy</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
     copied: isRu ? "Скопировано" : "Copied",
     aviatorDemo: isRu ? "Демо Aviator от Spribe" : "Aviator demo by Spribe",
   };
-
-  var apkCta = document.querySelector(".sticky-cta a");
-  if (apkCta) {
-    apkCta.setAttribute("aria-label", t.apk);
-    apkCta.setAttribute("title", t.apk);
-  }
 
   document.querySelectorAll("a[href]").forEach(function (link) {
     var href = (link.getAttribute("href") || "").trim();

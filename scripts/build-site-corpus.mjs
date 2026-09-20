@@ -35,6 +35,25 @@ const PAGES = [
     aliases: ['payments', 'withdrawal', 'deposit', 'crypto', 'payout', 'kyc'],
   },
   {
+    slug: 'crypto-casino',
+    file: 'crypto-casino.html',
+    name: '1win Crypto Casino',
+    aliases: [
+      'crypto casino',
+      'crypto',
+      'bitcoin',
+      'btc',
+      'ethereum',
+      'eth',
+      'usdt',
+      'tether',
+      'wallet',
+      'крипто-казино',
+      'крипта',
+      'биткоин',
+    ],
+  },
+  {
     slug: 'casino',
     file: 'casino.html',
     name: '1win Casino',
@@ -84,12 +103,30 @@ const PAGES = [
   },
 ];
 
-const RU_PAGES = PAGES.map((page) => ({
-  ...page,
-  slug: page.slug === 'index' ? 'ru-index' : `ru-${page.slug}`,
-  file: page.slug === 'index' ? 'ru/index.html' : `ru/${page.file}`,
-  name: `${page.name} RU`,
-}));
+const RU_NAMES = {
+  'ru-index': '1win',
+  'ru-bonuses': 'Бонусы',
+  'ru-payments': 'Платежи',
+  'ru-crypto-casino': 'Крипто-казино',
+  'ru-casino': 'Казино',
+  'ru-aviator': 'Aviator',
+  'ru-lucky-jet': 'Lucky Jet',
+  'ru-betting': 'Спорт',
+  'ru-app': 'Приложение',
+  'ru-safety': 'Безопасность',
+  'ru-responsible-gambling': 'Ответственная игра',
+  'ru-not-working': 'Не открывается',
+};
+
+const RU_PAGES = PAGES.map((page) => {
+  const slug = page.slug === 'index' ? 'ru-index' : `ru-${page.slug}`;
+  return {
+    ...page,
+    slug,
+    file: page.slug === 'index' ? 'ru/index.html' : `ru/${page.file}`,
+    name: RU_NAMES[slug] || `${page.name} RU`,
+  };
+});
 
 const SITE_OFFERS = [
   {
@@ -123,7 +160,8 @@ const SITE_OFFERS = [
     aliases: ['apk', 'android', 'download apk', 'скачать apk', 'приложение', 'app'],
   },
 ];
-const CTA_PREFIX = 'Register / Login: https://1winex.com/go. APK: https://1winex.com/apk. ';
+const CTA_PREFIX_EN = 'Register / Login: https://1winex.com/go. APK: https://1winex.com/apk. ';
+const CTA_PREFIX_RU = 'Регистрация / вход: https://1winex.com/go. APK: https://1winex.com/apk. ';
 
 function decodeEntities(s) {
   return s
@@ -167,7 +205,8 @@ for (const page of [...PAGES, ...RU_PAGES]) {
     continue;
   }
   const html = fs.readFileSync(filePath, 'utf8');
-  const text = (CTA_PREFIX + stripHtml(html)).slice(0, MAX_TEXT);
+  const prefix = page.slug.startsWith('ru-') ? CTA_PREFIX_RU : CTA_PREFIX_EN;
+  const text = (prefix + stripHtml(html)).slice(0, MAX_TEXT);
   const title = extractTitle(html) || page.name;
   const pathUrl =
     page.slug === 'index'

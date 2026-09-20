@@ -5,16 +5,16 @@ function isRu(): boolean {
 
 const GLOBAL_SUGGESTIONS = [
   'What license does 1win have?',
-  'How does the 600% bonus work?',
+  'What does promo code WINEX600 give?',
   'How fast are withdrawals?',
-  'Does 1win have a mobile app?',
+  'How do I download the app?',
 ] as const;
 
 const GLOBAL_SUGGESTIONS_RU = [
   'Какая лицензия у 1win?',
-  'Как работает бонус 600%?',
+  'Что даёт промокод WINEX600?',
   'Как быстро выводят деньги?',
-  'Есть ли у 1win приложение?',
+  'Как скачать приложение?',
 ] as const;
 
 function uniqueSuggestions(items: string[], max = 4): string[] {
@@ -59,16 +59,16 @@ export function getSuggestedQuestions(
     return uniqueSuggestions(
       ru
         ? [
-            'Как работает бонус 600%?',
+            'Что даёт промокод WINEX600?',
             'Какие условия отыгрыша?',
-            'Куда вводить WINEX600?',
+            'Как указать WINEX600?',
             'Как получить приветственный бонус?',
           ]
         : [
-            'How does the 600% bonus work?',
-            'What are the wagering requirements?',
-            'Where do I enter WINEX600?',
-            'How do I claim the welcome package?',
+            'What does promo code WINEX600 give?',
+            'What are the wagering terms?',
+            'How do I enter WINEX600?',
+            'How do I get the welcome bonus?',
           ]
     );
   }
@@ -78,15 +78,15 @@ export function getSuggestedQuestions(
       ru
         ? [
             'Как быстро выводят деньги?',
-            'Поддерживает ли 1win криптовалюту?',
-            'Какая минимальная сумма вывода?',
-            'Сколько длится проверка KYC?',
+            'Можно ли пополнить криптой?',
+            'Где смотреть лимиты вывода?',
+            'Когда просят документы?',
           ]
         : [
             'How fast are withdrawals?',
-            'Does 1win support crypto?',
-            'What is the minimum withdrawal?',
-            'How long does KYC take?',
+            'Can I deposit with crypto?',
+            'Where do I see withdrawal limits?',
+            'When do they ask for documents?',
           ]
     );
   }
@@ -95,16 +95,16 @@ export function getSuggestedQuestions(
     return uniqueSuggestions(
       ru
         ? [
-            'Как установить Android APK?',
-            'Есть ли приложение для iOS?',
-            'Можно ли играть в мобильном браузере?',
-            'Есть ли у 1win приложение?',
+            'Как поставить Android APK?',
+            'Можно ли зайти с iPhone?',
+            'Можно ли открыть 1win в браузере?',
+            'Откуда скачивать APK?',
           ]
         : [
             'How do I install the Android APK?',
-            'Is there an iOS app?',
-            'Can I play in the mobile browser?',
-            'Does 1win have a mobile app?',
+            'Can I use 1win on iPhone?',
+            'Can I open 1win in the browser?',
+            'Where should I download the APK?',
           ]
     );
   }
@@ -113,16 +113,16 @@ export function getSuggestedQuestions(
     return uniqueSuggestions(
       ru
         ? [
-            'Какие слоты есть в 1win?',
+            'Какие слоты есть в лобби?',
             'Какой RTP у Aviator?',
-            'Есть ли в 1win live-казино?',
-            'Как работает бонус 600%?',
+            'Есть ли живые столы?',
+            'Учитываются ли слоты в бонусе?',
           ]
         : [
-            'What slots does 1win have?',
+            'What slots are in the lobby?',
             'What is Aviator RTP?',
-            'Does 1win have live casino?',
-            'How does the 600% bonus work?',
+            'Are there live tables?',
+            'Do slots count toward the bonus?',
           ]
     );
   }
@@ -139,7 +139,7 @@ export function getSuggestedQuestions(
         : [
             'What is Aviator RTP?',
             'Is Aviator a 1win Original?',
-            'Does Aviator count toward bonus wagering?',
+            'Does Aviator count toward the welcome bonus?',
             'What is auto cash-out in Aviator?',
           ]
     );
@@ -150,14 +150,14 @@ export function getSuggestedQuestions(
       ru
         ? [
             'Какой RTP у Lucky Jet?',
-            'Lucky Jet — это то же самое, что Aviator?',
+            'Lucky Jet — это то же, что Aviator?',
             'Идёт ли Lucky Jet в отыгрыш бонуса?',
             'Что такое автокэшаут в Lucky Jet?',
           ]
         : [
             'What is Lucky Jet RTP?',
             'Is Lucky Jet the same as Aviator?',
-            'Does Lucky Jet count toward bonus wagering?',
+            'Does Lucky Jet count toward the welcome bonus?',
             'What is auto cash-out in Lucky Jet?',
           ]
     );
@@ -167,15 +167,15 @@ export function getSuggestedQuestions(
     return uniqueSuggestions(
       ru
         ? [
-            'Как сделать ставку на спорт в 1win?',
-            'Есть ли кэшаут ставок?',
-            'Что такое бустер на экспресс?',
-            'У бонусов казино и спорта общий баланс?',
+            'Как поставить на спорт?',
+            'Есть ли кэшаут?',
+            'Что такое бонус на экспресс?',
+            'Бонусы казино и спорта на одном балансе?',
           ]
         : [
-            'How do I place a 1win sports bet?',
+            'How do I place a sports bet?',
             'Can I cash out a sports bet?',
-            'What is Express booster?',
+            'What is the multiple bet bonus?',
             'Do casino and sports bonuses share a balance?',
           ]
     );
@@ -186,15 +186,15 @@ export function getSuggestedQuestions(
       ru
         ? [
             'Какая лицензия у 1win?',
-            'Сколько длится проверка KYC?',
-            'Надёжно ли хранятся средства в 1win?',
-            'Есть ли в 1win 2FA?',
+            'Когда просят документы?',
+            'Как понять, что сайт настоящий?',
+            'Как включить 2FA?',
           ]
         : [
             'What license does 1win have?',
-            'How long does KYC take?',
-            'Is my money safe at 1win?',
-            'Does 1win have 2FA?',
+            'When do they ask for documents?',
+            'How do I know the site is real?',
+            'How do I turn on 2FA?',
           ]
     );
   }
@@ -203,16 +203,16 @@ export function getSuggestedQuestions(
     return uniqueSuggestions(
       ru
         ? [
-            'Как зарегистрироваться в 1win?',
+            'Как зарегистрироваться?',
             'Как быстро выводят деньги?',
-            'Как работает бонус 600%?',
-            'Есть ли у 1win приложение?',
+            'Что даёт промокод WINEX600?',
+            'Как скачать приложение?',
           ]
         : [
-            'How do I register at 1win?',
+            'How do I register?',
             'How fast are withdrawals?',
-            'How does the 600% bonus work?',
-            'Does 1win have a mobile app?',
+            'What does promo code WINEX600 give?',
+            'How do I download the app?',
           ]
     );
   }
@@ -221,16 +221,52 @@ export function getSuggestedQuestions(
     return uniqueSuggestions(
       ru
         ? [
-            'Какие есть лимиты и самоисключение в 1win?',
-            'Как установить лимит на депозит?',
+            'Как поставить лимит или самоисключение?',
+            'Как поставить лимит на депозит?',
             'Как работает самоисключение?',
             'Какая лицензия у 1win?',
           ]
         : [
-            'What responsible gambling tools does 1win offer?',
+            'How do I set a limit or self-exclusion?',
             'How do I set a deposit limit?',
             'How does self-exclusion work?',
             'What license does 1win have?',
+          ]
+    );
+  }
+
+  if (slug === 'crypto-casino') {
+    return uniqueSuggestions(
+      ru
+        ? [
+            'Как внести Bitcoin или USDT?',
+            'Нужен ли KYC для крипты?',
+            'Что делать, если крипта не пришла?',
+            'Бонус действует на крипту?',
+          ]
+        : [
+            'How do I deposit Bitcoin or USDT?',
+            'Do I still need KYC for crypto?',
+            'What if a crypto deposit did not arrive?',
+            'Does the bonus work with crypto?',
+          ]
+    );
+  }
+
+  if (slug === 'not-working') {
+    return uniqueSuggestions(
+      ru
+        ? [
+            'Почему 1win не открывается?',
+            'Что делать, если сайт не грузится?',
+            'Поможет ли приложение?',
+            'Как войти, если домен заблокирован?',
+          ]
+        : [
+            'Why is 1win not opening?',
+            'What if the site will not load?',
+            'Will the app still work?',
+            'How do I log in if the domain is blocked?',
           ]
     );
   }
