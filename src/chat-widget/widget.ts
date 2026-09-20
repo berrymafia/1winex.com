@@ -43,12 +43,16 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
-function isRu(): boolean {
-  return (document.documentElement.lang || '').toLowerCase().startsWith('ru');
+function uiLang(): 'en' | 'ru' | 'es' {
+  const raw = (document.documentElement.lang || '').toLowerCase();
+  if (raw.startsWith('ru')) return 'ru';
+  if (raw.startsWith('es')) return 'es';
+  return 'en';
 }
 
 function chatCopy() {
-  if (isRu()) {
+  const lang = uiLang();
+  if (lang === 'ru') {
     return {
       name: 'Анна',
       subtitle: 'Виртуальный помощник 1win',
@@ -69,6 +73,29 @@ function chatCopy() {
       copied: 'Скопировано',
       copy: 'Копировать',
       failed: 'Ошибка',
+    };
+  }
+  if (lang === 'es') {
+    return {
+      name: 'Anna',
+      subtitle: 'Asistente virtual de 1win',
+      close: 'Cerrar chat',
+      placeholder: 'Haz una pregunta…',
+      message: 'Mensaje',
+      send: 'Enviar',
+      sendMessage: 'Enviar mensaje',
+      open: 'Abrir chat con Anna',
+      closeAnna: 'Cerrar chat con Anna',
+      openUnread: 'Abrir chat con Anna — mensaje nuevo',
+      typing: 'Anna está escribiendo',
+      hello: 'Hola, soy Anna. ¿En qué te ayudo?',
+      intro:
+        'Te ayudo con casino, apuestas, el código promo WINEX600, depósito, retiro y el APK de Android.',
+      suggests: 'Preguntas frecuentes',
+      noResponse: 'No llegó la respuesta.',
+      copied: 'Copiado',
+      copy: 'Copiar',
+      failed: 'Error',
     };
   }
   return {

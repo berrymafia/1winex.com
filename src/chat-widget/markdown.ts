@@ -177,9 +177,14 @@ export async function renderMarkdown(md: string): Promise<string> {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'aw-code-copy';
-        const ru = (document.documentElement.lang || '').toLowerCase().startsWith('ru');
-        btn.setAttribute('aria-label', ru ? 'Копировать код' : 'Copy code');
-        btn.textContent = ru ? 'Копировать' : 'Copy';
+        const raw = (document.documentElement.lang || '').toLowerCase();
+        const copyLabel = raw.startsWith('ru')
+          ? { aria: 'Копировать код', text: 'Копировать' }
+          : raw.startsWith('es')
+            ? { aria: 'Copiar código', text: 'Copiar' }
+            : { aria: 'Copy code', text: 'Copy' };
+        btn.setAttribute('aria-label', copyLabel.aria);
+        btn.textContent = copyLabel.text;
         pre.appendChild(btn);
       }
     });

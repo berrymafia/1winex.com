@@ -61,13 +61,18 @@ AddType application/xml .xml
   RewriteRule ^ru/games(\.html)?/?$ /ru/casino [R=301,L]
   RewriteRule ^ru/sports(\.html)?/?$ /ru/betting [R=301,L]
   RewriteRule ^ru/mobile(\.html)?/?$ /ru/app [R=301,L]
+  RewriteRule ^es/games(\.html)?/?$ /es/casino [R=301,L]
+  RewriteRule ^es/sports(\.html)?/?$ /es/betting [R=301,L]
+  RewriteRule ^es/mobile(\.html)?/?$ /es/app [R=301,L]
 
   # Chat API is Node — never map /api/chat to a .html 404
   RewriteRule ^api/ - [L]
 
-  # /ru/ is a real directory; keep the public URL as /ru
+  # /ru/ and /es/ are real directories; keep the public URLs as /ru and /es
   RewriteRule ^ru/$ /ru [R=301,L]
   RewriteRule ^ru$ ru/index.html [L]
+  RewriteRule ^es/$ /es [R=301,L]
+  RewriteRule ^es$ es/index.html [L]
 
   # Trailing slash on a file URL (/casino/) makes relative ./images and ./css
   # resolve to /casino/images — 404. Keep real directories as-is.
@@ -109,11 +114,16 @@ AddType application/xml .xml
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.*)$ $1.html [L]
 
-  # Russian 404 for unknown /ru paths
+  # Localized 404 for unknown /ru and /es paths
   RewriteCond %{REQUEST_URI} ^/ru/
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ ru/404.html [L]
+
+  RewriteCond %{REQUEST_URI} ^/es/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ es/404.html [L]
 </IfModule>
 
 ErrorDocument 404 /404.html

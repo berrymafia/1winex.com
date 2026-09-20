@@ -2,38 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://1winex.com/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/"/>
   </url>
   <url>
     <loc>https://1winex.com/ru</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/"/>
   </url>
   <url>
     <loc>https://1winex.com/bonuses</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/bonuses"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/bonuses"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/bonuses"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/bonuses"/>
   </url>
   <url>
     <loc>https://1winex.com/ru/bonuses</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/bonuses"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/bonuses"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/bonuses"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/bonuses"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/bonuses</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/bonuses"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/bonuses"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/bonuses"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/bonuses"/>
   </url>
   <url>
@@ -43,6 +67,7 @@
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/safety"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/safety"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/safety"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/safety"/>
   </url>
   <url>
@@ -52,6 +77,17 @@
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/safety"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/safety"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/safety"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/safety"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/safety</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/safety"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/safety"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/safety"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/safety"/>
   </url>
   <url>
@@ -61,6 +97,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/payments"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/payments"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/payments"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/payments"/>
   </url>
   <url>
@@ -70,6 +107,17 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/payments"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/payments"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/payments"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/payments"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/payments</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/payments"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/payments"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/payments"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/payments"/>
   </url>
   <url>
@@ -79,6 +127,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/crypto-casino"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/crypto-casino"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/crypto-casino"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/crypto-casino"/>
   </url>
   <url>
@@ -88,6 +137,17 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/crypto-casino"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/crypto-casino"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/crypto-casino"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/crypto-casino"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/crypto-casino</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/crypto-casino"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/crypto-casino"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/crypto-casino"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/crypto-casino"/>
   </url>
   <url>
@@ -97,6 +157,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/app"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/app"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/app"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/app"/>
   </url>
   <url>
@@ -106,6 +167,17 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/app"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/app"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/app"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/app"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/app</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/app"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/app"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/app"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/app"/>
   </url>
   <url>
@@ -115,6 +187,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/casino"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/casino"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/casino"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/casino"/>
   </url>
   <url>
@@ -124,6 +197,17 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/casino"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/casino"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/casino"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/casino"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/casino</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/casino"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/casino"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/casino"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/casino"/>
   </url>
   <url>
@@ -133,6 +217,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/aviator"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/aviator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/aviator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/aviator"/>
   </url>
   <url>
@@ -142,6 +227,17 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/aviator"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/aviator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/aviator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/aviator"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/aviator</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/aviator"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/aviator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/aviator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/aviator"/>
   </url>
   <url>
@@ -151,6 +247,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/lucky-jet"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/lucky-jet"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/lucky-jet"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/lucky-jet"/>
   </url>
   <url>
@@ -160,6 +257,17 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/lucky-jet"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/lucky-jet"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/lucky-jet"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/lucky-jet"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/lucky-jet</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/lucky-jet"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/lucky-jet"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/lucky-jet"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/lucky-jet"/>
   </url>
   <url>
@@ -169,6 +277,7 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/betting"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/betting"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/betting"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/betting"/>
   </url>
   <url>
@@ -178,6 +287,17 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/betting"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/betting"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/betting"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/betting"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/betting</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/betting"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/betting"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/betting"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/betting"/>
   </url>
   <url>
@@ -187,6 +307,7 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/responsible-gambling"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/responsible-gambling"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/responsible-gambling"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/responsible-gambling"/>
   </url>
   <url>
@@ -196,6 +317,17 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/responsible-gambling"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/responsible-gambling"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/responsible-gambling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/responsible-gambling"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/responsible-gambling</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/responsible-gambling"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/responsible-gambling"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/responsible-gambling"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/responsible-gambling"/>
   </url>
   <url>
@@ -205,6 +337,7 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/not-working"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/not-working"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/not-working"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/not-working"/>
   </url>
   <url>
@@ -214,6 +347,17 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/not-working"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/not-working"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/not-working"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/not-working"/>
+  </url>
+  <url>
+    <loc>https://1winex.com/es/not-working</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://1winex.com/not-working"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://1winex.com/ru/not-working"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://1winex.com/es/not-working"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://1winex.com/not-working"/>
   </url>
 </urlset>

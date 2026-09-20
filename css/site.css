@@ -190,6 +190,7 @@ a:hover {
   width: 24px;
   height: 24px;
   display: block;
+  border-radius: 50%;
 }
 
 .lang-picker__flag {

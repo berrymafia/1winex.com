@@ -7,12 +7,19 @@ export interface StreamHandlers {
   onError: (message: string) => void;
 }
 
-function isRu(): boolean {
-  return typeof document !== 'undefined' && (document.documentElement.lang || '').toLowerCase().startsWith('ru');
+function uiLang(): 'en' | 'ru' | 'es' {
+  if (typeof document === 'undefined') return 'en';
+  const raw = (document.documentElement.lang || '').toLowerCase();
+  if (raw.startsWith('ru')) return 'ru';
+  if (raw.startsWith('es')) return 'es';
+  return 'en';
 }
 
-function chatErr(en: string, ru: string): string {
-  return isRu() ? ru : en;
+function chatErr(en: string, ru: string, es: string): string {
+  const lang = uiLang();
+  if (lang === 'ru') return ru;
+  if (lang === 'es') return es;
+  return en;
 }
 
 /**
@@ -36,12 +43,12 @@ export async function streamChat(
       handlers.onDone();
       return;
     }
-    handlers.onError(chatErr('Network error. Please try again.', 'Нет соединения. Попробуйте ещё раз.'));
+    handlers.onError(chatErr('Network error. Please try again.', 'Нет соединения. Попробуйте ещё раз.', 'No hay conexión. Inténtalo de nuevo.'));
     return;
   }
 
   if (!res.ok) {
-    let msg = chatErr('Request failed. Please try again.', 'Не удалось получить ответ. Попробуйте ещё раз.');
+    let msg = chatErr('Request failed. Please try again.', 'Не удалось получить ответ. Попробуйте ещё раз.', 'No llegó la respuesta. Inténtalo de nuevo.');
     try {
       const j = (await res.json()) as { error?: string };
       if (j?.error) msg = j.error;
@@ -53,7 +60,7 @@ export async function streamChat(
   }
 
   if (!res.body) {
-    handlers.onError(chatErr('Empty response from server.', 'Сервер вернул пустой ответ.'));
+    handlers.onError(chatErr('Empty response from server.', 'Сервер вернул пустой ответ.', 'El servidor no mandó nada.'));
     return;
   }
 
@@ -86,7 +93,7 @@ export async function streamChat(
             error?: string;
           };
           if (evt.type === 'delta' && evt.delta) handlers.onDelta(evt.delta);
-          else if (evt.type === 'error') handlers.onError(evt.error || chatErr('Assistant error.', 'Ошибка помощника.'));
+          else if (evt.type === 'error') handlers.onError(evt.error || chatErr('Assistant error.', 'Ошибка помощника.', 'Error del asistente.'));
           else if (evt.type === 'done') {
             /* final frame may still send [DONE] */
           }
@@ -101,6 +108,6 @@ export async function streamChat(
       handlers.onDone();
       return;
     }
-    handlers.onError(chatErr('Stream interrupted. Please try again.', 'Ответ прервался. Попробуйте ещё раз.'));
+    handlers.onError(chatErr('Stream interrupted. Please try again.', 'Ответ прервался. Попробуйте ещё раз.', 'Se cortó la respuesta. Inténtalo de nuevo.'));
   }
 }

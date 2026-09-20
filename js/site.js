@@ -3,17 +3,45 @@
     document.documentElement.classList.add("is-android");
   }
 
-  var isRu = (document.documentElement.lang || "").toLowerCase().indexOf("ru") === 0;
-  var t = {
-    openMenu: isRu ? "Открыть меню" : "Open menu",
-    closeMenu: isRu ? "Закрыть меню" : "Close menu",
-    cookieLabel: isRu ? "Уведомление о cookie" : "Cookie notice",
-    cookieHtml: isRu
-      ? '<p>Мы используем cookie, чтобы сайт работал как нужно. Как именно — в <a href="/ru/responsible-gambling#cookies">политике cookie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>'
-      : '<p>This site uses cookies and local storage to keep pages working. See the <a href="/responsible-gambling#cookies">cookie policy</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
-    copied: isRu ? "Скопировано" : "Copied",
-    aviatorDemo: isRu ? "Демо Aviator от Spribe" : "Aviator demo by Spribe",
+  var lang = (function () {
+    var raw = (document.documentElement.lang || "").toLowerCase();
+    if (raw.indexOf("ru") === 0) return "ru";
+    if (raw.indexOf("es") === 0) return "es";
+    return "en";
+  })();
+  var copy = {
+    en: {
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+      cookieLabel: "Cookie notice",
+      cookieHtml:
+        '<p>This site uses cookies and local storage to keep pages working. See the <a href="/responsible-gambling#cookies">cookie policy</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+      copied: "Copied",
+      aviatorDemo: "Aviator demo by Spribe",
+      spribeLang: "EN",
+    },
+    ru: {
+      openMenu: "Открыть меню",
+      closeMenu: "Закрыть меню",
+      cookieLabel: "Уведомление о cookie",
+      cookieHtml:
+        '<p>Мы используем cookie, чтобы сайт работал как нужно. Как именно — в <a href="/ru/responsible-gambling#cookies">политике cookie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+      copied: "Скопировано",
+      aviatorDemo: "Демо Aviator от Spribe",
+      spribeLang: "RU",
+    },
+    es: {
+      openMenu: "Abrir menú",
+      closeMenu: "Cerrar menú",
+      cookieLabel: "Aviso de cookies",
+      cookieHtml:
+        '<p>Usamos cookies para que el sitio funcione. Detalles en la <a href="/es/responsible-gambling#cookies">política de cookies</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+      copied: "Copiado",
+      aviatorDemo: "Demo de Aviator de Spribe",
+      spribeLang: "ES",
+    },
   };
+  var t = copy[lang] || copy.en;
 
   document.querySelectorAll("a[href]").forEach(function (link) {
     var href = (link.getAttribute("href") || "").trim();
@@ -276,7 +304,7 @@
       frame.title = t.aviatorDemo;
       frame.src =
         "https://demo.spribe.io/launch/aviator?currency=USD&lang=" +
-        (isRu ? "RU" : "EN") +
+        (t.spribeLang) +
         "&return_url=" +
         encodeURIComponent(location.origin + location.pathname);
       frame.setAttribute("allow", "autoplay; fullscreen");
@@ -331,6 +359,7 @@
     var code;
     for (i = 0; i < list.length; i++) {
       code = String(list[i] || "").toLowerCase();
+      if (code === "es" || code.indexOf("es-") === 0) return "es";
       if (code === "ru" || code.indexOf("ru-") === 0) return "ru";
       if (code === "en" || code.indexOf("en-") === 0) return "en";
     }
@@ -345,15 +374,18 @@
       var rec = sections[0];
       var all = sections[1];
       var recLink = null;
-      var otherLink = null;
+      var others = [];
       panel.querySelectorAll("a[hreflang]").forEach(function (link) {
-        var lang = (link.getAttribute("hreflang") || "").toLowerCase();
-        if (lang === want || lang.indexOf(want + "-") === 0) recLink = link;
-        else otherLink = link;
+        var code = (link.getAttribute("hreflang") || "").toLowerCase();
+        if (code === want || code.indexOf(want + "-") === 0) recLink = link;
+        else others.push(link);
       });
-      if (!recLink || !otherLink) return;
+      if (!recLink || !others.length) return;
       rec.insertAdjacentElement("afterend", recLink);
-      all.insertAdjacentElement("afterend", otherLink);
+      var i;
+      for (i = others.length - 1; i >= 0; i--) {
+        all.insertAdjacentElement("afterend", others[i]);
+      }
     });
   }
 
