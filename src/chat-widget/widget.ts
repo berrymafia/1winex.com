@@ -43,8 +43,9 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' {
   const raw = (document.documentElement.lang || '').toLowerCase();
+  if (raw.startsWith('uk')) return 'uk';
   if (raw.startsWith('ru')) return 'ru';
   if (raw.startsWith('es')) return 'es';
   if (raw.startsWith('fr')) return 'fr';
@@ -59,7 +60,7 @@ function chatCopy() {
       name: 'Анна',
       subtitle: 'Виртуальный помощник 1win',
       close: 'Закрыть чат',
-      placeholder: 'Задайте вопрос…',
+      placeholder: 'Напишите вопрос…',
       message: 'Сообщение',
       send: 'Отправить',
       sendMessage: 'Отправить сообщение',
@@ -69,8 +70,8 @@ function chatCopy() {
       typing: 'Анна печатает',
       hello: 'Привет. Я Анна. Чем помочь?',
       intro:
-        'Могу помочь с казино, спортом, WINEX600, депозитом, выводом и Android APK.',
-      suggests: 'Популярные вопросы',
+        'Могу помочь с казино и спортом, WINEX600, депозитом, выводом и Android APK.',
+      suggests: 'Частые вопросы',
       noResponse: 'Не удалось получить ответ.',
       copied: 'Скопировано',
       copy: 'Копировать',
@@ -82,7 +83,7 @@ function chatCopy() {
       name: 'Anna',
       subtitle: 'Asistente virtual de 1win',
       close: 'Cerrar chat',
-      placeholder: 'Haz una pregunta…',
+      placeholder: 'Escribe una pregunta…',
       message: 'Mensaje',
       send: 'Enviar',
       sendMessage: 'Enviar mensaje',
@@ -92,7 +93,7 @@ function chatCopy() {
       typing: 'Anna está escribiendo',
       hello: 'Hola. Soy Anna. ¿En qué te ayudo?',
       intro:
-        'Te ayudo con casino, deporte, WINEX600, depósito, retiro y el APK de Android.',
+        'Te ayudo con casino y deporte, WINEX600, depósito, retiro y el APK de Android.',
       suggests: 'Preguntas frecuentes',
       noResponse: 'No llegó la respuesta.',
       copied: 'Copiado',
@@ -105,7 +106,7 @@ function chatCopy() {
       name: 'Anna',
       subtitle: 'Assistante virtuelle 1win',
       close: 'Fermer le chat',
-      placeholder: 'Posez une question…',
+      placeholder: 'Écrivez une question…',
       message: 'Message',
       send: 'Envoyer',
       sendMessage: 'Envoyer le message',
@@ -113,9 +114,9 @@ function chatCopy() {
       closeAnna: 'Fermer le chat avec Anna',
       openUnread: 'Ouvrir le chat avec Anna — nouveau message',
       typing: 'Anna écrit',
-      hello: 'Bonjour. Je suis Anna. Je peux vous aider ?',
+      hello: 'Bonjour. Je suis Anna. Comment puis-je vous aider ?',
       intro:
-        'Je vous aide pour le casino, le sport, WINEX600, le dépôt, le retrait et l’APK Android.',
+        'Je vous aide pour le casino et le sport, WINEX600, le dépôt, le retrait et l’APK Android.',
       suggests: 'Questions fréquentes',
       noResponse: 'Pas de réponse.',
       copied: 'Copié',
@@ -128,7 +129,7 @@ function chatCopy() {
       name: 'Anna',
       subtitle: 'Virtuelle 1win-Assistentin',
       close: 'Chat schließen',
-      placeholder: 'Stelle eine Frage…',
+      placeholder: 'Schreib eine Frage…',
       message: 'Nachricht',
       send: 'Senden',
       sendMessage: 'Nachricht senden',
@@ -136,14 +137,37 @@ function chatCopy() {
       closeAnna: 'Chat mit Anna schließen',
       openUnread: 'Chat mit Anna öffnen — neue Nachricht',
       typing: 'Anna schreibt',
-      hello: 'Hi. Ich bin Anna. Wobei kann ich helfen?',
+      hello: 'Hallo. Ich bin Anna. Wobei kann ich helfen?',
       intro:
-        'Ich helfe dir bei Casino, Sport, WINEX600, Einzahlung, Auszahlung und der Android-APK.',
+        'Ich helfe dir bei Casino und Sport, WINEX600, Einzahlung, Auszahlung und der Android-APK.',
       suggests: 'Häufige Fragen',
       noResponse: 'Keine Antwort.',
       copied: 'Kopiert',
       copy: 'Kopieren',
       failed: 'Fehler',
+    };
+  }
+  if (lang === 'uk') {
+    return {
+      name: 'Анна',
+      subtitle: 'Віртуальна помічниця 1win',
+      close: 'Закрити чат',
+      placeholder: 'Напишіть запитання…',
+      message: 'Повідомлення',
+      send: 'Надіслати',
+      sendMessage: 'Надіслати повідомлення',
+      open: 'Відкрити чат з Анною',
+      closeAnna: 'Закрити чат з Анною',
+      openUnread: 'Відкрити чат з Анною — нове повідомлення',
+      typing: 'Анна пише',
+      hello: 'Привіт. Я Анна. Чим допомогти?',
+      intro:
+        'Можу допомогти з казино й спортом, WINEX600, депозитом, виведенням і Android APK.',
+      suggests: 'Часті питання',
+      noResponse: 'Не вдалося отримати відповідь.',
+      copied: 'Скопійовано',
+      copy: 'Копіювати',
+      failed: 'Помилка',
     };
   }
   return {

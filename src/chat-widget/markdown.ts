@@ -178,7 +178,9 @@ export async function renderMarkdown(md: string): Promise<string> {
         btn.type = 'button';
         btn.className = 'aw-code-copy';
         const raw = (document.documentElement.lang || '').toLowerCase();
-        const copyLabel = raw.startsWith('ru')
+        const copyLabel = raw.startsWith('uk')
+          ? { aria: 'Копіювати код', text: 'Копіювати' }
+          : raw.startsWith('ru')
           ? { aria: 'Копировать код', text: 'Копировать' }
           : raw.startsWith('es')
             ? { aria: 'Copiar código', text: 'Copiar' }

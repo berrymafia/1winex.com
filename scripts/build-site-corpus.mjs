@@ -99,7 +99,7 @@ const PAGES = [
     slug: 'not-working',
     file: 'not-working.html',
     name: '1win Not Working',
-    aliases: ['not working', 'blocked', 'mirror', 'site down', 'does not open', 'не открывается', 'не работает', 'no abre', 'no funciona', 'ne s’ouvre pas', 'ne fonctionne pas', 'öffnet nicht', 'geht nicht'],
+    aliases: ['not working', 'blocked', 'mirror', 'site down', 'does not open', 'не открывается', 'не работает', 'no abre', 'no funciona', 'ne s’ouvre pas', 'ne fonctionne pas', 'öffnet nicht', 'geht nicht', 'не відкривається', 'не працює'],
   },
 ];
 
@@ -163,6 +163,21 @@ const DE_NAMES = {
   'de-not-working': 'Öffnet nicht',
 };
 
+const UK_NAMES = {
+  'uk-index': '1win',
+  'uk-bonuses': 'Бонуси',
+  'uk-payments': 'Платежі',
+  'uk-crypto-casino': 'Крипто-казино',
+  'uk-casino': 'Казино',
+  'uk-aviator': 'Aviator',
+  'uk-lucky-jet': 'Lucky Jet',
+  'uk-betting': 'Спорт',
+  'uk-app': 'Додаток',
+  'uk-safety': 'Безпека',
+  'uk-responsible-gambling': 'Відповідальна гра',
+  'uk-not-working': 'Не відкривається',
+};
+
 const RU_PAGES = PAGES.map((page) => {
   const slug = page.slug === 'index' ? 'ru-index' : `ru-${page.slug}`;
   return {
@@ -203,6 +218,16 @@ const DE_PAGES = PAGES.map((page) => {
   };
 });
 
+const UK_PAGES = PAGES.map((page) => {
+  const slug = page.slug === 'index' ? 'uk-index' : `uk-${page.slug}`;
+  return {
+    ...page,
+    slug,
+    file: page.slug === 'index' ? 'uk/index.html' : `uk/${page.file}`,
+    name: UK_NAMES[slug] || `${page.name} UK`,
+  };
+});
+
 const SITE_OFFERS = [
   {
     brand: '1win',
@@ -239,6 +264,10 @@ const SITE_OFFERS = [
       'Promo-Code',
       'Registrieren',
       'Anmelden',
+      'реєстрація',
+      'вхід',
+      'вітальний бонус',
+      'промокод',
     ],
   },
   {
@@ -246,7 +275,7 @@ const SITE_OFFERS = [
     url: 'https://1winex.com/apk',
     label: 'Download APK',
     kind: 'apk',
-    aliases: ['apk', 'android', 'download apk', 'скачать apk', 'приложение', 'app', 'descargar apk', 'télécharger apk', 'APK herunterladen'],
+    aliases: ['apk', 'android', 'download apk', 'скачать apk', 'приложение', 'app', 'descargar apk', 'télécharger apk', 'APK herunterladen', 'завантажити apk', 'додаток'],
   },
 ];
 const CTA_PREFIX_EN = 'Register / Login: https://1winex.com/go. APK: https://1winex.com/apk. ';
@@ -254,6 +283,7 @@ const CTA_PREFIX_RU = 'Регистрация / вход: https://1winex.com/go.
 const CTA_PREFIX_ES = 'Registrarse / Entrar: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_FR = 'Inscription / Connexion : https://1winex.com/go. APK : https://1winex.com/apk. ';
 const CTA_PREFIX_DE = 'Registrieren / Anmelden: https://1winex.com/go. APK: https://1winex.com/apk. ';
+const CTA_PREFIX_UK = 'Реєстрація / вхід: https://1winex.com/go. APK: https://1winex.com/apk. ';
 
 function decodeEntities(s) {
   return s
@@ -290,7 +320,7 @@ function extractMetaDescription(html) {
 }
 
 const entries = [];
-for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES]) {
+for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES]) {
   const filePath = path.join(ROOT, page.file);
   if (!fs.existsSync(filePath)) {
     console.warn(`[corpus] missing ${page.file}`);
@@ -305,6 +335,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
         ? CTA_PREFIX_FR
         : page.slug.startsWith('de-')
           ? CTA_PREFIX_DE
+          : page.slug.startsWith('uk-')
+            ? CTA_PREFIX_UK
           : CTA_PREFIX_EN;
   const text = (prefix + stripHtml(html)).slice(0, MAX_TEXT);
   const title = extractTitle(html) || page.name;
@@ -319,6 +351,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
             ? '/fr'
             : page.slug === 'de-index'
               ? '/de'
+              : page.slug === 'uk-index'
+                ? '/uk'
               : page.slug.startsWith('ru-')
                 ? `/ru/${page.slug.slice(3)}`
                 : page.slug.startsWith('es-')
@@ -327,6 +361,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                     ? `/fr/${page.slug.slice(3)}`
                     : page.slug.startsWith('de-')
                       ? `/de/${page.slug.slice(3)}`
+                      : page.slug.startsWith('uk-')
+                        ? `/uk/${page.slug.slice(3)}`
                       : `/${page.slug}`;
   const link = `${SITE_ORIGIN}${pathUrl === '/' ? '/' : pathUrl}`;
   entries.push({

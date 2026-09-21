@@ -248,13 +248,17 @@ a:hover {
   position: absolute;
   right: 0;
   top: calc(100% + 8px);
+  display: flex;
+  flex-direction: column;
   width: min(308px, calc(100vw - 24px));
-  padding: 4px 0 10px;
+  max-height: min(calc(376px + 3.25rem), calc(100dvh - 24px));
+  padding: 4px 0 0;
   border-radius: 16px;
   background: #f4f6fa;
   color: #111;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
   z-index: 20;
+  overflow: hidden;
 }
 
 .footer-lang .lang-panel {
@@ -268,10 +272,35 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  flex-shrink: 0;
   padding: 12px 16px 10px;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.2;
+}
+
+.lang-panel__list {
+  min-height: 0;
+  max-height: 376px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 0 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #c5c9d1 transparent;
+}
+
+.lang-panel__list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.lang-panel__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.lang-panel__list::-webkit-scrollbar-thumb {
+  background: #c5c9d1;
+  border-radius: 6px;
 }
 
 .lang-panel__close {
@@ -1784,13 +1813,17 @@ a.step:hover {
   position: absolute;
   left: 0;
   bottom: calc(100% + 10px);
+  display: flex;
+  flex-direction: column;
   width: min(308px, calc(100vw - 32px));
-  padding: 4px 0 8px;
+  max-height: min(calc(376px + 3.25rem), calc(100dvh - 24px));
+  padding: 4px 0 0;
   border-radius: 16px;
   background: #f4f6fa;
   color: #111;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
   z-index: 8;
+  overflow: hidden;
 }
 
 .footer-social-panel__head {
@@ -1798,6 +1831,7 @@ a.step:hover {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  flex-shrink: 0;
   padding: 12px 16px 10px;
   font-size: 1rem;
   font-weight: 600;
@@ -1834,8 +1868,27 @@ a.step:hover {
 }
 
 .footer-social-panel__list {
-  max-height: min(420px, 55vh);
+  min-height: 0;
+  max-height: 376px;
+  overflow-x: hidden;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 0 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #c5c9d1 transparent;
+}
+
+.footer-social-panel__list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.footer-social-panel__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.footer-social-panel__list::-webkit-scrollbar-thumb {
+  background: #c5c9d1;
+  border-radius: 6px;
 }
 
 .footer-social-panel a {
