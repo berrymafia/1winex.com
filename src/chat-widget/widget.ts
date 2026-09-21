@@ -43,13 +43,14 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' {
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
   if (raw.startsWith('ru')) return 'ru';
   if (raw.startsWith('es')) return 'es';
   if (raw.startsWith('fr')) return 'fr';
   if (raw.startsWith('de')) return 'de';
+  if (raw.startsWith('it')) return 'it';
   return 'en';
 }
 
@@ -168,6 +169,29 @@ function chatCopy() {
       copied: 'Скопійовано',
       copy: 'Копіювати',
       failed: 'Помилка',
+    };
+  }
+  if (lang === 'it') {
+    return {
+      name: 'Anna',
+      subtitle: 'Assistente virtuale 1win',
+      close: 'Chiudi chat',
+      placeholder: 'Scrivi una domanda…',
+      message: 'Messaggio',
+      send: 'Invia',
+      sendMessage: 'Invia messaggio',
+      open: 'Apri la chat con Anna',
+      closeAnna: 'Chiudi la chat con Anna',
+      openUnread: 'Apri la chat con Anna — nuovo messaggio',
+      typing: 'Anna sta scrivendo',
+      hello: 'Ciao. Sono Anna. Come posso aiutarti?',
+      intro:
+        'Ti aiuto con casino e scommesse, WINEX600, deposito, prelievo e l’APK Android.',
+      suggests: 'Domande suggerite',
+      noResponse: 'Nessuna risposta.',
+      copied: 'Copiato',
+      copy: 'Copia',
+      failed: 'Errore',
     };
   }
   return {

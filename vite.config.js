@@ -187,6 +187,35 @@ function htmlRewritePlugin() {
           res.end();
           return;
         }
+        if (url === '/it/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/it');
+          res.end();
+          return;
+        }
+        if (url === '/it') {
+          req.url = '/it/index.html';
+          next();
+          return;
+        }
+        if (url === '/it/games' || url === '/it/games/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/it/casino');
+          res.end();
+          return;
+        }
+        if (url === '/it/sports' || url === '/it/sports/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/it/betting');
+          res.end();
+          return;
+        }
+        if (url === '/it/mobile' || url === '/it/mobile/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/it/app');
+          res.end();
+          return;
+        }
         if (
           url !== '/' &&
           !url.includes('.') &&
@@ -209,6 +238,9 @@ function htmlRewritePlugin() {
             res.statusCode = 404;
           } else if (url.startsWith('/uk/')) {
             req.url = '/uk/404.html';
+            res.statusCode = 404;
+          } else if (url.startsWith('/it/')) {
+            req.url = '/it/404.html';
             res.statusCode = 404;
           } else {
             req.url = url + '.html';
@@ -314,6 +346,19 @@ export default defineConfig({
         'uk-responsible-gambling': resolve(__dirname, 'uk/responsible-gambling.html'),
         'uk-not-working': resolve(__dirname, 'uk/not-working.html'),
         'uk-404': resolve(__dirname, 'uk/404.html'),
+        'it-main': resolve(__dirname, 'it/index.html'),
+        'it-safety': resolve(__dirname, 'it/safety.html'),
+        'it-bonuses': resolve(__dirname, 'it/bonuses.html'),
+        'it-casino': resolve(__dirname, 'it/casino.html'),
+        'it-aviator': resolve(__dirname, 'it/aviator.html'),
+        'it-lucky-jet': resolve(__dirname, 'it/lucky-jet.html'),
+        'it-betting': resolve(__dirname, 'it/betting.html'),
+        'it-payments': resolve(__dirname, 'it/payments.html'),
+        'it-crypto-casino': resolve(__dirname, 'it/crypto-casino.html'),
+        'it-app': resolve(__dirname, 'it/app.html'),
+        'it-responsible-gambling': resolve(__dirname, 'it/responsible-gambling.html'),
+        'it-not-working': resolve(__dirname, 'it/not-working.html'),
+        'it-404': resolve(__dirname, 'it/404.html'),
       },
     },
   },

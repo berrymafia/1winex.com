@@ -1,4 +1,4 @@
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' {
   if (typeof document === 'undefined') return 'en';
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
@@ -6,10 +6,12 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' {
   if (raw.startsWith('es')) return 'es';
   if (raw.startsWith('fr')) return 'fr';
   if (raw.startsWith('de')) return 'de';
+  if (raw.startsWith('it')) return 'it';
   return 'en';
 }
 
-function pick<T>(lang: 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk', en: T, ru: T, es: T, fr: T, de: T, uk: T): T {
+function pick<T>(lang: 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it', en: T, ru: T, es: T, fr: T, de: T, uk: T, it: T): T {
+  if (lang === 'it') return it;
   if (lang === 'uk') return uk;
   if (lang === 'ru') return ru;
   if (lang === 'es') return es;
@@ -60,6 +62,13 @@ const GLOBAL_SUGGESTIONS_UK = [
   'Як установити додаток?',
 ] as const;
 
+const GLOBAL_SUGGESTIONS_IT = [
+  'Che licenza ha 1win?',
+  'Cosa include WINEX600?',
+  'Quanto ci mette un prelievo?',
+  'Come installo l’app?',
+] as const;
+
 function uniqueSuggestions(items: string[], max = 4): string[] {
   const out: string[] = [];
   const seen = new Set<string>();
@@ -80,7 +89,7 @@ export function pageSlugFromLocation(pathname = location.pathname): string {
   const parts = p.split('/').filter(Boolean);
   if (!parts.length) return 'index';
   let i = 0;
-  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk') i = 1;
+  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it') i = 1;
   if (!parts[i] || parts[i] === 'index') return 'index';
   let slug = parts[i].replace(/\.html$/i, '');
   if (slug === 'betting') return 'sports';
@@ -137,6 +146,12 @@ export function getSuggestedQuestions(
           'Які умови відіграшу?',
           'Як ввести WINEX600?',
           'Як активувати WINEX600?',
+        ],
+        [
+          'Cosa include il bonus di benvenuto?',
+          'Qual è il rollover?',
+          'Come inserisco WINEX600?',
+          'Come attivo WINEX600?',
         ]
       )
     );
@@ -181,6 +196,12 @@ export function getSuggestedQuestions(
           'Чи можна поповнити криптою?',
           'Де перевірити ліміти виведення?',
           'Коли просять документи?',
+        ],
+        [
+          'Quanto ci mette un prelievo?',
+          'Posso depositare in crypto?',
+          'Dove vedo i limiti di prelievo?',
+          'Quando chiedono il KYC?',
         ]
       )
     );
@@ -225,6 +246,12 @@ export function getSuggestedQuestions(
           'Як грати в 1win на iPhone?',
           'Чи можна грати без додатка — через браузер?',
           'Де завантажити APK?',
+        ],
+        [
+          'Come installo l’APK Android?',
+          'Come uso 1win su iPhone?',
+          'Posso giocare senza app, nel browser?',
+          'Dove scarico l’APK?',
         ]
       )
     );
@@ -269,6 +296,12 @@ export function getSuggestedQuestions(
           'Де перевірити RTP гри?',
           'Чи є живі столи?',
           'Чи йдуть слоти у вітальний бонус?',
+        ],
+        [
+          'Quali giochi ci sono nel casino?',
+          'Dove vedo l’RTP di un gioco?',
+          'Ci sono tavoli live?',
+          'Le slot contano per il bonus di benvenuto?',
         ]
       )
     );
@@ -313,6 +346,12 @@ export function getSuggestedQuestions(
           'Aviator — це 1win Original?',
           'Чи йде Aviator у вітальний бонус?',
           'Що таке автокешаут Aviator?',
+        ],
+        [
+          'Dove vedo l’RTP di Aviator?',
+          'Aviator è un 1win Original?',
+          'Aviator conta per il bonus di benvenuto?',
+          'Cos’è l’incasso automatico in Aviator?',
         ]
       )
     );
@@ -357,6 +396,12 @@ export function getSuggestedQuestions(
           'Lucky Jet — це те саме, що Aviator?',
           'Чи йде Lucky Jet у вітальний бонус?',
           'Що таке автокешаут Lucky Jet?',
+        ],
+        [
+          'Dove vedo l’RTP di Lucky Jet?',
+          'Lucky Jet è lo stesso di Aviator?',
+          'Lucky Jet conta per il bonus di benvenuto?',
+          'Cos’è l’incasso automatico in Lucky Jet?',
         ]
       )
     );
@@ -401,6 +446,12 @@ export function getSuggestedQuestions(
           'Чи є кешаут?',
           'Що таке бонус на експрес?',
           'Чи йдуть бонуси казино й спорту на одному балансі?',
+        ],
+        [
+          'Come scommetto sullo sport?',
+          'C’è il cash-out su 1win?',
+          'Cos’è il bonus combinata?',
+          'I bonus casino e sport condividono lo stesso saldo?',
         ]
       )
     );
@@ -445,6 +496,12 @@ export function getSuggestedQuestions(
           'Коли просять документи?',
           'Як зрозуміти, що це справжній сайт 1win?',
           'Як увімкнути 2FA?',
+        ],
+        [
+          'Che licenza ha 1win?',
+          'Quando chiedono i documenti?',
+          'Come so che è il sito vero?',
+          'Come attivo il 2FA?',
         ]
       )
     );
@@ -489,6 +546,12 @@ export function getSuggestedQuestions(
           'Як швидко приходить виведення?',
           'Що входить у WINEX600?',
           'Як установити додаток?',
+        ],
+        [
+          'Come mi registro?',
+          'Quanto ci mette un prelievo?',
+          'Cosa include WINEX600?',
+          'Come installo l’app?',
         ]
       )
     );
@@ -533,6 +596,12 @@ export function getSuggestedQuestions(
           'Як установити ліміт на депозит?',
           'Як працює самовиключення?',
           'Де отримати допомогу з ігровою залежністю?',
+        ],
+        [
+          'Come imposto i limiti di deposito o l’autoesclusione?',
+          'Come imposto un limite di deposito?',
+          'Come funziona l’autoesclusione?',
+          'Dove chiedo aiuto per il gioco?',
         ]
       )
     );
@@ -577,6 +646,12 @@ export function getSuggestedQuestions(
           'Чи потрібен KYC для крипти?',
           'Що робити, якщо депозит криптою не надійшов?',
           'Чи йде WINEX600 з криптою?',
+        ],
+        [
+          'Come deposito Bitcoin o USDT?',
+          'Chiedono il KYC se pago in crypto?',
+          'Cosa faccio se il deposito crypto non arriva?',
+          'WINEX600 vale con la crypto?',
         ]
       )
     );
@@ -621,12 +696,18 @@ export function getSuggestedQuestions(
           'Що робити, якщо сайт не завантажується?',
           'Чи спрацює додаток, якщо сайт не відкривається?',
           'Як увійти, якщо сайт не відкривається?',
+        ],
+        [
+          'Perché 1win non si apre?',
+          'Cosa faccio se il sito non si apre?',
+          'L’app si apre se il sito non si apre?',
+          'Come accedo se il sito è bloccato?',
         ]
       )
     );
   }
 
   return uniqueSuggestions([
-    ...pick(lang, [...GLOBAL_SUGGESTIONS], [...GLOBAL_SUGGESTIONS_RU], [...GLOBAL_SUGGESTIONS_ES], [...GLOBAL_SUGGESTIONS_FR], [...GLOBAL_SUGGESTIONS_DE], [...GLOBAL_SUGGESTIONS_UK]),
+    ...pick(lang, [...GLOBAL_SUGGESTIONS], [...GLOBAL_SUGGESTIONS_RU], [...GLOBAL_SUGGESTIONS_ES], [...GLOBAL_SUGGESTIONS_FR], [...GLOBAL_SUGGESTIONS_DE], [...GLOBAL_SUGGESTIONS_UK], [...GLOBAL_SUGGESTIONS_IT]),
   ]);
 }

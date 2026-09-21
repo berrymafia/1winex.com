@@ -10,6 +10,7 @@
     if (raw.indexOf("es") === 0) return "es";
     if (raw.indexOf("fr") === 0) return "fr";
     if (raw.indexOf("de") === 0) return "de";
+    if (raw.indexOf("it") === 0) return "it";
     return "en";
   })();
   var copy = {
@@ -72,6 +73,16 @@
       copied: "Скопійовано",
       aviatorDemo: "Демо Aviator від Spribe",
       spribeLang: "UK",
+    },
+    it: {
+      openMenu: "Apri menu",
+      closeMenu: "Chiudi menu",
+      cookieLabel: "Avviso sui cookie",
+      cookieHtml:
+        '<p>Usiamo i cookie perché il sito funzioni. I dettagli sono nell’<a href="/it/responsible-gambling#cookies">informativa sui cookie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+      copied: "Copiato",
+      aviatorDemo: "Demo Aviator di Spribe",
+      spribeLang: "IT",
     },
   };
   var t = copy[lang] || copy.en;
@@ -397,13 +408,29 @@
       if (code === "ru" || code.indexOf("ru-") === 0) return "ru";
       if (code === "fr" || code.indexOf("fr-") === 0) return "fr";
       if (code === "de" || code.indexOf("de-") === 0) return "de";
+      if (code === "it" || code.indexOf("it-") === 0) return "it";
       if (code === "en" || code.indexOf("en-") === 0) return "en";
     }
     return "";
   }
 
+  var LANG_ORDER = ["en", "de", "fr", "es", "it", "ru", "uk"];
+
+  function langRank(code) {
+    var i = LANG_ORDER.indexOf(String(code || "").toLowerCase());
+    return i === -1 ? 99 : i;
+  }
+
+  function pageLangCode() {
+    var raw = (document.documentElement.lang || "en").toLowerCase();
+    if (raw.indexOf("uk") === 0) return "uk";
+    return raw.slice(0, 2);
+  }
+
   function arrangeLangPanels() {
+    var page = pageLangCode();
     var want = preferredSiteLang();
+    if (!want || want === page) want = "ru";
     document.querySelectorAll(".lang-panel").forEach(function (panel) {
       var sections = panel.querySelectorAll(".lang-panel__section");
       if (sections.length < 2) return;
@@ -415,6 +442,9 @@
         var code = (link.getAttribute("hreflang") || "").toLowerCase();
         if (want && !recLink && (code === want || code.indexOf(want + "-") === 0)) recLink = link;
         else others.push(link);
+      });
+      others.sort(function (a, b) {
+        return langRank(a.getAttribute("hreflang")) - langRank(b.getAttribute("hreflang"));
       });
       if (recLink) {
         rec.removeAttribute("hidden");
