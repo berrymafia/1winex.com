@@ -100,6 +100,64 @@ function htmlRewritePlugin() {
           res.end();
           return;
         }
+        if (url === '/fr/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/fr');
+          res.end();
+          return;
+        }
+        if (url === '/fr') {
+          req.url = '/fr/index.html';
+          next();
+          return;
+        }
+        if (url === '/fr/games' || url === '/fr/games/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/fr/casino');
+          res.end();
+          return;
+        }
+        if (url === '/fr/sports' || url === '/fr/sports/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/fr/betting');
+          res.end();
+          return;
+        }
+        if (url === '/fr/mobile' || url === '/fr/mobile/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/fr/app');
+          res.end();
+          return;
+        }
+        if (url === '/de/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/de');
+          res.end();
+          return;
+        }
+        if (url === '/de') {
+          req.url = '/de/index.html';
+          next();
+          return;
+        }
+        if (url === '/de/games' || url === '/de/games/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/de/casino');
+          res.end();
+          return;
+        }
+        if (url === '/de/sports' || url === '/de/sports/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/de/betting');
+          res.end();
+          return;
+        }
+        if (url === '/de/mobile' || url === '/de/mobile/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/de/app');
+          res.end();
+          return;
+        }
         if (
           url !== '/' &&
           !url.includes('.') &&
@@ -113,6 +171,12 @@ function htmlRewritePlugin() {
             res.statusCode = 404;
           } else if (url.startsWith('/es/')) {
             req.url = '/es/404.html';
+            res.statusCode = 404;
+          } else if (url.startsWith('/fr/')) {
+            req.url = '/fr/404.html';
+            res.statusCode = 404;
+          } else if (url.startsWith('/de/')) {
+            req.url = '/de/404.html';
             res.statusCode = 404;
           } else {
             req.url = url + '.html';
@@ -179,6 +243,32 @@ export default defineConfig({
         'es-responsible-gambling': resolve(__dirname, 'es/responsible-gambling.html'),
         'es-not-working': resolve(__dirname, 'es/not-working.html'),
         'es-404': resolve(__dirname, 'es/404.html'),
+        'fr-main': resolve(__dirname, 'fr/index.html'),
+        'fr-safety': resolve(__dirname, 'fr/safety.html'),
+        'fr-bonuses': resolve(__dirname, 'fr/bonuses.html'),
+        'fr-casino': resolve(__dirname, 'fr/casino.html'),
+        'fr-aviator': resolve(__dirname, 'fr/aviator.html'),
+        'fr-lucky-jet': resolve(__dirname, 'fr/lucky-jet.html'),
+        'fr-betting': resolve(__dirname, 'fr/betting.html'),
+        'fr-payments': resolve(__dirname, 'fr/payments.html'),
+        'fr-crypto-casino': resolve(__dirname, 'fr/crypto-casino.html'),
+        'fr-app': resolve(__dirname, 'fr/app.html'),
+        'fr-responsible-gambling': resolve(__dirname, 'fr/responsible-gambling.html'),
+        'fr-not-working': resolve(__dirname, 'fr/not-working.html'),
+        'fr-404': resolve(__dirname, 'fr/404.html'),
+        'de-main': resolve(__dirname, 'de/index.html'),
+        'de-safety': resolve(__dirname, 'de/safety.html'),
+        'de-bonuses': resolve(__dirname, 'de/bonuses.html'),
+        'de-casino': resolve(__dirname, 'de/casino.html'),
+        'de-aviator': resolve(__dirname, 'de/aviator.html'),
+        'de-lucky-jet': resolve(__dirname, 'de/lucky-jet.html'),
+        'de-betting': resolve(__dirname, 'de/betting.html'),
+        'de-payments': resolve(__dirname, 'de/payments.html'),
+        'de-crypto-casino': resolve(__dirname, 'de/crypto-casino.html'),
+        'de-app': resolve(__dirname, 'de/app.html'),
+        'de-responsible-gambling': resolve(__dirname, 'de/responsible-gambling.html'),
+        'de-not-working': resolve(__dirname, 'de/not-working.html'),
+        'de-404': resolve(__dirname, 'de/404.html'),
       },
     },
   },

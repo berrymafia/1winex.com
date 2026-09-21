@@ -64,15 +64,25 @@ AddType application/xml .xml
   RewriteRule ^es/games(\.html)?/?$ /es/casino [R=301,L]
   RewriteRule ^es/sports(\.html)?/?$ /es/betting [R=301,L]
   RewriteRule ^es/mobile(\.html)?/?$ /es/app [R=301,L]
+  RewriteRule ^fr/games(\.html)?/?$ /fr/casino [R=301,L]
+  RewriteRule ^fr/sports(\.html)?/?$ /fr/betting [R=301,L]
+  RewriteRule ^fr/mobile(\.html)?/?$ /fr/app [R=301,L]
+  RewriteRule ^de/games(\.html)?/?$ /de/casino [R=301,L]
+  RewriteRule ^de/sports(\.html)?/?$ /de/betting [R=301,L]
+  RewriteRule ^de/mobile(\.html)?/?$ /de/app [R=301,L]
 
   # Chat API is Node — never map /api/chat to a .html 404
   RewriteRule ^api/ - [L]
 
-  # /ru/ and /es/ are real directories; keep the public URLs as /ru and /es
+  # /ru/, /es/, /fr/ and /de/ are real directories; keep the public URLs as /ru, /es, /fr and /de
   RewriteRule ^ru/$ /ru [R=301,L]
   RewriteRule ^ru$ ru/index.html [L]
   RewriteRule ^es/$ /es [R=301,L]
   RewriteRule ^es$ es/index.html [L]
+  RewriteRule ^fr/$ /fr [R=301,L]
+  RewriteRule ^fr$ fr/index.html [L]
+  RewriteRule ^de/$ /de [R=301,L]
+  RewriteRule ^de$ de/index.html [L]
 
   # Trailing slash on a file URL (/casino/) makes relative ./images and ./css
   # resolve to /casino/images — 404. Keep real directories as-is.
@@ -114,7 +124,7 @@ AddType application/xml .xml
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.*)$ $1.html [L]
 
-  # Localized 404 for unknown /ru and /es paths
+  # Localized 404 for unknown /ru, /es, /fr and /de paths
   RewriteCond %{REQUEST_URI} ^/ru/
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
@@ -124,6 +134,16 @@ AddType application/xml .xml
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ es/404.html [L]
+
+  RewriteCond %{REQUEST_URI} ^/fr/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ fr/404.html [L]
+
+  RewriteCond %{REQUEST_URI} ^/de/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ de/404.html [L]
 </IfModule>
 
 ErrorDocument 404 /404.html

@@ -59,11 +59,21 @@ AddType application/xml .xml
   RewriteRule ^es/games(\.html)?/?$ /es/casino [R=301,L]
   RewriteRule ^es/sports(\.html)?/?$ /es/betting [R=301,L]
   RewriteRule ^es/mobile(\.html)?/?$ /es/app [R=301,L]
+  RewriteRule ^fr/games(\.html)?/?$ /fr/casino [R=301,L]
+  RewriteRule ^fr/sports(\.html)?/?$ /fr/betting [R=301,L]
+  RewriteRule ^fr/mobile(\.html)?/?$ /fr/app [R=301,L]
+  RewriteRule ^de/games(\.html)?/?$ /de/casino [R=301,L]
+  RewriteRule ^de/sports(\.html)?/?$ /de/betting [R=301,L]
+  RewriteRule ^de/mobile(\.html)?/?$ /de/app [R=301,L]
 
   RewriteRule ^ru/$ /ru [R=301,L]
   RewriteRule ^ru$ ru/index.html [L]
   RewriteRule ^es/$ /es [R=301,L]
   RewriteRule ^es$ es/index.html [L]
+  RewriteRule ^fr/$ /fr [R=301,L]
+  RewriteRule ^fr$ fr/index.html [L]
+  RewriteRule ^de/$ /de [R=301,L]
+  RewriteRule ^de$ de/index.html [L]
 
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.+)/$ $1 [R=301,L]
@@ -96,6 +106,16 @@ AddType application/xml .xml
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ es/404.html [L]
+
+  RewriteCond %{REQUEST_URI} ^/fr/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ fr/404.html [L]
+
+  RewriteCond %{REQUEST_URI} ^/de/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ de/404.html [L]
 </IfModule>
 
 ErrorDocument 404 /404.html

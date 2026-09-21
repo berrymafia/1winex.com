@@ -7,18 +7,22 @@ export interface StreamHandlers {
   onError: (message: string) => void;
 }
 
-function uiLang(): 'en' | 'ru' | 'es' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' {
   if (typeof document === 'undefined') return 'en';
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('ru')) return 'ru';
   if (raw.startsWith('es')) return 'es';
+  if (raw.startsWith('fr')) return 'fr';
+  if (raw.startsWith('de')) return 'de';
   return 'en';
 }
 
-function chatErr(en: string, ru: string, es: string): string {
+function chatErr(en: string, ru: string, es: string, fr: string, de: string): string {
   const lang = uiLang();
   if (lang === 'ru') return ru;
   if (lang === 'es') return es;
+  if (lang === 'fr') return fr;
+  if (lang === 'de') return de;
   return en;
 }
 
@@ -43,12 +47,12 @@ export async function streamChat(
       handlers.onDone();
       return;
     }
-    handlers.onError(chatErr('Network error. Please try again.', 'Нет соединения. Попробуйте ещё раз.', 'No hay conexión. Inténtalo de nuevo.'));
+    handlers.onError(chatErr('Network error. Please try again.', 'Нет соединения. Попробуйте ещё раз.', 'No hay conexión. Inténtalo de nuevo.', 'Pas de connexion. Réessayez.', 'Netzwerkfehler. Versuch’s nochmal.'));
     return;
   }
 
   if (!res.ok) {
-    let msg = chatErr('Request failed. Please try again.', 'Не удалось получить ответ. Попробуйте ещё раз.', 'No llegó la respuesta. Inténtalo de nuevo.');
+    let msg = chatErr('Request failed. Please try again.', 'Не удалось получить ответ. Попробуйте ещё раз.', 'No llegó la respuesta. Inténtalo de nuevo.', 'Pas de réponse. Réessayez.', 'Anfrage fehlgeschlagen. Versuch’s nochmal.');
     try {
       const j = (await res.json()) as { error?: string };
       if (j?.error) msg = j.error;
@@ -60,7 +64,7 @@ export async function streamChat(
   }
 
   if (!res.body) {
-    handlers.onError(chatErr('Empty response from server.', 'Сервер вернул пустой ответ.', 'El servidor no mandó nada.'));
+    handlers.onError(chatErr('Empty response from server.', 'Сервер вернул пустой ответ.', 'El servidor no mandó nada.', 'Le serveur n’a rien renvoyé.', 'Leere Antwort vom Server.'));
     return;
   }
 
@@ -93,7 +97,7 @@ export async function streamChat(
             error?: string;
           };
           if (evt.type === 'delta' && evt.delta) handlers.onDelta(evt.delta);
-          else if (evt.type === 'error') handlers.onError(evt.error || chatErr('Assistant error.', 'Ошибка помощника.', 'Error del asistente.'));
+          else if (evt.type === 'error') handlers.onError(evt.error || chatErr('Assistant error.', 'Ошибка помощника.', 'Error del asistente.', 'Erreur de l’assistant.', 'Fehler des Assistenten.'));
           else if (evt.type === 'done') {
             /* final frame may still send [DONE] */
           }
@@ -108,6 +112,6 @@ export async function streamChat(
       handlers.onDone();
       return;
     }
-    handlers.onError(chatErr('Stream interrupted. Please try again.', 'Ответ прервался. Попробуйте ещё раз.', 'Se cortó la respuesta. Inténtalo de nuevo.'));
+    handlers.onError(chatErr('Stream interrupted. Please try again.', 'Ответ прервался. Попробуйте ещё раз.', 'Se cortó la respuesta. Inténtalo de nuevo.', 'La réponse s’est interrompue. Réessayez.', 'Antwort unterbrochen. Versuch’s nochmal.'));
   }
 }

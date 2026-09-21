@@ -7,6 +7,8 @@
     var raw = (document.documentElement.lang || "").toLowerCase();
     if (raw.indexOf("ru") === 0) return "ru";
     if (raw.indexOf("es") === 0) return "es";
+    if (raw.indexOf("fr") === 0) return "fr";
+    if (raw.indexOf("de") === 0) return "de";
     return "en";
   })();
   var copy = {
@@ -39,6 +41,26 @@
       copied: "Copiado",
       aviatorDemo: "Demo de Aviator de Spribe",
       spribeLang: "ES",
+    },
+    fr: {
+      openMenu: "Ouvrir le menu",
+      closeMenu: "Fermer le menu",
+      cookieLabel: "Avis sur les cookies",
+      cookieHtml:
+        '<p>Ce site utilise des cookies pour fonctionner. Détails dans la <a href="/fr/responsible-gambling#cookies">politique cookies</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+      copied: "Copié",
+      aviatorDemo: "Démo Aviator par Spribe",
+      spribeLang: "FR",
+    },
+    de: {
+      openMenu: "Menü öffnen",
+      closeMenu: "Menü schließen",
+      cookieLabel: "Cookie-Hinweis",
+      cookieHtml:
+        '<p>Wir nutzen Cookies, damit die Seite läuft. Details in der <a href="/de/responsible-gambling#cookies">Cookie-Richtlinie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+      copied: "Kopiert",
+      aviatorDemo: "Aviator-Demo von Spribe",
+      spribeLang: "DE",
     },
   };
   var t = copy[lang] || copy.en;
@@ -361,9 +383,11 @@
       code = String(list[i] || "").toLowerCase();
       if (code === "es" || code.indexOf("es-") === 0) return "es";
       if (code === "ru" || code.indexOf("ru-") === 0) return "ru";
+      if (code === "fr" || code.indexOf("fr-") === 0) return "fr";
+      if (code === "de" || code.indexOf("de-") === 0) return "de";
       if (code === "en" || code.indexOf("en-") === 0) return "en";
     }
-    return "en";
+    return "";
   }
 
   function arrangeLangPanels() {
@@ -377,11 +401,15 @@
       var others = [];
       panel.querySelectorAll("a[hreflang]").forEach(function (link) {
         var code = (link.getAttribute("hreflang") || "").toLowerCase();
-        if (code === want || code.indexOf(want + "-") === 0) recLink = link;
+        if (want && !recLink && (code === want || code.indexOf(want + "-") === 0)) recLink = link;
         else others.push(link);
       });
-      if (!recLink || !others.length) return;
-      rec.insertAdjacentElement("afterend", recLink);
+      if (recLink) {
+        rec.removeAttribute("hidden");
+        rec.insertAdjacentElement("afterend", recLink);
+      } else {
+        rec.setAttribute("hidden", "");
+      }
       var i;
       for (i = others.length - 1; i >= 0; i--) {
         all.insertAdjacentElement("afterend", others[i]);

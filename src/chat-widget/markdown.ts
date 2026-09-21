@@ -182,7 +182,11 @@ export async function renderMarkdown(md: string): Promise<string> {
           ? { aria: 'Копировать код', text: 'Копировать' }
           : raw.startsWith('es')
             ? { aria: 'Copiar código', text: 'Copiar' }
-            : { aria: 'Copy code', text: 'Copy' };
+            : raw.startsWith('fr')
+              ? { aria: 'Copier le code', text: 'Copier' }
+              : raw.startsWith('de')
+                ? { aria: 'Code kopieren', text: 'Kopieren' }
+                : { aria: 'Copy code', text: 'Copy' };
         btn.setAttribute('aria-label', copyLabel.aria);
         btn.textContent = copyLabel.text;
         pre.appendChild(btn);

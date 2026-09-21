@@ -190,7 +190,7 @@ a:hover {
   width: 24px;
   height: 24px;
   display: block;
-  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .lang-picker__flag {
@@ -915,6 +915,10 @@ h3 {
   color: #cfd3da;
   font-size: 0.9rem;
   max-width: 36ch;
+}
+
+.promo-note a {
+  white-space: nowrap;
 }
 
 .muted {
