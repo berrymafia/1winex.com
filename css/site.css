@@ -108,7 +108,7 @@ a:hover {
   height: var(--header);
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 }
 
 .logo {
@@ -130,49 +130,111 @@ a:hover {
 .header-panel {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-left: auto;
+  gap: 8px;
+  min-width: 0;
 }
 
 .header-inner > .header-auth {
-  margin-left: 8px;
+  margin-left: auto;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
+  height: 44px;
+  padding: 2px;
+  background: rgba(179, 182, 189, 0.12);
+  border-radius: 14px;
+  flex-shrink: 0;
 }
 
-.nav-menu .nav-home {
-  display: none;
+.nav-menu > a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 8px 16px;
+  color: #9aa1b1;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+  border-radius: 12px;
 }
 
-.nav-menu a {
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 500;
-  padding: 8px 10px;
-  border-radius: 10px;
+.nav-menu > a::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  flex: none;
+  background: currentColor;
+  -webkit-mask: var(--nav-icon) center / contain no-repeat;
+  mask: var(--nav-icon) center / contain no-repeat;
 }
 
-.nav-menu a:hover,
-.nav-menu a:focus-visible {
+.nav-menu > a + a::after,
+.nav-menu > a + .lang-picker::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  width: 1px;
+  height: 24px;
+  background: rgba(179, 182, 189, 0.12);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.nav-menu > a.nav-home {
+  --nav-icon: url("../images/nav/home.svg?v=2");
+  width: 56px;
+  padding: 8px 16px;
+  font-size: 0;
+  gap: 0;
+}
+
+.nav-menu > a[href$="bonuses"] {
+  --nav-icon: url("../images/nav/bonuses.svg");
+}
+
+.nav-menu > a[href$="casino"] {
+  --nav-icon: url("../images/nav/casino.svg");
+}
+
+.nav-menu > a[href$="betting"] {
+  --nav-icon: url("../images/nav/sport.svg");
+}
+
+.nav-menu > a[href$="app"] {
+  --nav-icon: url("../images/nav/app.svg?v=15");
+}
+
+.nav-menu > a:hover,
+.nav-menu > a:focus-visible {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
   text-decoration: none;
 }
 
-.nav-menu a.active {
+.nav-menu > a.active {
   color: #fff;
   font-weight: 600;
-  background: #2a2a2c;
+  background: var(--blue);
 }
 
-.nav-menu a.active:hover,
-.nav-menu a.active:focus-visible {
+.nav-menu > a.active:hover,
+.nav-menu > a.active:focus-visible {
   color: #fff;
-  background: #333336;
+  background: var(--blue-hover);
+}
+
+.nav-menu > a.active::after,
+.nav-menu > a.active + a::after,
+.nav-menu > a.active + .lang-picker::after {
+  opacity: 0;
 }
 
 .header-auth {
@@ -184,6 +246,27 @@ a:hover {
 .lang-picker {
   position: relative;
   flex-shrink: 0;
+}
+
+.nav-menu > .lang-picker .lang-panel {
+  left: auto;
+  right: 0;
+}
+
+.nav-menu > .lang-picker summary {
+  height: 40px;
+  padding: 0 12px 0 10px;
+  border-radius: 12px;
+  color: #9aa1b1;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.nav-menu > .lang-picker summary:hover,
+.nav-menu > .lang-picker[open] summary {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .lang-picker__icon {
@@ -246,7 +329,8 @@ a:hover {
 
 .lang-panel {
   position: absolute;
-  right: 0;
+  left: 0;
+  right: auto;
   top: calc(100% + 8px);
   display: flex;
   flex-direction: column;
@@ -2258,6 +2342,7 @@ a.step:hover {
     position: fixed;
     inset: var(--header) 0 auto;
     display: none;
+    flex: none;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
@@ -2304,34 +2389,60 @@ a.step:hover {
     flex-direction: column;
     align-items: stretch;
     gap: 4px;
+    height: auto;
+    padding: 0;
+    background: none;
+    border-radius: 0;
   }
 
-  .nav-menu .nav-home {
-    display: block;
+  .nav-menu > .nav-home {
+    display: flex;
   }
 
-  .nav-menu a {
+  .nav-menu > a {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     min-height: 44px;
+    height: auto;
     padding: 10px 14px;
     font-size: 0.95rem;
     border-radius: 8px;
+  }
+
+  .nav-menu > a.nav-home {
+    width: auto;
+    font-size: 0.95rem;
+    gap: 8px;
+  }
+
+  .nav-menu > a::before {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav-menu > a + a::after,
+  .nav-menu > a + .lang-picker::after {
+    display: none;
   }
 
   .header-inner > .header-auth {
     margin-left: auto;
   }
 
-  .header-panel .lang-picker {
+  .nav-menu > .lang-picker {
+    order: 1;
+    margin-left: 0;
     margin-top: 8px;
     padding-top: 8px;
     border-top: 1px solid var(--line);
   }
 
-  .header-panel .lang-picker summary {
+  .nav-menu > .lang-picker summary {
     justify-content: flex-start;
+    width: 100%;
     min-height: 44px;
+    height: auto;
     padding: 10px 14px;
   }
 
@@ -2346,6 +2457,7 @@ a.step:hover {
   }
 
   .header-inner {
+    display: flex;
     gap: 10px;
   }
 

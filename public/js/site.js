@@ -134,7 +134,7 @@
     }
   });
 
-  document.querySelectorAll(".nav-menu a").forEach(function (link) {
+  document.querySelectorAll(".nav-menu > a").forEach(function (link) {
     link.addEventListener("click", function () {
       setNav(false);
     });
