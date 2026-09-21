@@ -43,7 +43,7 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' {
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
   if (raw.startsWith('ru')) return 'ru';
@@ -51,6 +51,7 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' {
   if (raw.startsWith('fr')) return 'fr';
   if (raw.startsWith('de')) return 'de';
   if (raw.startsWith('it')) return 'it';
+  if (raw.startsWith('az')) return 'az';
   return 'en';
 }
 
@@ -192,6 +193,29 @@ function chatCopy() {
       copied: 'Copiato',
       copy: 'Copia',
       failed: 'Errore',
+    };
+  }
+  if (lang === 'az') {
+    return {
+      name: 'Anna',
+      subtitle: '1win virtual köməkçisi',
+      close: 'Söhbəti bağla',
+      placeholder: 'Sual yazın…',
+      message: 'Mesaj',
+      send: 'Göndər',
+      sendMessage: 'Mesaj göndər',
+      open: 'Anna ilə söhbət',
+      closeAnna: 'Anna ilə söhbəti bağla',
+      openUnread: 'Anna ilə söhbət — yeni mesaj',
+      typing: 'Anna yazır',
+      hello: 'Salam. Mən Annayam. Nə ilə kömək edim?',
+      intro:
+        'Kazino və idman, WINEX600, depozit, çıxarış və Android APK barədə kömək edə bilərəm.',
+      suggests: 'Tez-tez soruşulanlar',
+      noResponse: 'Cavab alınmadı.',
+      copied: 'Kopyalandı',
+      copy: 'Kopyala',
+      failed: 'Xəta',
     };
   }
   return {

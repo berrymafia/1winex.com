@@ -216,6 +216,35 @@ function htmlRewritePlugin() {
           res.end();
           return;
         }
+        if (url === '/az/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/az');
+          res.end();
+          return;
+        }
+        if (url === '/az') {
+          req.url = '/az/index.html';
+          next();
+          return;
+        }
+        if (url === '/az/games' || url === '/az/games/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/az/casino');
+          res.end();
+          return;
+        }
+        if (url === '/az/sports' || url === '/az/sports/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/az/betting');
+          res.end();
+          return;
+        }
+        if (url === '/az/mobile' || url === '/az/mobile/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/az/app');
+          res.end();
+          return;
+        }
         if (
           url !== '/' &&
           !url.includes('.') &&
@@ -241,6 +270,9 @@ function htmlRewritePlugin() {
             res.statusCode = 404;
           } else if (url.startsWith('/it/')) {
             req.url = '/it/404.html';
+            res.statusCode = 404;
+          } else if (url.startsWith('/az/')) {
+            req.url = '/az/404.html';
             res.statusCode = 404;
           } else {
             req.url = url + '.html';
@@ -359,6 +391,19 @@ export default defineConfig({
         'it-responsible-gambling': resolve(__dirname, 'it/responsible-gambling.html'),
         'it-not-working': resolve(__dirname, 'it/not-working.html'),
         'it-404': resolve(__dirname, 'it/404.html'),
+        'az-main': resolve(__dirname, 'az/index.html'),
+        'az-safety': resolve(__dirname, 'az/safety.html'),
+        'az-bonuses': resolve(__dirname, 'az/bonuses.html'),
+        'az-casino': resolve(__dirname, 'az/casino.html'),
+        'az-aviator': resolve(__dirname, 'az/aviator.html'),
+        'az-lucky-jet': resolve(__dirname, 'az/lucky-jet.html'),
+        'az-betting': resolve(__dirname, 'az/betting.html'),
+        'az-payments': resolve(__dirname, 'az/payments.html'),
+        'az-crypto-casino': resolve(__dirname, 'az/crypto-casino.html'),
+        'az-app': resolve(__dirname, 'az/app.html'),
+        'az-responsible-gambling': resolve(__dirname, 'az/responsible-gambling.html'),
+        'az-not-working': resolve(__dirname, 'az/not-working.html'),
+        'az-404': resolve(__dirname, 'az/404.html'),
       },
     },
   },

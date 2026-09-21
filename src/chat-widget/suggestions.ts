@@ -1,4 +1,4 @@
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' {
   if (typeof document === 'undefined') return 'en';
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
@@ -7,10 +7,22 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' {
   if (raw.startsWith('fr')) return 'fr';
   if (raw.startsWith('de')) return 'de';
   if (raw.startsWith('it')) return 'it';
+  if (raw.startsWith('az')) return 'az';
   return 'en';
 }
 
-function pick<T>(lang: 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it', en: T, ru: T, es: T, fr: T, de: T, uk: T, it: T): T {
+function pick<T>(
+  lang: 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az',
+  en: T,
+  ru: T,
+  es: T,
+  fr: T,
+  de: T,
+  uk: T,
+  it: T,
+  az: T
+): T {
+  if (lang === 'az') return az;
   if (lang === 'it') return it;
   if (lang === 'uk') return uk;
   if (lang === 'ru') return ru;
@@ -69,6 +81,13 @@ const GLOBAL_SUGGESTIONS_IT = [
   'Come installo l’app?',
 ] as const;
 
+const GLOBAL_SUGGESTIONS_AZ = [
+  '1win-in lisenziyası nədir?',
+  'WINEX600-ə nə daxildir?',
+  'Çıxarış nə qədər tez gəlir?',
+  'Tətbiqi necə quraşdırmaq?',
+] as const;
+
 function uniqueSuggestions(items: string[], max = 4): string[] {
   const out: string[] = [];
   const seen = new Set<string>();
@@ -89,7 +108,7 @@ export function pageSlugFromLocation(pathname = location.pathname): string {
   const parts = p.split('/').filter(Boolean);
   if (!parts.length) return 'index';
   let i = 0;
-  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it') i = 1;
+  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it' || parts[0] === 'az') i = 1;
   if (!parts[i] || parts[i] === 'index') return 'index';
   let slug = parts[i].replace(/\.html$/i, '');
   if (slug === 'betting') return 'sports';
@@ -152,6 +171,12 @@ export function getSuggestedQuestions(
           'Qual è il rollover?',
           'Come inserisco WINEX600?',
           'Come attivo WINEX600?',
+        ],
+        [
+          'Xoş gəldin bonusuna nə daxildir?',
+          'Oynatma şərtləri hansılardır?',
+          'WINEX600-ü necə yazmaq?',
+          'WINEX600-ü necə aktivləşdirmək?',
         ]
       )
     );
@@ -202,6 +227,12 @@ export function getSuggestedQuestions(
           'Posso depositare in crypto?',
           'Dove vedo i limiti di prelievo?',
           'Quando chiedono il KYC?',
+        ],
+        [
+          'Çıxarış nə qədər tez gəlir?',
+          'Kripto ilə doldurmaq olar?',
+          'Çıxarış limitlərinə harada baxmaq?',
+          'Sənədləri nə vaxt istəyirlər?',
         ]
       )
     );
@@ -252,6 +283,12 @@ export function getSuggestedQuestions(
           'Come uso 1win su iPhone?',
           'Posso giocare senza app, nel browser?',
           'Dove scarico l’APK?',
+        ],
+        [
+          'Android APK-nı necə quraşdırmaq?',
+          'iPhone-da 1win-i necə oynamaq?',
+          'Tətbiqsiz — brauzerdən oynamaq olar?',
+          'APK-nı haradan yükləmək?',
         ]
       )
     );
@@ -302,6 +339,12 @@ export function getSuggestedQuestions(
           'Dove vedo l’RTP di un gioco?',
           'Ci sono tavoli live?',
           'Le slot contano per il bonus di benvenuto?',
+        ],
+        [
+          'Kazinoda hansı oyunlar var?',
+          'Oyunun RTP-sinə harada baxmaq?',
+          'Canlı masalar varmı?',
+          'Slotlar xoş gəldin bonusuna sayılır?',
         ]
       )
     );
@@ -352,6 +395,12 @@ export function getSuggestedQuestions(
           'Aviator è un 1win Original?',
           'Aviator conta per il bonus di benvenuto?',
           'Cos’è l’incasso automatico in Aviator?',
+        ],
+        [
+          'Aviator RTP-sinə harada baxmaq?',
+          'Aviator 1win Original-dır?',
+          'Aviator xoş gəldin bonusuna sayılır?',
+          'Aviator-da avto cash-out nədir?',
         ]
       )
     );
@@ -402,6 +451,12 @@ export function getSuggestedQuestions(
           'Lucky Jet è lo stesso di Aviator?',
           'Lucky Jet conta per il bonus di benvenuto?',
           'Cos’è l’incasso automatico in Lucky Jet?',
+        ],
+        [
+          'Lucky Jet RTP-sinə harada baxmaq?',
+          'Lucky Jet Aviator ilə eynidir?',
+          'Lucky Jet xoş gəldin bonusuna sayılır?',
+          'Lucky Jet-də avto cash-out nədir?',
         ]
       )
     );
@@ -452,6 +507,12 @@ export function getSuggestedQuestions(
           'C’è il cash-out su 1win?',
           'Cos’è il bonus combinata?',
           'I bonus casino e sport condividono lo stesso saldo?',
+        ],
+        [
+          'İdmana necə mərc qoymaq?',
+          'Cash-out varmı?',
+          'Ekspress bonusu nədir?',
+          'Kazino və idman bonusları eyni balansdadır?',
         ]
       )
     );
@@ -502,6 +563,12 @@ export function getSuggestedQuestions(
           'Quando chiedono i documenti?',
           'Come so che è il sito vero?',
           'Come attivo il 2FA?',
+        ],
+        [
+          '1win-in lisenziyası nədir?',
+          'Sənədləri nə vaxt istəyirlər?',
+          'Saytın həqiqi olduğunu necə anlamaq?',
+          '2FA-nı necə açmaq?',
         ]
       )
     );
@@ -552,6 +619,12 @@ export function getSuggestedQuestions(
           'Quanto ci mette un prelievo?',
           'Cosa include WINEX600?',
           'Come installo l’app?',
+        ],
+        [
+          'Necə qeydiyyatdan keçmək?',
+          'Çıxarış nə qədər tez gəlir?',
+          'WINEX600-ə nə daxildir?',
+          'Tətbiqi necə quraşdırmaq?',
         ]
       )
     );
@@ -602,6 +675,12 @@ export function getSuggestedQuestions(
           'Come imposto un limite di deposito?',
           'Come funziona l’autoesclusione?',
           'Dove chiedo aiuto per il gioco?',
+        ],
+        [
+          'Limit və ya özünü kənarlaşdırmanı necə qoymaq?',
+          'Depozit limitini necə qoymaq?',
+          'Özünü kənarlaşdırma necə işləyir?',
+          'Müstəqil köməyi haradan almaq?',
         ]
       )
     );
@@ -652,6 +731,12 @@ export function getSuggestedQuestions(
           'Chiedono il KYC se pago in crypto?',
           'Cosa faccio se il deposito crypto non arriva?',
           'WINEX600 vale con la crypto?',
+        ],
+        [
+          'Bitcoin və ya USDT necə doldurmaq?',
+          'Kripto üçün də KYC lazımdır?',
+          'Kripto gəlməsə nə etmək?',
+          'WINEX600 kripto ilə işləyir?',
         ]
       )
     );
@@ -702,12 +787,18 @@ export function getSuggestedQuestions(
           'Cosa faccio se il sito non si apre?',
           'L’app si apre se il sito non si apre?',
           'Come accedo se il sito è bloccato?',
+        ],
+        [
+          '1win niyə açılmır?',
+          'Sayt yüklənmirsə nə etmək?',
+          'Tətbiq açılacaq?',
+          'Sayt bloklanıbsa necə daxil olmaq?',
         ]
       )
     );
   }
 
   return uniqueSuggestions([
-    ...pick(lang, [...GLOBAL_SUGGESTIONS], [...GLOBAL_SUGGESTIONS_RU], [...GLOBAL_SUGGESTIONS_ES], [...GLOBAL_SUGGESTIONS_FR], [...GLOBAL_SUGGESTIONS_DE], [...GLOBAL_SUGGESTIONS_UK], [...GLOBAL_SUGGESTIONS_IT]),
+    ...pick(lang, [...GLOBAL_SUGGESTIONS], [...GLOBAL_SUGGESTIONS_RU], [...GLOBAL_SUGGESTIONS_ES], [...GLOBAL_SUGGESTIONS_FR], [...GLOBAL_SUGGESTIONS_DE], [...GLOBAL_SUGGESTIONS_UK], [...GLOBAL_SUGGESTIONS_IT], [...GLOBAL_SUGGESTIONS_AZ]),
   ]);
 }

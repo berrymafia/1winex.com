@@ -11,6 +11,7 @@
     if (raw.indexOf("fr") === 0) return "fr";
     if (raw.indexOf("de") === 0) return "de";
     if (raw.indexOf("it") === 0) return "it";
+    if (raw.indexOf("az") === 0) return "az";
     return "en";
   })();
   var copy = {
@@ -83,6 +84,16 @@
       copied: "Copiato",
       aviatorDemo: "Demo Aviator di Spribe",
       spribeLang: "IT",
+    },
+    az: {
+      openMenu: "Menyunu aç",
+      closeMenu: "Menyunu bağla",
+      cookieLabel: "Cookie bildirişi",
+      cookieHtml:
+        '<p>Saytın işləməsi üçün cookie-lərdən istifadə edirik. Ətraflı: <a href="/az/responsible-gambling#cookies">cookie siyasəti</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+      copied: "Kopyalandı",
+      aviatorDemo: "Spribe Aviator demosu",
+      spribeLang: "AZ",
     },
   };
   var t = copy[lang] || copy.en;
@@ -409,28 +420,21 @@
       if (code === "fr" || code.indexOf("fr-") === 0) return "fr";
       if (code === "de" || code.indexOf("de-") === 0) return "de";
       if (code === "it" || code.indexOf("it-") === 0) return "it";
+      if (code === "az" || code.indexOf("az-") === 0) return "az";
       if (code === "en" || code.indexOf("en-") === 0) return "en";
     }
-    return "";
+    return "en";
   }
 
-  var LANG_ORDER = ["en", "de", "fr", "es", "it", "ru", "uk"];
+  var LANG_ORDER = ["en", "az", "fr", "de", "it", "ru", "es", "uk"];
 
   function langRank(code) {
     var i = LANG_ORDER.indexOf(String(code || "").toLowerCase());
     return i === -1 ? 99 : i;
   }
 
-  function pageLangCode() {
-    var raw = (document.documentElement.lang || "en").toLowerCase();
-    if (raw.indexOf("uk") === 0) return "uk";
-    return raw.slice(0, 2);
-  }
-
   function arrangeLangPanels() {
-    var page = pageLangCode();
-    var want = preferredSiteLang();
-    if (!want || want === page) want = "ru";
+    var want = preferredSiteLang() || "en";
     document.querySelectorAll(".lang-panel").forEach(function (panel) {
       var sections = panel.querySelectorAll(".lang-panel__section");
       if (sections.length < 2) return;
