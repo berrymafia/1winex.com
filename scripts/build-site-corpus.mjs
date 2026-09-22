@@ -26,7 +26,7 @@ const PAGES = [
     slug: 'bonuses',
     file: 'bonuses.html',
     name: '1win Bonuses',
-    aliases: ['bonus', 'bonuses', 'promo', 'promo code', 'промокод', 'WINEX600', 'welcome bonus', '600%', '500%', '500 FS', 'wagering', 'bono', 'código promocional', 'código promo', 'bonus de bienvenue', 'code promo', 'tours gratuits', 'Willkommensbonus', 'Promo-Code', 'Freispiele', 'bonus di benvenuto', 'codice promo', 'xoş gəldin bonusu', 'promo kod', 'oynatma'],
+    aliases: ['bonus', 'bonuses', 'promo', 'promo code', 'промокод', 'WINEX600', 'welcome bonus', '600%', '500%', '500 FS', 'wagering', 'bono', 'código promocional', 'código promo', 'bonus de bienvenue', 'code promo', 'tours gratuits', 'Willkommensbonus', 'Promo-Code', 'Freispiele', 'bonus di benvenuto', 'codice promo', 'xoş gəldin bonusu', 'promo kod', 'oynatma', 'বোনাস', 'প্রোমো কোড', 'স্বাগতম বোনাস'],
   },
   {
     slug: 'payments',
@@ -99,7 +99,7 @@ const PAGES = [
     slug: 'not-working',
     file: 'not-working.html',
     name: '1win Not Working',
-    aliases: ['not working', 'blocked', 'mirror', 'site down', 'does not open', 'не открывается', 'не работает', 'no abre', 'no funciona', 'ne s’ouvre pas', 'ne fonctionne pas', 'öffnet nicht', 'geht nicht', 'не відкривається', 'не працює', 'non si apre', 'non funziona', 'açılmır', 'işləmir'],
+    aliases: ['not working', 'blocked', 'mirror', 'site down', 'does not open', 'не открывается', 'не работает', 'no abre', 'no funciona', 'ne s’ouvre pas', 'ne fonctionne pas', 'öffnet nicht', 'geht nicht', 'не відкривається', 'не працює', 'non si apre', 'non funziona', 'açılmır', 'işləmir', 'খুলছে না', 'খোলে না'],
   },
 ];
 
@@ -208,6 +208,21 @@ const AZ_NAMES = {
   'az-not-working': 'Açılmır',
 };
 
+const BN_NAMES = {
+  'bn-index': '1win',
+  'bn-bonuses': 'বোনাস',
+  'bn-payments': 'পেমেন্ট',
+  'bn-crypto-casino': 'ক্রিপ্টো ক্যাসিনো',
+  'bn-casino': 'ক্যাসিনো',
+  'bn-aviator': 'Aviator',
+  'bn-lucky-jet': 'Lucky Jet',
+  'bn-betting': 'স্পোর্টস',
+  'bn-app': 'অ্যাপ',
+  'bn-safety': 'নিরাপত্তা',
+  'bn-responsible-gambling': 'দায়িত্বশীল গেম্বলিং',
+  'bn-not-working': 'খুলছে না',
+};
+
 const RU_PAGES = PAGES.map((page) => {
   const slug = page.slug === 'index' ? 'ru-index' : `ru-${page.slug}`;
   return {
@@ -278,6 +293,16 @@ const AZ_PAGES = PAGES.map((page) => {
   };
 });
 
+const BN_PAGES = PAGES.map((page) => {
+  const slug = page.slug === 'index' ? 'bn-index' : `bn-${page.slug}`;
+  return {
+    ...page,
+    slug,
+    file: page.slug === 'index' ? 'bn/index.html' : `bn/${page.file}`,
+    name: BN_NAMES[slug] || `${page.name} BN`,
+  };
+});
+
 const SITE_OFFERS = [
   {
     brand: '1win',
@@ -326,6 +351,10 @@ const SITE_OFFERS = [
       'giriş',
       'xoş gəldin bonusu',
       'promo kod',
+      'রেজিস্ট্রেশন',
+      'লগইন',
+      'স্বাগতম বোনাস',
+      'প্রোমো কোড',
     ],
   },
   {
@@ -333,7 +362,7 @@ const SITE_OFFERS = [
     url: 'https://1winex.com/apk',
     label: 'Download APK',
     kind: 'apk',
-    aliases: ['apk', 'android', 'download apk', 'скачать apk', 'приложение', 'app', 'descargar apk', 'télécharger apk', 'APK herunterladen', 'завантажити apk', 'додаток', 'scarica apk', 'tətbiq', 'yüklə apk', 'android apk'],
+    aliases: ['apk', 'android', 'download apk', 'скачать apk', 'приложение', 'app', 'descargar apk', 'télécharger apk', 'APK herunterladen', 'завантажити apk', 'додаток', 'scarica apk', 'tətbiq', 'yüklə apk', 'android apk', 'অ্যাপ', 'APK ডাউনলোড'],
   },
 ];
 const CTA_PREFIX_EN = 'Register / Login: https://1winex.com/go. APK: https://1winex.com/apk. ';
@@ -344,6 +373,7 @@ const CTA_PREFIX_DE = 'Registrieren / Anmelden: https://1winex.com/go. APK: http
 const CTA_PREFIX_UK = 'Реєстрація / вхід: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_IT = 'Registrati / Accedi: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_AZ = 'Qeydiyyat / giriş: https://1winex.com/go. APK: https://1winex.com/apk. ';
+const CTA_PREFIX_BN = 'রেজিস্ট্রেশন / লগইন: https://1winex.com/go. APK: https://1winex.com/apk. ';
 
 function decodeEntities(s) {
   return s
@@ -380,7 +410,7 @@ function extractMetaDescription(html) {
 }
 
 const entries = [];
-for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES, ...IT_PAGES, ...AZ_PAGES]) {
+for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES, ...IT_PAGES, ...AZ_PAGES, ...BN_PAGES]) {
   const filePath = path.join(ROOT, page.file);
   if (!fs.existsSync(filePath)) {
     console.warn(`[corpus] missing ${page.file}`);
@@ -401,6 +431,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
               ? CTA_PREFIX_IT
               : page.slug.startsWith('az-')
                 ? CTA_PREFIX_AZ
+              : page.slug.startsWith('bn-')
+                ? CTA_PREFIX_BN
           : CTA_PREFIX_EN;
   const text = (prefix + stripHtml(html)).slice(0, MAX_TEXT);
   const title = extractTitle(html) || page.name;
@@ -421,6 +453,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                   ? '/it'
                   : page.slug === 'az-index'
                     ? '/az'
+                  : page.slug === 'bn-index'
+                    ? '/bn'
               : page.slug.startsWith('ru-')
                 ? `/ru/${page.slug.slice(3)}`
                 : page.slug.startsWith('es-')
@@ -435,6 +469,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                           ? `/it/${page.slug.slice(3)}`
                           : page.slug.startsWith('az-')
                             ? `/az/${page.slug.slice(3)}`
+                          : page.slug.startsWith('bn-')
+                            ? `/bn/${page.slug.slice(3)}`
                       : `/${page.slug}`;
   const link = `${SITE_ORIGIN}${pathUrl === '/' ? '/' : pathUrl}`;
   entries.push({

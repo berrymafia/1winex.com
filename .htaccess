@@ -47,82 +47,75 @@ AddType application/xml .xml
   # Canonical host first, then CTA hops (so /go and /apk 302 from https://1winex.com)
   RewriteCond %{HTTPS} !=on
   RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+  RewriteRule ^ https://1winex.com%{REQUEST_URI} [R=301,L,NE]
 
-  RewriteCond %{HTTP_HOST} ^www\.1winex\.com$ [NC]
-  RewriteRule ^ https://1winex.com%{REQUEST_URI} [R=301,L]
+  RewriteCond %{HTTP_HOST} !^1winex\.com$ [NC]
+  RewriteRule ^ https://1winex.com%{REQUEST_URI} [R=301,L,NE]
 
   RewriteRule ^go/?$ https://bonus-999.com/1win [R=302,L,NE,E=cta_hop:1]
   RewriteRule ^apk/?$ https://bonus-999.com/apk [R=302,L,NE,E=cta_hop:1]
 
-  RewriteRule ^games(\.html)?/?$ /casino [R=301,L]
-  RewriteRule ^sports(\.html)?/?$ /betting [R=301,L]
-  RewriteRule ^mobile(\.html)?/?$ /app [R=301,L]
-  RewriteRule ^ru/games(\.html)?/?$ /ru/casino [R=301,L]
-  RewriteRule ^ru/sports(\.html)?/?$ /ru/betting [R=301,L]
-  RewriteRule ^ru/mobile(\.html)?/?$ /ru/app [R=301,L]
-  RewriteRule ^es/games(\.html)?/?$ /es/casino [R=301,L]
-  RewriteRule ^es/sports(\.html)?/?$ /es/betting [R=301,L]
-  RewriteRule ^es/mobile(\.html)?/?$ /es/app [R=301,L]
-  RewriteRule ^fr/games(\.html)?/?$ /fr/casino [R=301,L]
-  RewriteRule ^fr/sports(\.html)?/?$ /fr/betting [R=301,L]
-  RewriteRule ^fr/mobile(\.html)?/?$ /fr/app [R=301,L]
-  RewriteRule ^de/games(\.html)?/?$ /de/casino [R=301,L]
-  RewriteRule ^de/sports(\.html)?/?$ /de/betting [R=301,L]
-  RewriteRule ^de/mobile(\.html)?/?$ /de/app [R=301,L]
-  RewriteRule ^uk/games(\.html)?/?$ /uk/casino [R=301,L]
-  RewriteRule ^uk/sports(\.html)?/?$ /uk/betting [R=301,L]
-  RewriteRule ^uk/mobile(\.html)?/?$ /uk/app [R=301,L]
-  RewriteRule ^it/games(\.html)?/?$ /it/casino [R=301,L]
-  RewriteRule ^it/sports(\.html)?/?$ /it/betting [R=301,L]
-  RewriteRule ^it/mobile(\.html)?/?$ /it/app [R=301,L]
-  RewriteRule ^az/games(\.html)?/?$ /az/casino [R=301,L]
-  RewriteRule ^az/sports(\.html)?/?$ /az/betting [R=301,L]
-  RewriteRule ^az/mobile(\.html)?/?$ /az/app [R=301,L]
+  RewriteRule ^games(\.html)?/?$ https://1winex.com/casino [R=301,L,NE]
+  RewriteRule ^sports(\.html)?/?$ https://1winex.com/betting [R=301,L,NE]
+  RewriteRule ^mobile(\.html)?/?$ https://1winex.com/app [R=301,L,NE]
+  RewriteRule ^ru/games(\.html)?/?$ https://1winex.com/ru/casino [R=301,L,NE]
+  RewriteRule ^ru/sports(\.html)?/?$ https://1winex.com/ru/betting [R=301,L,NE]
+  RewriteRule ^ru/mobile(\.html)?/?$ https://1winex.com/ru/app [R=301,L,NE]
+  RewriteRule ^es/games(\.html)?/?$ https://1winex.com/es/casino [R=301,L,NE]
+  RewriteRule ^es/sports(\.html)?/?$ https://1winex.com/es/betting [R=301,L,NE]
+  RewriteRule ^es/mobile(\.html)?/?$ https://1winex.com/es/app [R=301,L,NE]
+  RewriteRule ^fr/games(\.html)?/?$ https://1winex.com/fr/casino [R=301,L,NE]
+  RewriteRule ^fr/sports(\.html)?/?$ https://1winex.com/fr/betting [R=301,L,NE]
+  RewriteRule ^fr/mobile(\.html)?/?$ https://1winex.com/fr/app [R=301,L,NE]
+  RewriteRule ^de/games(\.html)?/?$ https://1winex.com/de/casino [R=301,L,NE]
+  RewriteRule ^de/sports(\.html)?/?$ https://1winex.com/de/betting [R=301,L,NE]
+  RewriteRule ^de/mobile(\.html)?/?$ https://1winex.com/de/app [R=301,L,NE]
+  RewriteRule ^uk/games(\.html)?/?$ https://1winex.com/uk/casino [R=301,L,NE]
+  RewriteRule ^uk/sports(\.html)?/?$ https://1winex.com/uk/betting [R=301,L,NE]
+  RewriteRule ^uk/mobile(\.html)?/?$ https://1winex.com/uk/app [R=301,L,NE]
+  RewriteRule ^it/games(\.html)?/?$ https://1winex.com/it/casino [R=301,L,NE]
+  RewriteRule ^it/sports(\.html)?/?$ https://1winex.com/it/betting [R=301,L,NE]
+  RewriteRule ^it/mobile(\.html)?/?$ https://1winex.com/it/app [R=301,L,NE]
+  RewriteRule ^az/games(\.html)?/?$ https://1winex.com/az/casino [R=301,L,NE]
+  RewriteRule ^az/sports(\.html)?/?$ https://1winex.com/az/betting [R=301,L,NE]
+  RewriteRule ^az/mobile(\.html)?/?$ https://1winex.com/az/app [R=301,L,NE]
+  RewriteRule ^bn/games(\.html)?/?$ https://1winex.com/bn/casino [R=301,L,NE]
+  RewriteRule ^bn/sports(\.html)?/?$ https://1winex.com/bn/betting [R=301,L,NE]
+  RewriteRule ^bn/mobile(\.html)?/?$ https://1winex.com/bn/app [R=301,L,NE]
 
   # Chat API is Node — never map /api/chat to a .html 404
   RewriteRule ^api/ - [L]
 
   # Locale folders are real directories; keep the public URLs without a trailing slash
-  RewriteRule ^ru/$ /ru [R=301,L]
+  RewriteRule ^ru/$ https://1winex.com/ru [R=301,L,NE]
   RewriteRule ^ru$ ru/index.html [L]
-  RewriteRule ^es/$ /es [R=301,L]
+  RewriteRule ^es/$ https://1winex.com/es [R=301,L,NE]
   RewriteRule ^es$ es/index.html [L]
-  RewriteRule ^fr/$ /fr [R=301,L]
+  RewriteRule ^fr/$ https://1winex.com/fr [R=301,L,NE]
   RewriteRule ^fr$ fr/index.html [L]
-  RewriteRule ^de/$ /de [R=301,L]
+  RewriteRule ^de/$ https://1winex.com/de [R=301,L,NE]
   RewriteRule ^de$ de/index.html [L]
-  RewriteRule ^uk/$ /uk [R=301,L]
+  RewriteRule ^uk/$ https://1winex.com/uk [R=301,L,NE]
   RewriteRule ^uk$ uk/index.html [L]
-  RewriteRule ^it/$ /it [R=301,L]
+  RewriteRule ^it/$ https://1winex.com/it [R=301,L,NE]
   RewriteRule ^it$ it/index.html [L]
-  RewriteRule ^az/$ /az [R=301,L]
+  RewriteRule ^az/$ https://1winex.com/az [R=301,L,NE]
   RewriteRule ^az$ az/index.html [L]
+  RewriteRule ^bn/$ https://1winex.com/bn [R=301,L,NE]
+  RewriteRule ^bn$ bn/index.html [L]
 
   # Trailing slash on a file URL (/casino/) makes relative ./images and ./css
   # resolve to /casino/images — 404. Keep real directories as-is.
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.+)/$ $1 [R=301,L]
+  RewriteRule ^(.+)/$ https://1winex.com/$1 [R=301,L,NE]
 
-  # Redirect index.html to the site root of this folder
-  RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
-  RewriteRule ^index(\.html)?$ ./ [R=301,L]
+  # Redirect root and localized index.html URLs to their canonical roots
+  RewriteCond %{THE_REQUEST} \s/+((?:ru|es|fr|de|uk|it|az|bn)/)?index(?:\.html)?[\s?] [NC]
+  RewriteRule ^(?:(ru|es|fr|de|uk|it|az|bn)/)?index(?:\.html)?$ https://1winex.com/$1 [R=301,L,NE]
 
-  # Redirect /file.html to /file (relative substitution, not /%1)
+  # Redirect /file.html to the canonical extensionless HTTPS URL
   RewriteCond %{THE_REQUEST} \s/+([^.]+)\.html[\s?] [NC]
-  RewriteRule ^([^.]+)\.html$ $1 [R=301,L]
-
-  # Prefer nested public/ when the root copy is missing (ISPmanager repo upload)
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
-  RewriteRule ^((?:images|css|js)/.*)$ public/$1 [L]
-
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
-  RewriteRule ^((?:favicon|apple-touch-icon)\.png)$ public/$1 [L]
-
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^(images|css|js)/(.*)$ public/$1/$2 [L]
+  RewriteRule ^([^.]+)\.html$ https://1winex.com/$1 [R=301,L,NE]
 
   # Never rewrite existing static assets into .html
   RewriteRule ^(images|css|js)/ - [L]
@@ -139,41 +132,7 @@ AddType application/xml .xml
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.*)$ $1.html [L]
 
-  # Localized 404 for unknown locale paths
-  RewriteCond %{REQUEST_URI} ^/ru/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ ru/404.html [L]
-
-  RewriteCond %{REQUEST_URI} ^/es/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ es/404.html [L]
-
-  RewriteCond %{REQUEST_URI} ^/fr/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ fr/404.html [L]
-
-  RewriteCond %{REQUEST_URI} ^/de/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ de/404.html [L]
-
-  RewriteCond %{REQUEST_URI} ^/uk/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ uk/404.html [L]
-
-  RewriteCond %{REQUEST_URI} ^/it/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ it/404.html [L]
-
-  RewriteCond %{REQUEST_URI} ^/az/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ az/404.html [L]
+  # Unknown URLs fall through to ErrorDocument with a real HTTP 404 status.
 </IfModule>
 
 ErrorDocument 404 /404.html

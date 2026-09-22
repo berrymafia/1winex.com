@@ -2,6 +2,11 @@ html[lang="ru"] {
   --display: var(--font);
 }
 
+html[lang="bn"] {
+  --font: "Noto Sans Bengali", Inter, ui-sans-serif, system-ui, sans-serif;
+  --display: "Noto Sans Bengali", Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
 :root {
   --bg: #141415;
   --bg-2: #1a1a1b;
@@ -2484,6 +2489,10 @@ a.step:hover {
   .game-card {
     flex: 0 0 133px;
   }
+
+  #sportsbook .cat-grid.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 720px) {
@@ -2586,6 +2595,10 @@ a.step:hover {
   .grid-3,
   .bonus-steps,
   .shot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #sportsbook .cat-grid.grid-3 {
     grid-template-columns: 1fr;
   }
 

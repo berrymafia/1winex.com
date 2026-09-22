@@ -12,6 +12,7 @@
     if (raw.indexOf("de") === 0) return "de";
     if (raw.indexOf("it") === 0) return "it";
     if (raw.indexOf("az") === 0) return "az";
+    if (raw.indexOf("bn") === 0) return "bn";
     return "en";
   })();
   var copy = {
@@ -20,7 +21,7 @@
       closeMenu: "Close menu",
       cookieLabel: "Cookie notice",
       cookieHtml:
-        '<p>This site uses cookies and local storage to keep pages working. See the <a href="/responsible-gambling#cookies">cookie policy</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+        '<p>We use cookies and local storage to run the site. Learn more in our <a href="/responsible-gambling#cookies">cookie policy</a>.</p><button type="button" class="cookie-notice__ok">Got it</button>',
       copied: "Copied",
       aviatorDemo: "Aviator demo by Spribe",
       spribeLang: "EN",
@@ -30,7 +31,7 @@
       closeMenu: "Закрыть меню",
       cookieLabel: "Уведомление о cookie",
       cookieHtml:
-        '<p>Мы используем cookie, чтобы сайт работал. Подробности — в <a href="/ru/responsible-gambling#cookies">политике cookie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+        '<p>Мы используем cookie и локальное хранилище для работы сайта. Подробнее — в <a href="/ru/responsible-gambling#cookies">политике файлов cookie</a>.</p><button type="button" class="cookie-notice__ok">Понятно</button>',
       copied: "Скопировано",
       aviatorDemo: "Демо Aviator от Spribe",
       spribeLang: "RU",
@@ -40,7 +41,7 @@
       closeMenu: "Cerrar menú",
       cookieLabel: "Aviso de cookies",
       cookieHtml:
-        '<p>Usamos cookies para que el sitio funcione. Los detalles están en la <a href="/es/responsible-gambling#cookies">política de cookies</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+        '<p>Usamos cookies y almacenamiento local para que el sitio funcione. Más información en la <a href="/es/responsible-gambling#cookies">política de cookies</a>.</p><button type="button" class="cookie-notice__ok">Entendido</button>',
       copied: "Copiado",
       aviatorDemo: "Demo de Aviator de Spribe",
       spribeLang: "ES",
@@ -50,7 +51,7 @@
       closeMenu: "Fermer le menu",
       cookieLabel: "Avis sur les cookies",
       cookieHtml:
-        '<p>Nous utilisons des cookies pour que le site fonctionne. Les détails sont dans la <a href="/fr/responsible-gambling#cookies">politique cookies</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+        '<p>Nous utilisons des cookies et le stockage local pour faire fonctionner le site. En savoir plus dans la <a href="/fr/responsible-gambling#cookies">politique relative aux cookies</a>.</p><button type="button" class="cookie-notice__ok">Compris</button>',
       copied: "Copié",
       aviatorDemo: "Démo Aviator par Spribe",
       spribeLang: "FR",
@@ -60,7 +61,7 @@
       closeMenu: "Menü schließen",
       cookieLabel: "Cookie-Hinweis",
       cookieHtml:
-        '<p>Wir nutzen Cookies, damit die Seite funktioniert. Details in der <a href="/de/responsible-gambling#cookies">Cookie-Richtlinie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+        '<p>Wir verwenden Cookies und lokalen Speicher für den Betrieb der Website. Mehr dazu in der <a href="/de/responsible-gambling#cookies">Cookie-Richtlinie</a>.</p><button type="button" class="cookie-notice__ok">Verstanden</button>',
       copied: "Kopiert",
       aviatorDemo: "Aviator-Demo von Spribe",
       spribeLang: "DE",
@@ -70,7 +71,7 @@
       closeMenu: "Закрити меню",
       cookieLabel: "Повідомлення про cookie",
       cookieHtml:
-        '<p>Ми використовуємо cookie, щоб сайт працював. Подробиці — у <a href="/uk/responsible-gambling#cookies">політиці cookie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+        '<p>Ми використовуємо cookie й локальне сховище для роботи сайту. Докладніше — у <a href="/uk/responsible-gambling#cookies">політиці файлів cookie</a>.</p><button type="button" class="cookie-notice__ok">Зрозуміло</button>',
       copied: "Скопійовано",
       aviatorDemo: "Демо Aviator від Spribe",
       spribeLang: "UK",
@@ -80,7 +81,7 @@
       closeMenu: "Chiudi menu",
       cookieLabel: "Avviso sui cookie",
       cookieHtml:
-        '<p>Usiamo i cookie perché il sito funzioni. I dettagli sono nell’<a href="/it/responsible-gambling#cookies">informativa sui cookie</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+        '<p>Usiamo cookie e archiviazione locale per far funzionare il sito. Leggi la nostra <a href="/it/responsible-gambling#cookies">informativa sui cookie</a>.</p><button type="button" class="cookie-notice__ok">Ho capito</button>',
       copied: "Copiato",
       aviatorDemo: "Demo Aviator di Spribe",
       spribeLang: "IT",
@@ -88,12 +89,22 @@
     az: {
       openMenu: "Menyunu aç",
       closeMenu: "Menyunu bağla",
-      cookieLabel: "Cookie bildirişi",
+      cookieLabel: "Kuki bildirişi",
       cookieHtml:
-        '<p>Saytın işləməsi üçün cookie-lərdən istifadə edirik. Ətraflı: <a href="/az/responsible-gambling#cookies">cookie siyasəti</a>.</p><button type="button" class="cookie-notice__ok">OK</button>',
+        '<p>Saytın işləməsi üçün kukilərdən və lokal yaddaşdan istifadə edirik. Ətraflı məlumat üçün <a href="/az/responsible-gambling#cookies">kuki siyasətinə</a> baxın.</p><button type="button" class="cookie-notice__ok">Aydındır</button>',
       copied: "Kopyalandı",
       aviatorDemo: "Spribe Aviator demosu",
       spribeLang: "AZ",
+    },
+    bn: {
+      openMenu: "মেনু খুলুন",
+      closeMenu: "মেনু বন্ধ করুন",
+      cookieLabel: "কুকি নোটিশ",
+      cookieHtml:
+        '<p>সাইট সচল রাখতে আমরা কুকি ও লোকাল স্টোরেজ ব্যবহার করি। বিস্তারিত <a href="/bn/responsible-gambling#cookies">কুকি নীতিতে</a> দেখুন।</p><button type="button" class="cookie-notice__ok">বুঝেছি</button>',
+      copied: "কপি হয়েছে",
+      aviatorDemo: "Spribe-এর Aviator ডেমো",
+      spribeLang: "EN",
     },
   };
   var t = copy[lang] || copy.en;
@@ -421,12 +432,13 @@
       if (code === "de" || code.indexOf("de-") === 0) return "de";
       if (code === "it" || code.indexOf("it-") === 0) return "it";
       if (code === "az" || code.indexOf("az-") === 0) return "az";
+      if (code === "bn" || code.indexOf("bn-") === 0) return "bn";
       if (code === "en" || code.indexOf("en-") === 0) return "en";
     }
     return "en";
   }
 
-  var LANG_ORDER = ["en", "az", "fr", "de", "it", "ru", "es", "uk"];
+  var LANG_ORDER = ["en", "az", "bn", "fr", "de", "it", "ru", "es", "uk"];
 
   function langRank(code) {
     var i = LANG_ORDER.indexOf(String(code || "").toLowerCase());

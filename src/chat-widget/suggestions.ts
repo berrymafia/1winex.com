@@ -1,4 +1,4 @@
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' {
   if (typeof document === 'undefined') return 'en';
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
@@ -8,11 +8,12 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' {
   if (raw.startsWith('de')) return 'de';
   if (raw.startsWith('it')) return 'it';
   if (raw.startsWith('az')) return 'az';
+  if (raw.startsWith('bn')) return 'bn';
   return 'en';
 }
 
 function pick<T>(
-  lang: 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az',
+  lang: 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn',
   en: T,
   ru: T,
   es: T,
@@ -20,8 +21,10 @@ function pick<T>(
   de: T,
   uk: T,
   it: T,
-  az: T
+  az: T,
+  bn: T
 ): T {
+  if (lang === 'bn') return bn;
   if (lang === 'az') return az;
   if (lang === 'it') return it;
   if (lang === 'uk') return uk;
@@ -42,7 +45,7 @@ const GLOBAL_SUGGESTIONS = [
 const GLOBAL_SUGGESTIONS_RU = [
   'Какая лицензия у 1win?',
   'Что входит в WINEX600?',
-  'Как быстро приходит вывод?',
+  'Сколько времени занимает вывод?',
   'Как установить приложение?',
 ] as const;
 
@@ -70,7 +73,7 @@ const GLOBAL_SUGGESTIONS_DE = [
 const GLOBAL_SUGGESTIONS_UK = [
   'Яка ліцензія у 1win?',
   'Що входить у WINEX600?',
-  'Як швидко приходить виведення?',
+  'Скільки часу триває виведення?',
   'Як установити додаток?',
 ] as const;
 
@@ -85,7 +88,14 @@ const GLOBAL_SUGGESTIONS_AZ = [
   '1win-in lisenziyası nədir?',
   'WINEX600-ə nə daxildir?',
   'Çıxarış nə qədər tez gəlir?',
-  'Tətbiqi necə quraşdırmaq?',
+  'Tətbiqi necə quraşdırmaq olar?',
+] as const;
+
+const GLOBAL_SUGGESTIONS_BN = [
+  '1win-এর লাইসেন্স কী?',
+  'WINEX600-এ কী পাব?',
+  'উইথড্রয়ালে কত সময় লাগে?',
+  'অ্যাপ কীভাবে ইনস্টল করব?',
 ] as const;
 
 function uniqueSuggestions(items: string[], max = 4): string[] {
@@ -108,7 +118,7 @@ export function pageSlugFromLocation(pathname = location.pathname): string {
   const parts = p.split('/').filter(Boolean);
   if (!parts.length) return 'index';
   let i = 0;
-  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it' || parts[0] === 'az') i = 1;
+  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it' || parts[0] === 'az' || parts[0] === 'bn') i = 1;
   if (!parts[i] || parts[i] === 'index') return 'index';
   let slug = parts[i].replace(/\.html$/i, '');
   if (slug === 'betting') return 'sports';
@@ -168,15 +178,21 @@ export function getSuggestedQuestions(
         ],
         [
           'Cosa include il bonus di benvenuto?',
-          'Qual è il rollover?',
+          'Quali sono i requisiti di scommessa?',
           'Come inserisco WINEX600?',
           'Come attivo WINEX600?',
         ],
         [
           'Xoş gəldin bonusuna nə daxildir?',
           'Oynatma şərtləri hansılardır?',
-          'WINEX600-ü necə yazmaq?',
-          'WINEX600-ü necə aktivləşdirmək?',
+          'WINEX600 kodunu harada daxil etməliyəm?',
+          'WINEX600 bonusunu necə aktivləşdirmək olar?',
+        ],
+        [
+          'WINEX600-এ কী পাব?',
+          'ওয়েজারের শর্ত কী?',
+          'WINEX600 কোথায় লিখব?',
+          'স্বাগতম বোনাস কীভাবে পাব?',
         ]
       )
     );
@@ -193,7 +209,7 @@ export function getSuggestedQuestions(
           'When does KYC come up?',
         ],
         [
-          'Как быстро приходит вывод?',
+          'Сколько времени занимает вывод?',
           'Можно ли пополнить криптой?',
           'Где проверить лимиты вывода?',
           'Когда просят документы?',
@@ -208,7 +224,7 @@ export function getSuggestedQuestions(
           'Combien de temps pour un retrait ?',
           'On peut déposer en crypto ?',
           'Où voir les limites de retrait ?',
-          'Quand on demande des documents ?',
+          'Quand demande-t-on des documents ?',
         ],
         [
           'Wie schnell kommt die Auszahlung?',
@@ -217,7 +233,7 @@ export function getSuggestedQuestions(
           'Wann werden Dokumente verlangt?',
         ],
         [
-          'Як швидко приходить виведення?',
+          'Скільки часу триває виведення?',
           'Чи можна поповнити криптою?',
           'Де перевірити ліміти виведення?',
           'Коли просять документи?',
@@ -231,8 +247,14 @@ export function getSuggestedQuestions(
         [
           'Çıxarış nə qədər tez gəlir?',
           'Kripto ilə doldurmaq olar?',
-          'Çıxarış limitlərinə harada baxmaq?',
+          'Çıxarış limitlərinə harada baxmaq olar?',
           'Sənədləri nə vaxt istəyirlər?',
+        ],
+        [
+          'উইথড্রয়ালে কত সময় লাগে?',
+          'ক্রিপ্টো দিয়ে কি ডিপোজিট করা যায়?',
+          'উইথড্রয়াল সীমা কোথায় দেখব?',
+          'KYC কখন লাগে?',
         ]
       )
     );
@@ -285,10 +307,16 @@ export function getSuggestedQuestions(
           'Dove scarico l’APK?',
         ],
         [
-          'Android APK-nı necə quraşdırmaq?',
-          'iPhone-da 1win-i necə oynamaq?',
+          'Android APK-nı necə quraşdırmaq olar?',
+          'iPhone-da 1win-i necə oynamaq olar?',
           'Tətbiqsiz — brauzerdən oynamaq olar?',
-          'APK-nı haradan yükləmək?',
+          'APK-nı haradan yükləmək olar?',
+        ],
+        [
+          'Android APK কীভাবে ইনস্টল করব?',
+          'iPhone-এ 1win চলে?',
+          'ব্রাউজারেও খোলা যায়?',
+          'APK কোথা থেকে নামানো?',
         ]
       )
     );
@@ -308,7 +336,7 @@ export function getSuggestedQuestions(
           'Какие игры есть в казино?',
           'Где проверить RTP игры?',
           'Есть ли живые столы?',
-          'Идут ли слоты в приветственный бонус?',
+          'Учитываются ли ставки в слотах при отыгрыше приветственного бонуса?',
         ],
         [
           '¿Qué juegos hay en el casino?',
@@ -317,7 +345,7 @@ export function getSuggestedQuestions(
           '¿Las tragamonedas cuentan para el bono?',
         ],
         [
-          'Quels jeux il y a dans le casino ?',
+          'Quels jeux y a-t-il dans le casino ?',
           'Où voir le RTP d’un jeu ?',
           'Il y a des tables en direct ?',
           'Les machines à sous comptent pour le bonus ?',
@@ -332,19 +360,25 @@ export function getSuggestedQuestions(
           'Які ігри є в казино?',
           'Де перевірити RTP гри?',
           'Чи є живі столи?',
-          'Чи йдуть слоти у вітальний бонус?',
+          'Чи враховуються ставки в слотах у відіграші вітального бонусу?',
         ],
         [
-          'Quali giochi ci sono nel casino?',
+          'Quali giochi ci sono nel casinò?',
           'Dove vedo l’RTP di un gioco?',
           'Ci sono tavoli live?',
           'Le slot contano per il bonus di benvenuto?',
         ],
         [
           'Kazinoda hansı oyunlar var?',
-          'Oyunun RTP-sinə harada baxmaq?',
+          'Oyunun RTP-sinə harada baxmaq olar?',
           'Canlı masalar varmı?',
           'Slotlar xoş gəldin bonusuna sayılır?',
+        ],
+        [
+          'ক্যাসিনোতে কী কী গেম আছে?',
+          'গেমের RTP কোথায় দেখব?',
+          'লাইভ টেবিল আছে?',
+          'স্লটে স্বাগতম বোনাস চলে?',
         ]
       )
     );
@@ -362,15 +396,15 @@ export function getSuggestedQuestions(
         ],
         [
           'Где проверить RTP Aviator?',
-          'Aviator это 1win Original?',
-          'Идёт ли Aviator в приветственный бонус?',
+          'Aviator — это 1win Original?',
+          'Учитываются ли ставки в Aviator при отыгрыше приветственного бонуса?',
           'Что такое автокэшаут в Aviator?',
         ],
         [
           '¿Dónde veo el RTP de Aviator?',
           '¿Aviator es un 1win Original?',
           '¿Aviator cuenta para el bono de bienvenida?',
-          '¿Qué es el retiro automático?',
+          '¿Qué es el cobro automático en Aviator?',
         ],
         [
           'Où voir le RTP d’Aviator ?',
@@ -387,7 +421,7 @@ export function getSuggestedQuestions(
         [
           'Де перевірити RTP Aviator?',
           'Aviator — це 1win Original?',
-          'Чи йде Aviator у вітальний бонус?',
+          'Чи враховуються ставки в Aviator у відіграші вітального бонусу?',
           'Що таке автокешаут Aviator?',
         ],
         [
@@ -397,10 +431,16 @@ export function getSuggestedQuestions(
           'Cos’è l’incasso automatico in Aviator?',
         ],
         [
-          'Aviator RTP-sinə harada baxmaq?',
+          'Aviator-un RTP-sinə harada baxmaq olar?',
           'Aviator 1win Original-dır?',
           'Aviator xoş gəldin bonusuna sayılır?',
           'Aviator-da avto cash-out nədir?',
+        ],
+        [
+          'Aviator-এর RTP কোথায় দেখব?',
+          'Aviator কি 1win Original?',
+          'Aviator-এ স্বাগতম বোনাস চলে?',
+          'Aviator-এ অটো ক্যাশ-আউট কী?',
         ]
       )
     );
@@ -418,15 +458,15 @@ export function getSuggestedQuestions(
         ],
         [
           'Где проверить RTP Lucky Jet?',
-          'Lucky Jet это то же, что Aviator?',
-          'Идёт ли Lucky Jet в приветственный бонус?',
+          'Lucky Jet — это то же, что Aviator?',
+          'Учитываются ли ставки в Lucky Jet при отыгрыше приветственного бонуса?',
           'Что такое автокэшаут в Lucky Jet?',
         ],
         [
           '¿Dónde veo el RTP de Lucky Jet?',
           '¿Lucky Jet es lo mismo que Aviator?',
           '¿Lucky Jet cuenta para el bono de bienvenida?',
-          '¿Qué es el retiro automático?',
+          '¿Qué es el cobro automático en Lucky Jet?',
         ],
         [
           'Où voir le RTP de Lucky Jet ?',
@@ -443,7 +483,7 @@ export function getSuggestedQuestions(
         [
           'Де перевірити RTP Lucky Jet?',
           'Lucky Jet — це те саме, що Aviator?',
-          'Чи йде Lucky Jet у вітальний бонус?',
+          'Чи враховуються ставки в Lucky Jet у відіграші вітального бонусу?',
           'Що таке автокешаут Lucky Jet?',
         ],
         [
@@ -453,10 +493,16 @@ export function getSuggestedQuestions(
           'Cos’è l’incasso automatico in Lucky Jet?',
         ],
         [
-          'Lucky Jet RTP-sinə harada baxmaq?',
+          'Lucky Jet-in RTP-sinə harada baxmaq olar?',
           'Lucky Jet Aviator ilə eynidir?',
           'Lucky Jet xoş gəldin bonusuna sayılır?',
           'Lucky Jet-də avto cash-out nədir?',
+        ],
+        [
+          'Lucky Jet-এর RTP কোথায় দেখব?',
+          'Lucky Jet আর Aviator কি একই?',
+          'Lucky Jet-এ স্বাগতম বোনাস চলে?',
+          'Lucky Jet-এ অটো ক্যাশ-আউট কী?',
         ]
       )
     );
@@ -487,7 +533,7 @@ export function getSuggestedQuestions(
         [
           'Comment parier sur le sport ?',
           'On peut encaisser un pari ?',
-          'C’est quoi le bonus combiné ?',
+          'Qu’est-ce que le bonus sur les paris combinés ?',
           'Les bonus casino et sport vont ensemble ?',
         ],
         [
@@ -500,19 +546,25 @@ export function getSuggestedQuestions(
           'Як зробити ставку на спорт?',
           'Чи є кешаут?',
           'Що таке бонус на експрес?',
-          'Чи йдуть бонуси казино й спорту на одному балансі?',
+          'Чи зараховуються бонуси казино й спорту на один баланс?',
         ],
         [
           'Come scommetto sullo sport?',
           'C’è il cash-out su 1win?',
-          'Cos’è il bonus combinata?',
-          'I bonus casino e sport condividono lo stesso saldo?',
+          'Cos’è il bonus sulle scommesse multiple?',
+          'I bonus casinò e sport condividono lo stesso saldo?',
         ],
         [
-          'İdmana necə mərc qoymaq?',
+          'İdmana necə mərc etmək olar?',
           'Cash-out varmı?',
           'Ekspress bonusu nədir?',
           'Kazino və idman bonusları eyni balansdadır?',
+        ],
+        [
+          'স্পোর্টস বেট কীভাবে রাখব?',
+          'স্পোর্টস বেটে ক্যাশ-আউট যায়?',
+          'মাল্টিপল বেট বোনাস কী?',
+          'ক্যাসিনো ও স্পোর্টস বোনাস কি একই ব্যালেন্স ব্যবহার করে?',
         ]
       )
     );
@@ -542,7 +594,7 @@ export function getSuggestedQuestions(
         ],
         [
           'Quelle licence a 1win ?',
-          'Quand on demande des documents ?',
+          'Quand demande-t-on des documents ?',
           'Comment savoir que c’est le vrai site ?',
           'Comment activer le 2FA ?',
         ],
@@ -567,8 +619,14 @@ export function getSuggestedQuestions(
         [
           '1win-in lisenziyası nədir?',
           'Sənədləri nə vaxt istəyirlər?',
-          'Saytın həqiqi olduğunu necə anlamaq?',
-          '2FA-nı necə açmaq?',
+          'Saytın rəsmi olduğunu necə yoxlamaq olar?',
+          '2FA-nı necə aktivləşdirmək olar?',
+        ],
+        [
+          '1win-এর লাইসেন্স কী?',
+          'KYC কখন লাগে?',
+          'সাইট আসল কিনা কীভাবে বুঝব?',
+          '2FA কীভাবে চালু করব?',
         ]
       )
     );
@@ -586,7 +644,7 @@ export function getSuggestedQuestions(
         ],
         [
           'Как зарегистрироваться?',
-          'Как быстро приходит вывод?',
+          'Сколько времени занимает вывод?',
           'Что входит в WINEX600?',
           'Как установить приложение?',
         ],
@@ -610,7 +668,7 @@ export function getSuggestedQuestions(
         ],
         [
           'Як зареєструватися?',
-          'Як швидко приходить виведення?',
+          'Скільки часу триває виведення?',
           'Що входить у WINEX600?',
           'Як установити додаток?',
         ],
@@ -621,10 +679,16 @@ export function getSuggestedQuestions(
           'Come installo l’app?',
         ],
         [
-          'Necə qeydiyyatdan keçmək?',
+          'Necə qeydiyyatdan keçmək olar?',
           'Çıxarış nə qədər tez gəlir?',
           'WINEX600-ə nə daxildir?',
-          'Tətbiqi necə quraşdırmaq?',
+          'Tətbiqi necə quraşdırmaq olar?',
+        ],
+        [
+          'রেজিস্ট্রেশন কীভাবে করব?',
+          'উইথড্রয়ালে কত সময় লাগে?',
+          'WINEX600-এ কী পাব?',
+          'অ্যাপ কীভাবে ইনস্টল করব?',
         ]
       )
     );
@@ -635,52 +699,58 @@ export function getSuggestedQuestions(
       pick(
         lang,
         [
-          'How do I set a limit or self-exclusion?',
-          'How do I set a deposit limit?',
-          'How does self-exclusion work?',
-          'Where can I get gambling help?',
+          'How do I set a deposit limit or take a break?',
+          'Can I cancel self-exclusion early?',
+          'What should I do if I cannot stop gambling?',
+          'Where can I get independent gambling help?',
         ],
         [
-          'Как установить лимит или самоисключение?',
-          'Как установить лимит на депозит?',
-          'Как работает самоисключение?',
-          'Где получить независимую помощь?',
+          'Как установить лимит на депозит или сделать перерыв?',
+          'Можно ли досрочно отменить самоисключение?',
+          'Что делать, если не получается остановиться?',
+          'Где получить независимую помощь при проблемах с азартными играми?',
         ],
         [
-          '¿Cómo pongo un límite o la autoexclusión?',
-          '¿Cómo pongo un límite de depósito?',
-          '¿Cómo funciona la autoexclusión?',
-          '¿Dónde pido ayuda con el juego?',
+          '¿Cómo configuro un límite de depósito o una pausa?',
+          '¿Puedo cancelar antes la autoexclusión?',
+          '¿Qué hago si no puedo dejar de jugar?',
+          '¿Dónde puedo obtener ayuda independiente con el juego?',
         ],
         [
-          'Comment mettre une limite ou l’auto-exclusion ?',
-          'Comment mettre une limite de dépôt ?',
-          'Comment marche l’auto-exclusion ?',
-          'Où demander de l’aide pour le jeu ?',
+          'Comment définir une limite de dépôt ou une pause ?',
+          'Puis-je annuler l’auto-exclusion avant terme ?',
+          'Que faire si je n’arrive pas à arrêter de jouer ?',
+          'Où trouver une aide indépendante pour le jeu ?',
         ],
         [
-          'Wie setze ich ein Limit oder eine Selbstsperre?',
-          'Wie setze ich ein Einzahlungslimit?',
-          'Wie funktioniert die Selbstsperre?',
-          'Wo bekomme ich Hilfe beim Glücksspiel?',
+          'Wie richte ich ein Einzahlungslimit oder eine Spielpause ein?',
+          'Kann ich die Selbstsperre vorzeitig aufheben?',
+          'Was kann ich tun, wenn ich nicht aufhören kann zu spielen?',
+          'Wo bekomme ich unabhängige Hilfe bei Glücksspielproblemen?',
         ],
         [
-          'Як установити ліміти або самовиключення?',
-          'Як установити ліміт на депозит?',
-          'Як працює самовиключення?',
-          'Де отримати допомогу з ігровою залежністю?',
+          'Як установити ліміт на депозит або зробити перерву?',
+          'Чи можна достроково скасувати самовиключення?',
+          'Що робити, якщо не вдається припинити грати?',
+          'Де отримати незалежну допомогу в разі проблем з азартними іграми?',
         ],
         [
-          'Come imposto i limiti di deposito o l’autoesclusione?',
-          'Come imposto un limite di deposito?',
-          'Come funziona l’autoesclusione?',
-          'Dove chiedo aiuto per il gioco?',
+          'Come imposto un limite di deposito o una pausa?',
+          'Posso annullare prima l’autoesclusione?',
+          'Cosa devo fare se non riesco a smettere di giocare?',
+          'Dove trovo supporto indipendente per il gioco?',
         ],
         [
-          'Limit və ya özünü kənarlaşdırmanı necə qoymaq?',
-          'Depozit limitini necə qoymaq?',
-          'Özünü kənarlaşdırma necə işləyir?',
-          'Müstəqil köməyi haradan almaq?',
+          'Depozit limiti və ya fasilə necə təyin edilir?',
+          'Özünü kənarlaşdırmanı vaxtından əvvəl ləğv etmək olar?',
+          'Qumarı dayandıra bilmirəmsə, nə etməliyəm?',
+          'Qumarla bağlı müstəqil yardımı haradan almaq olar?',
+        ],
+        [
+          'ডিপোজিট লিমিট বা বিরতি কীভাবে সেট করব?',
+          'সেলফ-এক্সক্লুশন কি আগেই বাতিল করা যায়?',
+          'গেম্বলিং বন্ধ করতে না পারলে কী করব?',
+          'গেম্বলিং নিয়ে স্বাধীন সাহায্য কোথায় পাব?',
         ]
       )
     );
@@ -700,7 +770,7 @@ export function getSuggestedQuestions(
           'Как внести Bitcoin или USDT?',
           'Нужен ли KYC для крипты?',
           'Что делать, если крипта не пришла?',
-          'Идёт ли WINEX600 с криптой?',
+          'Действует ли WINEX600 при пополнении криптовалютой?',
         ],
         [
           '¿Cómo deposito Bitcoin o USDT?',
@@ -724,7 +794,7 @@ export function getSuggestedQuestions(
           'Як поповнити Bitcoin або USDT?',
           'Чи потрібен KYC для крипти?',
           'Що робити, якщо депозит криптою не надійшов?',
-          'Чи йде WINEX600 з криптою?',
+          'Чи діє WINEX600 для поповнення криптовалютою?',
         ],
         [
           'Come deposito Bitcoin o USDT?',
@@ -733,10 +803,16 @@ export function getSuggestedQuestions(
           'WINEX600 vale con la crypto?',
         ],
         [
-          'Bitcoin və ya USDT necə doldurmaq?',
+          'Bitcoin və ya USDT ilə necə depozit qoymaq olar?',
           'Kripto üçün də KYC lazımdır?',
-          'Kripto gəlməsə nə etmək?',
+          'Kripto depoziti gəlməzsə nə etməliyəm?',
           'WINEX600 kripto ilə işləyir?',
+        ],
+        [
+          'Bitcoin বা USDT দিয়ে কীভাবে ডিপোজিট করব?',
+          'ক্রিপ্টো দিয়ে ডিপোজিট করলেও কি KYC লাগে?',
+          'ক্রিপ্টো ডিপোজিট না এলে কী করব?',
+          'WINEX600 ক্রিপ্টোতে চলে?',
         ]
       )
     );
@@ -766,8 +842,8 @@ export function getSuggestedQuestions(
         ],
         [
           'Pourquoi 1win ne s’ouvre pas ?',
-          'Que faire si le site ne charge pas ?',
-          'L’app s’ouvre si le site ne charge pas ?',
+          'Que faire si le site ne se charge pas ?',
+          'L’app s’ouvre-t-elle si le site ne se charge pas ?',
           'Comment me connecter si le site est bloqué ?',
         ],
         [
@@ -790,15 +866,21 @@ export function getSuggestedQuestions(
         ],
         [
           '1win niyə açılmır?',
-          'Sayt yüklənmirsə nə etmək?',
+          'Sayt yüklənmirsə nə etməliyəm?',
           'Tətbiq açılacaq?',
-          'Sayt bloklanıbsa necə daxil olmaq?',
+          'Sayt bloklanıbsa necə daxil olmaq olar?',
+        ],
+        [
+          '1win খুলছে না কেন?',
+          'সাইট না খুললে কী করব?',
+          'সাইট না খুললে অ্যাপ কি চলবে?',
+          'সাইট ব্লক থাকলে কীভাবে লগইন করব?',
         ]
       )
     );
   }
 
   return uniqueSuggestions([
-    ...pick(lang, [...GLOBAL_SUGGESTIONS], [...GLOBAL_SUGGESTIONS_RU], [...GLOBAL_SUGGESTIONS_ES], [...GLOBAL_SUGGESTIONS_FR], [...GLOBAL_SUGGESTIONS_DE], [...GLOBAL_SUGGESTIONS_UK], [...GLOBAL_SUGGESTIONS_IT], [...GLOBAL_SUGGESTIONS_AZ]),
+    ...pick(lang, [...GLOBAL_SUGGESTIONS], [...GLOBAL_SUGGESTIONS_RU], [...GLOBAL_SUGGESTIONS_ES], [...GLOBAL_SUGGESTIONS_FR], [...GLOBAL_SUGGESTIONS_DE], [...GLOBAL_SUGGESTIONS_UK], [...GLOBAL_SUGGESTIONS_IT], [...GLOBAL_SUGGESTIONS_AZ], [...GLOBAL_SUGGESTIONS_BN]),
   ]);
 }

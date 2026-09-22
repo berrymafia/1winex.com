@@ -18,7 +18,18 @@ function uid(): string {
 
 function formatTime(ts: number): string {
   try {
-    return new Intl.DateTimeFormat(undefined, {
+    const locale = {
+      en: 'en',
+      ru: 'ru-RU',
+      es: 'es-ES',
+      fr: 'fr-FR',
+      de: 'de-DE',
+      uk: 'uk-UA',
+      it: 'it-IT',
+      az: 'az-AZ',
+      bn: 'bn-BD',
+    }[uiLang()];
+    return new Intl.DateTimeFormat(locale, {
       hour: 'numeric',
       minute: '2-digit',
     }).format(new Date(ts));
@@ -43,7 +54,7 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' {
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
   if (raw.startsWith('ru')) return 'ru';
@@ -52,6 +63,7 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' {
   if (raw.startsWith('de')) return 'de';
   if (raw.startsWith('it')) return 'it';
   if (raw.startsWith('az')) return 'az';
+  if (raw.startsWith('bn')) return 'bn';
   return 'en';
 }
 
@@ -60,9 +72,9 @@ function chatCopy() {
   if (lang === 'ru') {
     return {
       name: 'Анна',
-      subtitle: 'Виртуальный помощник 1win',
+      subtitle: 'Справочный помощник 1win',
       close: 'Закрыть чат',
-      placeholder: 'Напишите вопрос…',
+      placeholder: 'Задайте вопрос о 1win…',
       message: 'Сообщение',
       send: 'Отправить',
       sendMessage: 'Отправить сообщение',
@@ -70,22 +82,22 @@ function chatCopy() {
       closeAnna: 'Закрыть чат с Анной',
       openUnread: 'Открыть чат с Анной — новое сообщение',
       typing: 'Анна печатает',
-      hello: 'Привет. Я Анна. Чем помочь?',
+      hello: 'Здравствуйте! Я Анна, справочный помощник 1win.',
       intro:
-        'Могу помочь с казино и спортом, WINEX600, депозитом, выводом и Android APK.',
-      suggests: 'Частые вопросы',
-      noResponse: 'Не удалось получить ответ.',
+        'Я могу объяснить бонусы, игры, спорт, платежи и установку приложения по информации этого сайта. У меня нет доступа к вашему аккаунту, поэтому я не могу пополнять счёт, выводить средства, менять лимиты или проводить KYC-верификацию.',
+      suggests: 'Выберите частый вопрос',
+      noResponse: 'Не удалось получить ответ. Попробуйте ещё раз.',
       copied: 'Скопировано',
       copy: 'Копировать',
-      failed: 'Ошибка',
+      failed: 'Не скопировано',
     };
   }
   if (lang === 'es') {
     return {
       name: 'Anna',
-      subtitle: 'Asistente virtual de 1win',
+      subtitle: 'Asistente informativa de 1win',
       close: 'Cerrar chat',
-      placeholder: 'Escribe una pregunta…',
+      placeholder: 'Pregunta sobre 1win…',
       message: 'Mensaje',
       send: 'Enviar',
       sendMessage: 'Enviar mensaje',
@@ -93,22 +105,22 @@ function chatCopy() {
       closeAnna: 'Cerrar chat con Anna',
       openUnread: 'Abrir chat con Anna — mensaje nuevo',
       typing: 'Anna está escribiendo',
-      hello: 'Hola. Soy Anna. ¿En qué te ayudo?',
+      hello: 'Hola, soy Anna, tu guía de 1win.',
       intro:
-        'Te ayudo con casino y deporte, WINEX600, depósito, retiro y el APK de Android.',
-      suggests: 'Preguntas frecuentes',
-      noResponse: 'No llegó la respuesta.',
+        'Puedo explicar bonos, juegos, deportes, pagos e instalación de la app con la información de este sitio. No puedo acceder a tu cuenta ni realizar depósitos o retiros, cambiar límites ni gestionar la verificación KYC.',
+      suggests: 'Elige una pregunta frecuente',
+      noResponse: 'No pude obtener una respuesta. Inténtalo de nuevo.',
       copied: 'Copiado',
       copy: 'Copiar',
-      failed: 'Error',
+      failed: 'No se pudo copiar',
     };
   }
   if (lang === 'fr') {
     return {
       name: 'Anna',
-      subtitle: 'Assistante virtuelle 1win',
+      subtitle: 'Assistante d’information 1win',
       close: 'Fermer le chat',
-      placeholder: 'Écrivez une question…',
+      placeholder: 'Posez une question sur 1win…',
       message: 'Message',
       send: 'Envoyer',
       sendMessage: 'Envoyer le message',
@@ -116,22 +128,22 @@ function chatCopy() {
       closeAnna: 'Fermer le chat avec Anna',
       openUnread: 'Ouvrir le chat avec Anna — nouveau message',
       typing: 'Anna écrit',
-      hello: 'Bonjour. Je suis Anna. Comment puis-je vous aider ?',
+      hello: 'Bonjour, je suis Anna, votre guide 1win.',
       intro:
-        'Je vous aide pour le casino et le sport, WINEX600, le dépôt, le retrait et l’APK Android.',
-      suggests: 'Questions fréquentes',
-      noResponse: 'Pas de réponse.',
+        'Je peux expliquer les bonus, les jeux, le sport, les paiements et l’installation de l’app à partir des informations de ce site. Je n’ai pas accès à votre compte et je ne peux ni effectuer de dépôts ou de retraits, ni modifier vos limites, ni gérer votre vérification KYC.',
+      suggests: 'Choisissez une question fréquente',
+      noResponse: 'Je n’ai pas pu obtenir de réponse. Réessayez.',
       copied: 'Copié',
       copy: 'Copier',
-      failed: 'Erreur',
+      failed: 'Copie impossible',
     };
   }
   if (lang === 'de') {
     return {
       name: 'Anna',
-      subtitle: 'Virtuelle 1win-Assistentin',
+      subtitle: '1win-Infoassistentin',
       close: 'Chat schließen',
-      placeholder: 'Schreib eine Frage…',
+      placeholder: 'Frage zu 1win stellen…',
       message: 'Nachricht',
       send: 'Senden',
       sendMessage: 'Nachricht senden',
@@ -139,22 +151,22 @@ function chatCopy() {
       closeAnna: 'Chat mit Anna schließen',
       openUnread: 'Chat mit Anna öffnen — neue Nachricht',
       typing: 'Anna schreibt',
-      hello: 'Hallo. Ich bin Anna. Wobei kann ich helfen?',
+      hello: 'Hallo, ich bin Anna, dein 1win-Guide.',
       intro:
-        'Ich helfe dir bei Casino und Sport, WINEX600, Einzahlung, Auszahlung und der Android-APK.',
-      suggests: 'Häufige Fragen',
-      noResponse: 'Keine Antwort.',
+        'Ich erkläre Boni, Spiele, Sport, Zahlungen und App-Installation anhand dieser Website. Ich habe keinen Kontozugriff und kann weder Ein- noch Auszahlungen vornehmen, Limits ändern oder KYC-Prüfungen verwalten.',
+      suggests: 'Häufige Frage auswählen',
+      noResponse: 'Ich konnte keine Antwort abrufen. Versuch es erneut.',
       copied: 'Kopiert',
       copy: 'Kopieren',
-      failed: 'Fehler',
+      failed: 'Kopieren fehlgeschlagen',
     };
   }
   if (lang === 'uk') {
     return {
       name: 'Анна',
-      subtitle: 'Віртуальна помічниця 1win',
+      subtitle: 'Довідкова помічниця 1win',
       close: 'Закрити чат',
-      placeholder: 'Напишіть запитання…',
+      placeholder: 'Запитайте про 1win…',
       message: 'Повідомлення',
       send: 'Надіслати',
       sendMessage: 'Надіслати повідомлення',
@@ -162,22 +174,22 @@ function chatCopy() {
       closeAnna: 'Закрити чат з Анною',
       openUnread: 'Відкрити чат з Анною — нове повідомлення',
       typing: 'Анна пише',
-      hello: 'Привіт. Я Анна. Чим допомогти?',
+      hello: 'Вітаю! Я Анна, довідкова помічниця 1win.',
       intro:
-        'Можу допомогти з казино й спортом, WINEX600, депозитом, виведенням і Android APK.',
-      suggests: 'Часті питання',
-      noResponse: 'Не вдалося отримати відповідь.',
+        'Я можу пояснити бонуси, ігри, спорт, платежі та встановлення додатка за інформацією цього сайту. Я не маю доступу до вашого акаунта й не можу поповнювати рахунок, виводити кошти, змінювати ліміти або проводити KYC-верифікацію.',
+      suggests: 'Виберіть поширене запитання',
+      noResponse: 'Не вдалося отримати відповідь. Спробуйте ще раз.',
       copied: 'Скопійовано',
       copy: 'Копіювати',
-      failed: 'Помилка',
+      failed: 'Не скопійовано',
     };
   }
   if (lang === 'it') {
     return {
       name: 'Anna',
-      subtitle: 'Assistente virtuale 1win',
+      subtitle: 'Assistente informativa 1win',
       close: 'Chiudi chat',
-      placeholder: 'Scrivi una domanda…',
+      placeholder: 'Chiedi informazioni su 1win…',
       message: 'Messaggio',
       send: 'Invia',
       sendMessage: 'Invia messaggio',
@@ -185,44 +197,67 @@ function chatCopy() {
       closeAnna: 'Chiudi la chat con Anna',
       openUnread: 'Apri la chat con Anna — nuovo messaggio',
       typing: 'Anna sta scrivendo',
-      hello: 'Ciao. Sono Anna. Come posso aiutarti?',
+      hello: 'Ciao, sono Anna, la tua guida 1win.',
       intro:
-        'Ti aiuto con casino e scommesse, WINEX600, deposito, prelievo e l’APK Android.',
-      suggests: 'Domande suggerite',
-      noResponse: 'Nessuna risposta.',
+        'Posso spiegare bonus, giochi, sport, pagamenti e installazione dell’app usando le informazioni del sito. Non posso accedere al tuo account né effettuare depositi o prelievi, modificare i limiti né gestire la verifica KYC.',
+      suggests: 'Scegli una domanda frequente',
+      noResponse: 'Non ho ricevuto una risposta. Riprova.',
       copied: 'Copiato',
       copy: 'Copia',
-      failed: 'Errore',
+      failed: 'Copia non riuscita',
     };
   }
   if (lang === 'az') {
     return {
       name: 'Anna',
-      subtitle: '1win virtual köməkçisi',
+      subtitle: '1win məlumat köməkçisi',
       close: 'Söhbəti bağla',
-      placeholder: 'Sual yazın…',
+      placeholder: '1win haqqında soruşun…',
       message: 'Mesaj',
       send: 'Göndər',
       sendMessage: 'Mesaj göndər',
-      open: 'Anna ilə söhbət',
+      open: 'Anna ilə söhbəti aç',
       closeAnna: 'Anna ilə söhbəti bağla',
-      openUnread: 'Anna ilə söhbət — yeni mesaj',
+      openUnread: 'Anna ilə söhbəti aç — yeni mesaj',
       typing: 'Anna yazır',
-      hello: 'Salam. Mən Annayam. Nə ilə kömək edim?',
+      hello: 'Salam, mən Anna, 1win bələdçinizəm.',
       intro:
-        'Kazino və idman, WINEX600, depozit, çıxarış və Android APK barədə kömək edə bilərəm.',
-      suggests: 'Tez-tez soruşulanlar',
-      noResponse: 'Cavab alınmadı.',
+        'Bu saytdakı məlumata əsasən bonusları, oyunları, idmanı, ödənişləri və tətbiq quraşdırmasını izah edə bilərəm. Hesabınıza girişim yoxdur və depozit qoya, vəsait çıxara, limitləri dəyişə və ya KYC prosesini idarə edə bilmirəm.',
+      suggests: 'Tez-tez verilən sualı seçin',
+      noResponse: 'Cavab alınmadı. Yenidən cəhd edin.',
       copied: 'Kopyalandı',
       copy: 'Kopyala',
-      failed: 'Xəta',
+      failed: 'Kopyalanmadı',
+    };
+  }
+  if (lang === 'bn') {
+    return {
+      name: 'Anna',
+      subtitle: '1win তথ্য সহকারী',
+      close: 'চ্যাট বন্ধ করুন',
+      placeholder: '1win সম্পর্কে প্রশ্ন করুন…',
+      message: 'বার্তা',
+      send: 'পাঠান',
+      sendMessage: 'বার্তা পাঠান',
+      open: 'Anna-র সাথে চ্যাট খুলুন',
+      closeAnna: 'Anna-র সাথে চ্যাট বন্ধ করুন',
+      openUnread: 'Anna-র সাথে চ্যাট — নতুন বার্তা',
+      typing: 'Anna লিখছেন',
+      hello: 'হ্যালো, আমি Anna, আপনার 1win গাইড।',
+      intro:
+        'এই সাইটের তথ্য ব্যবহার করে আমি বোনাস, গেম, স্পোর্টস, পেমেন্ট ও অ্যাপ ইনস্টলেশন সম্পর্কে বুঝিয়ে বলতে পারি। আপনার অ্যাকাউন্টে আমার অ্যাক্সেস নেই, তাই আমি ডিপোজিট বা উইথড্রয়াল করতে, লিমিট বদলাতে বা KYC পরিচালনা করতে পারি না।',
+      suggests: 'একটি সাধারণ প্রশ্ন বেছে নিন',
+      noResponse: 'উত্তর পাওয়া যায়নি। আবার চেষ্টা করুন।',
+      copied: 'কপি হয়েছে',
+      copy: 'কপি',
+      failed: 'কপি হয়নি',
     };
   }
   return {
     name: 'Anna',
-    subtitle: 'Virtual 1win assistant',
+    subtitle: '1win information assistant',
     close: 'Close chat',
-    placeholder: 'Ask a question…',
+    placeholder: 'Ask about 1win…',
     message: 'Message',
     send: 'Send',
     sendMessage: 'Send message',
@@ -230,14 +265,14 @@ function chatCopy() {
     closeAnna: 'Close chat with Anna',
     openUnread: 'Open chat with Anna — new message',
     typing: 'Anna is typing',
-    hello: 'Hi. I am Anna. How can I help?',
+    hello: 'Hi, I’m Anna, your 1win guide.',
     intro:
-      'I can help with casino and sports, WINEX600, deposits, withdrawals and the Android APK.',
-    suggests: 'Suggested questions',
-    noResponse: 'No response received.',
+      'I can explain bonuses, games, sports, payments and app installation using this site. I cannot access your account or change deposits, withdrawals, limits or KYC.',
+    suggests: 'Choose a common question',
+    noResponse: 'I could not get a response. Please try again.',
     copied: 'Copied',
     copy: 'Copy',
-    failed: 'Failed',
+    failed: 'Copy failed',
   };
 }
 
