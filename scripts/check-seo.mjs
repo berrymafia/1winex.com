@@ -59,6 +59,18 @@ const staleLocalizedCopy = [
   'Eine Auszahlung vor erfülltem Umsatz storniert den aktiven Bonus.',
 ];
 
+const bonusTitleKeywords = {
+  en: 'Promo Code',
+  ru: 'Промокод',
+  uk: 'Промокод',
+  es: 'Código promo',
+  fr: 'Code promo',
+  de: 'Promo-Code',
+  it: 'Codice promo',
+  az: 'promo kodu',
+  bn: 'প্রোমো কোড',
+};
+
 const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8');
 const publicSitemap = await readFile(resolve(root, 'public/sitemap.xml'), 'utf8');
 assert(sitemap === publicSitemap, 'Root and public sitemap.xml differ');
@@ -168,6 +180,16 @@ for (const url of expectedUrls) {
   }
 
   const title = html.match(/<title>([\s\S]*?)<\/title>/)?.[1];
+  if (relativePath === 'bonuses.html' || relativePath.endsWith('/bonuses.html')) {
+    assert(
+      title?.includes(bonusTitleKeywords[expectedLanguage]),
+      `${relativePath} title is missing the localized promo-code keyword`,
+    );
+    assert(
+      !title?.includes('WINEX600'),
+      `${relativePath} title still contains WINEX600`,
+    );
+  }
   const ogTitle = html.match(
     /<meta property="og:title" content="([^"]+)">/,
   )?.[1];

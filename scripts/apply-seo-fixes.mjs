@@ -28,26 +28,26 @@ const websiteId = 'https://1winex.com/#website';
 
 const titleUpdates = {
   'bonuses.html':
-    'WINEX600 at 1win — Up to 600% + Up to 500 Free Spins',
+    '1win Promo Code — Up to 600% + Up to 500 Free Spins',
   'betting.html':
     '1win Sportsbook — Sports Betting, Live Betting and Esports',
   'ru/index.html': '1win Казино и ставки — Вход и регистрация',
   'ru/casino.html':
     'Казино 1win — Слоты, Aviator и игры с живыми дилерами',
   'ru/bonuses.html':
-    'Промокод WINEX600 — до 600% и до 500 фриспинов',
+    'Промокод 1win — до 600% и до 500 фриспинов',
   'ru/responsible-gambling.html':
     'Ответственная игра в 1win — лимиты и самоисключение',
   'uk/index.html': '1win Казино й ставки — Вхід і реєстрація',
   'uk/casino.html':
     'Казино 1win — Слоти, Aviator та ігри з живими дилерами',
   'uk/bonuses.html':
-    'Промокод WINEX600 — до 600% і до 500 фріспінів',
+    'Промокод 1win — до 600% і до 500 фріспінів',
   'uk/responsible-gambling.html':
     'Відповідальна гра в 1win — ліміти й самовиключення',
   'uk/not-working.html': '1win не відкривається — перевірка доступу',
   'es/bonuses.html':
-    'Código WINEX600 — hasta 600 % y hasta 500 giros gratis',
+    'Código promo 1win — hasta 600 % y hasta 500 giros gratis',
   'es/safety.html': 'Licencia de 1win — KYC y seguridad de la cuenta',
   'es/responsible-gambling.html':
     'Juego responsable en 1win — límites y autoexclusión',
@@ -57,14 +57,14 @@ const titleUpdates = {
   'fr/casino.html':
     'Casino 1win — Machines à sous, Aviator et jeux en direct',
   'fr/bonuses.html':
-    'Code WINEX600 — jusqu’à 600 % et jusqu’à 500 tours gratuits',
+    'Code promo 1win — jusqu’à 600 % et jusqu’à 500 tours gratuits',
   'fr/safety.html': 'Licence de 1win — KYC et sécurité du compte',
   'fr/responsible-gambling.html':
     'Jeu responsable sur 1win — limites et auto-exclusion',
   'de/aviator.html': 'Aviator bei 1win — Crash-Spiel von Spribe',
   'de/betting.html': '1win-Sportwetten — Live-Wetten und E-Sport',
   'de/bonuses.html':
-    'WINEX600-Promo-Code — bis zu 600 % Bonus + bis zu 500 Freispiele',
+    '1win Promo-Code — bis zu 600 % + bis zu 500 Freispiele',
   'de/casino.html':
     '1win-Casino — Spielautomaten, Aviator und Live-Casino',
   'de/crypto-casino.html':
@@ -84,7 +84,7 @@ const titleUpdates = {
     'Casinò 1win con criptovalute — BTC, ETH e USDT',
   'it/casino.html': 'Casinò 1win — Slot, Aviator e live',
   'it/bonuses.html':
-    'Codice WINEX600 — fino al 600 % e fino a 500 giri gratis',
+    'Codice promo 1win — fino al 600 % e fino a 500 giri gratis',
   'it/safety.html': 'Licenza di 1win — KYC e sicurezza dell’account',
   'it/responsible-gambling.html':
     'Gioco responsabile su 1win — limiti e autoesclusione',
@@ -95,7 +95,7 @@ const titleUpdates = {
   'az/betting.html':
     '1win idman mərcləri — canlı mərclər və kibersport',
   'az/bonuses.html':
-    'WINEX600 promo kodu — 600%-dək bonus və 500-dək pulsuz fırlanma',
+    '1win promo kodu — 600%-dək bonus və 500-dək pulsuz fırlanma',
   'az/casino.html':
     '1win kazinosu — slotlar, Aviator və canlı masalar',
   'az/lucky-jet.html':
@@ -110,7 +110,7 @@ const titleUpdates = {
   'bn/betting.html':
     '1win স্পোর্টস বেটিং — প্রি-ম্যাচ, লাইভ ও ইস্পোর্টস',
   'bn/bonuses.html':
-    'WINEX600 প্রোমো কোড — 600% পর্যন্ত বোনাস ও 500 পর্যন্ত ফ্রি স্পিন',
+    '1win প্রোমো কোড — 600% পর্যন্ত বোনাস ও 500 পর্যন্ত ফ্রি স্পিন',
   'bn/lucky-jet.html':
     'Lucky Jet — 1win Originals ক্র্যাশ গেম',
   'bn/payments.html':
