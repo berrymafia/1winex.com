@@ -37,7 +37,7 @@ function pick<T>(
 
 const GLOBAL_SUGGESTIONS = [
   'What license does 1win have?',
-  'What does WINEX600 give?',
+  'What does WINEX600 offer?',
   'How fast are withdrawals?',
   'How do I install the app?',
 ] as const;
@@ -85,16 +85,16 @@ const GLOBAL_SUGGESTIONS_IT = [
 ] as const;
 
 const GLOBAL_SUGGESTIONS_AZ = [
-  '1win-in lisenziyası nədir?',
+  '1win hansı lisenziyaya malikdir?',
   'WINEX600-ə nə daxildir?',
-  'Çıxarış nə qədər tez gəlir?',
+  'Çıxarış nə qədər vaxt aparır?',
   'Tətbiqi necə quraşdırmaq olar?',
 ] as const;
 
 const GLOBAL_SUGGESTIONS_BN = [
   '1win-এর লাইসেন্স কী?',
   'WINEX600-এ কী পাব?',
-  'উইথড্রয়ালে কত সময় লাগে?',
+  'টাকা তুলতে কত সময় লাগে?',
   'অ্যাপ কীভাবে ইনস্টল করব?',
 ] as const;
 
@@ -141,7 +141,7 @@ export function getSuggestedQuestions(
       pick(
         lang,
         [
-          'What does WINEX600 give?',
+          'What does WINEX600 offer?',
           'What are the wagering terms?',
           'When do I enter WINEX600?',
           'How do I get the welcome bonus?',
@@ -222,7 +222,7 @@ export function getSuggestedQuestions(
         ],
         [
           'Combien de temps pour un retrait ?',
-          'On peut déposer en crypto ?',
+          'Peut-on déposer en crypto ?',
           'Où voir les limites de retrait ?',
           'Quand demande-t-on des documents ?',
         ],
@@ -245,13 +245,13 @@ export function getSuggestedQuestions(
           'Quando chiedono il KYC?',
         ],
         [
-          'Çıxarış nə qədər tez gəlir?',
-          'Kripto ilə doldurmaq olar?',
+          'Çıxarış nə qədər vaxt aparır?',
+          'Hesabı kriptovalyuta ilə doldurmaq olar?',
           'Çıxarış limitlərinə harada baxmaq olar?',
           'Sənədləri nə vaxt istəyirlər?',
         ],
         [
-          'উইথড্রয়ালে কত সময় লাগে?',
+          'টাকা তুলতে কত সময় লাগে?',
           'ক্রিপ্টো দিয়ে কি ডিপোজিট করা যায়?',
           'উইথড্রয়াল সীমা কোথায় দেখব?',
           'KYC কখন লাগে?',
@@ -285,7 +285,7 @@ export function getSuggestedQuestions(
         [
           'Comment installer l’APK Android ?',
           'Comment jouer à 1win sur iPhone ?',
-          'On peut jouer sans app — dans le navigateur ?',
+          'Peut-on jouer sans app dans le navigateur ?',
           'D’où télécharger l’APK ?',
         ],
         [
@@ -315,8 +315,8 @@ export function getSuggestedQuestions(
         [
           'Android APK কীভাবে ইনস্টল করব?',
           'iPhone-এ 1win চলে?',
-          'ব্রাউজারেও খোলা যায়?',
-          'APK কোথা থেকে নামানো?',
+          'ব্রাউজারেও কি 1win খোলা যায়?',
+          'APK কোথা থেকে ডাউনলোড করব?',
         ]
       )
     );
@@ -347,7 +347,7 @@ export function getSuggestedQuestions(
         [
           'Quels jeux y a-t-il dans le casino ?',
           'Où voir le RTP d’un jeu ?',
-          'Il y a des tables en direct ?',
+          'Y a-t-il des tables en direct ?',
           'Les machines à sous comptent pour le bonus ?',
         ],
         [
@@ -378,7 +378,7 @@ export function getSuggestedQuestions(
           'ক্যাসিনোতে কী কী গেম আছে?',
           'গেমের RTP কোথায় দেখব?',
           'লাইভ টেবিল আছে?',
-          'স্লটে স্বাগতম বোনাস চলে?',
+          'স্লট কি বোনাস ওয়েজারিংয়ে গণনা হয়?',
         ]
       )
     );
@@ -410,7 +410,7 @@ export function getSuggestedQuestions(
           'Où voir le RTP d’Aviator ?',
           'Aviator, c’est un 1win Original ?',
           'Aviator compte pour le bonus de bienvenue ?',
-          'C’est quoi l’encaissement automatique ?',
+          'Qu’est-ce que l’encaissement automatique ?',
         ],
         [
           'Wo sehe ich den RTP von Aviator?',
@@ -439,7 +439,7 @@ export function getSuggestedQuestions(
         [
           'Aviator-এর RTP কোথায় দেখব?',
           'Aviator কি 1win Original?',
-          'Aviator-এ স্বাগতম বোনাস চলে?',
+          'Aviator কি বোনাস ওয়েজারিংয়ে গণনা হয়?',
           'Aviator-এ অটো ক্যাশ-আউট কী?',
         ]
       )
@@ -472,7 +472,7 @@ export function getSuggestedQuestions(
           'Où voir le RTP de Lucky Jet ?',
           'Lucky Jet, c’est le même jeu qu’Aviator ?',
           'Lucky Jet compte pour le bonus de bienvenue ?',
-          'C’est quoi l’encaissement automatique ?',
+          'Qu’est-ce que l’encaissement automatique ?',
         ],
         [
           'Wo sehe ich den RTP von Lucky Jet?',
@@ -501,7 +501,7 @@ export function getSuggestedQuestions(
         [
           'Lucky Jet-এর RTP কোথায় দেখব?',
           'Lucky Jet আর Aviator কি একই?',
-          'Lucky Jet-এ স্বাগতম বোনাস চলে?',
+          'Lucky Jet কি বোনাস ওয়েজারিংয়ে গণনা হয়?',
           'Lucky Jet-এ অটো ক্যাশ-আউট কী?',
         ]
       )
@@ -532,7 +532,7 @@ export function getSuggestedQuestions(
         ],
         [
           'Comment parier sur le sport ?',
-          'On peut encaisser un pari ?',
+          'Peut-on encaisser un pari ?',
           'Qu’est-ce que le bonus sur les paris combinés ?',
           'Les bonus casino et sport vont ensemble ?',
         ],
@@ -561,8 +561,8 @@ export function getSuggestedQuestions(
           'Kazino və idman bonusları eyni balansdadır?',
         ],
         [
-          'স্পোর্টস বেট কীভাবে রাখব?',
-          'স্পোর্টস বেটে ক্যাশ-আউট যায়?',
+          'স্পোর্টসে কীভাবে বাজি ধরব?',
+          'স্পোর্টস বেটে ক্যাশ-আউট করা যায়?',
           'মাল্টিপল বেট বোনাস কী?',
           'ক্যাসিনো ও স্পোর্টস বোনাস কি একই ব্যালেন্স ব্যবহার করে?',
         ]
@@ -617,7 +617,7 @@ export function getSuggestedQuestions(
           'Come attivo il 2FA?',
         ],
         [
-          '1win-in lisenziyası nədir?',
+          '1win hansı lisenziyaya malikdir?',
           'Sənədləri nə vaxt istəyirlər?',
           'Saytın rəsmi olduğunu necə yoxlamaq olar?',
           '2FA-nı necə aktivləşdirmək olar?',
@@ -639,7 +639,7 @@ export function getSuggestedQuestions(
         [
           'How do I register?',
           'How fast are withdrawals?',
-          'What does WINEX600 give?',
+          'What does WINEX600 offer?',
           'How do I install the app?',
         ],
         [
@@ -680,13 +680,13 @@ export function getSuggestedQuestions(
         ],
         [
           'Necə qeydiyyatdan keçmək olar?',
-          'Çıxarış nə qədər tez gəlir?',
+          'Çıxarış nə qədər vaxt aparır?',
           'WINEX600-ə nə daxildir?',
           'Tətbiqi necə quraşdırmaq olar?',
         ],
         [
           'রেজিস্ট্রেশন কীভাবে করব?',
-          'উইথড্রয়ালে কত সময় লাগে?',
+          'টাকা তুলতে কত সময় লাগে?',
           'WINEX600-এ কী পাব?',
           'অ্যাপ কীভাবে ইনস্টল করব?',
         ]
@@ -714,13 +714,13 @@ export function getSuggestedQuestions(
           '¿Cómo configuro un límite de depósito o una pausa?',
           '¿Puedo cancelar antes la autoexclusión?',
           '¿Qué hago si no puedo dejar de jugar?',
-          '¿Dónde puedo obtener ayuda independiente con el juego?',
+          '¿Dónde puedo obtener ayuda independiente para problemas con el juego de azar?',
         ],
         [
           'Comment définir une limite de dépôt ou une pause ?',
           'Puis-je annuler l’auto-exclusion avant terme ?',
           'Que faire si je n’arrive pas à arrêter de jouer ?',
-          'Où trouver une aide indépendante pour le jeu ?',
+          'Où trouver une aide indépendante pour les problèmes liés aux jeux d’argent ?',
         ],
         [
           'Wie richte ich ein Einzahlungslimit oder eine Spielpause ein?',
@@ -738,7 +738,7 @@ export function getSuggestedQuestions(
           'Come imposto un limite di deposito o una pausa?',
           'Posso annullare prima l’autoesclusione?',
           'Cosa devo fare se non riesco a smettere di giocare?',
-          'Dove trovo supporto indipendente per il gioco?',
+          'Dove trovo assistenza indipendente per problemi di gioco d’azzardo?',
         ],
         [
           'Depozit limiti və ya fasilə necə təyin edilir?',
@@ -782,7 +782,7 @@ export function getSuggestedQuestions(
           'Comment déposer en Bitcoin ou USDT ?',
           'On demande encore le KYC en crypto ?',
           'Que faire si un dépôt crypto n’arrive pas ?',
-          'WINEX600 marche avec la crypto ?',
+          'WINEX600 est-il compatible avec la crypto ?',
         ],
         [
           'Wie zahle ich mit Bitcoin oder USDT ein?',
@@ -805,7 +805,7 @@ export function getSuggestedQuestions(
         [
           'Bitcoin və ya USDT ilə necə depozit qoymaq olar?',
           'Kripto üçün də KYC lazımdır?',
-          'Kripto depoziti gəlməzsə nə etməliyəm?',
+          'Kripto depoziti hesaba düşməzsə nə etməliyəm?',
           'WINEX600 kripto ilə işləyir?',
         ],
         [
@@ -867,7 +867,7 @@ export function getSuggestedQuestions(
         [
           '1win niyə açılmır?',
           'Sayt yüklənmirsə nə etməliyəm?',
-          'Tətbiq açılacaq?',
+          'Tətbiq işləyə bilərmi?',
           'Sayt bloklanıbsa necə daxil olmaq olar?',
         ],
         [

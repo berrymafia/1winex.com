@@ -43,7 +43,7 @@
       cookieHtml:
         '<p>Usamos cookies y almacenamiento local para que el sitio funcione. Más información en la <a href="/es/responsible-gambling#cookies">política de cookies</a>.</p><button type="button" class="cookie-notice__ok">Entendido</button>',
       copied: "Copiado",
-      aviatorDemo: "Demo de Aviator de Spribe",
+      aviatorDemo: "Demo de Aviator por Spribe",
       spribeLang: "ES",
     },
     fr: {
@@ -101,7 +101,7 @@
       closeMenu: "মেনু বন্ধ করুন",
       cookieLabel: "কুকি নোটিশ",
       cookieHtml:
-        '<p>সাইট সচল রাখতে আমরা কুকি ও লোকাল স্টোরেজ ব্যবহার করি। বিস্তারিত <a href="/bn/responsible-gambling#cookies">কুকি নীতিতে</a> দেখুন।</p><button type="button" class="cookie-notice__ok">বুঝেছি</button>',
+        '<p>সাইট সচল রাখতে আমরা কুকি ও লোকাল স্টোরেজ ব্যবহার করি। বিস্তারিত জানতে <a href="/bn/responsible-gambling#cookies">কুকি নীতি</a> দেখুন।</p><button type="button" class="cookie-notice__ok">বুঝেছি</button>',
       copied: "কপি হয়েছে",
       aviatorDemo: "Spribe-এর Aviator ডেমো",
       spribeLang: "EN",

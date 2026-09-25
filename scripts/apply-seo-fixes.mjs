@@ -27,23 +27,27 @@ const organizationId = 'https://1winex.com/#organization';
 const websiteId = 'https://1winex.com/#website';
 
 const titleUpdates = {
+  'bonuses.html':
+    'WINEX600 at 1win — Up to 600% + Up to 500 Free Spins',
+  'betting.html':
+    '1win Sportsbook — Sports Betting, Live Betting and Esports',
   'ru/index.html': '1win Казино и ставки — Вход и регистрация',
   'ru/casino.html':
     'Казино 1win — Слоты, Aviator и игры с живыми дилерами',
   'ru/bonuses.html':
-    'WINEX600 в 1win — до 600% и до 500 фриспинов',
+    'Промокод WINEX600 — до 600% и до 500 фриспинов',
   'ru/responsible-gambling.html':
     'Ответственная игра в 1win — лимиты и самоисключение',
   'uk/index.html': '1win Казино й ставки — Вхід і реєстрація',
   'uk/casino.html':
     'Казино 1win — Слоти, Aviator та ігри з живими дилерами',
   'uk/bonuses.html':
-    'WINEX600 у 1win — до 600% і до 500 фріспінів',
+    'Промокод WINEX600 — до 600% і до 500 фріспінів',
   'uk/responsible-gambling.html':
     'Відповідальна гра в 1win — ліміти й самовиключення',
   'uk/not-working.html': '1win не відкривається — перевірка доступу',
   'es/bonuses.html':
-    'WINEX600 en 1win — Hasta 600 % y hasta 500 giros gratis',
+    'Código WINEX600 — hasta 600 % y hasta 500 giros gratis',
   'es/safety.html': 'Licencia de 1win — KYC y seguridad de la cuenta',
   'es/responsible-gambling.html':
     'Juego responsable en 1win — límites y autoexclusión',
@@ -53,7 +57,7 @@ const titleUpdates = {
   'fr/casino.html':
     'Casino 1win — Machines à sous, Aviator et jeux en direct',
   'fr/bonuses.html':
-    'WINEX600 sur 1win — Jusqu’à 600 % et jusqu’à 500 tours gratuits',
+    'Code WINEX600 — jusqu’à 600 % et jusqu’à 500 tours gratuits',
   'fr/safety.html': 'Licence de 1win — KYC et sécurité du compte',
   'fr/responsible-gambling.html':
     'Jeu responsable sur 1win — limites et auto-exclusion',
@@ -80,14 +84,14 @@ const titleUpdates = {
     'Casinò 1win con criptovalute — BTC, ETH e USDT',
   'it/casino.html': 'Casinò 1win — Slot, Aviator e live',
   'it/bonuses.html':
-    'WINEX600 su 1win — Fino al 600 % e fino a 500 giri gratis',
+    'Codice WINEX600 — fino al 600 % e fino a 500 giri gratis',
   'it/safety.html': 'Licenza di 1win — KYC e sicurezza dell’account',
   'it/responsible-gambling.html':
     'Gioco responsabile su 1win — limiti e autoesclusione',
   'az/index.html':
     '1win-də kazino və idman mərcləri — giriş və qeydiyyat',
   'az/aviator.html':
-    '1win-də Aviator — Spribe-in artan əmsallı oyunu',
+    '1win-də Aviator — Spribe şirkətinin artan əmsallı oyunu',
   'az/betting.html':
     '1win idman mərcləri — canlı mərclər və kibersport',
   'az/bonuses.html':
@@ -116,6 +120,12 @@ const titleUpdates = {
 const descriptionUpdates = {
   'app.html':
     'Download the 1win Android APK, use iOS when available, or play in your mobile browser. Includes installation and update steps. 18+.',
+  'bonuses.html':
+    'Enter WINEX600 when you register. On crypto it is up to 600% plus up to 500 free spins across four deposits. 18+.',
+  'betting.html':
+    'Pre-match and live betting with the same account as the casino. Football, tennis and esports. 18+.',
+  'payments.html':
+    'Cards, e-wallets and crypto are available in the cashier. Limits, fees and KYC requirements are shown before you send. 18+.',
   'de/app.html':
     'Lade die 1win Android-APK herunter, nutze iOS, sofern verfügbar, oder spiele im mobilen Browser. Mit Installations- und Update-Anleitung. 18+.',
   'casino.html':
@@ -213,7 +223,7 @@ const localizedDescriptionUpdates = {
   'fr/responsible-gambling.html':
     'Gérez les limites de dépôt, la mise en pause et l’auto-exclusion depuis votre compte. Des ressources d’aide indépendantes sont disponibles ci-dessous. 18+.',
   'fr/app.html':
-    'Téléchargez l’APK Android, utilisez l’app sur iPhone ou jouez dans le navigateur. 18+.',
+    'Téléchargez l’APK Android, utilisez l’app iOS si elle est disponible dans votre pays ou jouez dans le navigateur. 18+.',
   'fr/crypto-casino.html':
     'Bitcoin, Ethereum ou USDT sur 1win. Les mêmes jeux, le même compte. Le réseau et les exigences KYC sont indiqués à la caisse. 18+.',
   'fr/payments.html':
@@ -261,7 +271,7 @@ const localizedDescriptionUpdates = {
   'it/404.html':
     'Questa pagina non esiste. Apri il menu o torna alla home. Non aprire a caso siti specchio trovati nei risultati di ricerca o nelle chat.',
   'it/not-working.html':
-    'Se 1win non si apre, l’operatore potrebbe aver bloccato il dominio. Prova ad accedere, registrarti o aprire l’app da questa pagina. 18+.',
+    'Se 1win non si apre, il tuo provider Internet potrebbe aver bloccato il dominio. Prova ad accedere, registrarti o aprire l’app da questa pagina. 18+.',
   'it/responsible-gambling.html':
     'Imposta limiti di deposito, sospendi l’account o attiva l’autoesclusione. In questa pagina trovi anche risorse di aiuto indipendenti. 18+.',
   'it/crypto-casino.html':
@@ -288,7 +298,7 @@ const localizedDescriptionUpdates = {
   'az/aviator.html':
     'Spribe tərəfindən hazırlanmış Aviator oyununda mərc edin, əmsalı izləyin və təyyarə uçub getməzdən əvvəl uduşu götürün. 1win Original deyil. 18+.',
   'az/betting.html':
-    'Matçöncəsi və canlı mərclər üçün kazino ilə eyni hesabdan istifadə edin. Futbol, tennis və kibersport. 18+.',
+    'Matçdan əvvəl və canlı mərclər üçün kazino ilə eyni hesabdan istifadə edin. Futbol, tennis və kibersport. 18+.',
   'az/bonuses.html':
     'Qeydiyyat zamanı WINEX600 promo kodunu daxil edin. Kriptovalyuta ilə edilən dörd depozit üzrə ümumilikdə 600%-dək bonus və 500-dək pulsuz fırlanma əldə edin. 18+.',
   'az/casino.html':
@@ -319,7 +329,7 @@ const localizedDescriptionUpdates = {
   'bn/crypto-casino.html':
     '1win ক্যাশিয়ারে Bitcoin, Ethereum ও USDT ব্যবহার করুন। একই অ্যাকাউন্টে একই গেম খেলুন। লেনদেন নিশ্চিত করার আগে নেটওয়ার্ক ও KYC-এর শর্ত দেখে নিন। 18+।',
   'bn/index.html':
-    '1win-এ ক্যাসিনো ও স্পোর্টস বেটিং খেলুন। WINEX600 কোডে চারটি ডিপোজিট মিলিয়ে সর্বোচ্চ 600% বোনাস ও সর্বোচ্চ 500 ফ্রি স্পিন পান। 18+।',
+    '1win-এ ক্যাসিনো গেম খেলুন ও স্পোর্টসে বাজি ধরুন। WINEX600 কোডে চারটি যোগ্য ক্রিপ্টো ডিপোজিট মিলিয়ে সর্বোচ্চ 600% বোনাস ও সর্বোচ্চ 500 ফ্রি স্পিন পান। 18+।',
   'bn/lucky-jet.html':
     'Lucky Jet একটি 1win Originals গেম। জেটটি যত ওপরে ওঠে, মাল্টিপ্লায়ার তত বাড়ে। জেট উধাও হওয়ার আগে ক্যাশ আউট করুন। এটি Aviator নয়। 18+।',
   'bn/not-working.html':
@@ -380,6 +390,318 @@ const errorImageAltUpdates = {
   'az/404.html': '1win illüstrasiyası: səhifə tapılmadı',
   'bn/404.html': '1win পেজ খুঁজে পাওয়া যায়নি—ইলাস্ট্রেশন',
 };
+
+const localeCopyReplacements = {
+  en: [
+    ['up to 600% + 500 free spins', 'up to 600% + up to 500 free spins'],
+    ['plus 500 free spins', 'plus up to 500 free spins'],
+    [
+      'A wrong network or address can permanently lose funds.',
+      'Using the wrong network or address can cause a permanent loss of funds.',
+    ],
+    [
+      'a wrong network, address or memo can permanently lose funds.',
+      'using the wrong network, address or memo can cause a permanent loss of funds.',
+    ],
+    [
+      'Limits, fees and KYC show before you send.',
+      'Limits, fees and KYC requirements are shown before you send.',
+    ],
+    ['The catalogue is on casino.', 'The catalogue is on the Casino page.'],
+    [
+      'KYC in the account. 2FA where 1win offers it.',
+      'Complete KYC in your account and enable 2FA where available.',
+    ],
+  ],
+  ru: [
+    ['до 600% и 500 фриспинов', 'до 600% и до 500 фриспинов'],
+    [
+      'Ни 600%, ни 500% не начисляются на один первый депозит.',
+      'Ни 600%, ни 500% не начисляются полностью за первый депозит.',
+    ],
+    [
+      'Как установить лимит на депозит, перерыв или самоисключение?',
+      'Как установить лимит на депозит, включить паузу или самоисключение?',
+    ],
+    ['бюджетом денег и времени', 'бюджетом на игру и лимитом времени'],
+    ['приложении Android', 'Android-приложении'],
+  ],
+  uk: [
+    ['до 600% і 500 фріспінів', 'до 600% і до 500 фріспінів'],
+    [
+      'Ні 600%, ні 500% не нараховуються лише на перший депозит.',
+      'Ні 600%, ні 500% не нараховуються повністю за перший депозит.',
+    ],
+    [
+      'Як установити ліміт на депозит, перерву або самовиключення?',
+      'Як установити ліміт на депозит, увімкнути паузу або самовиключення?',
+    ],
+    ['бюджетом грошей і часу', 'бюджетом на гру та лімітом часу'],
+    ['Гайд казино', 'Посібник із казино'],
+    ['Гід казино', 'Посібник із казино'],
+    ['Можуть викрасти кабінет', 'Можуть викрасти акаунт'],
+    ['кабінет могли зламати', 'акаунт могли зламати'],
+    ['Скиньте доступ до кабінету', 'Відновіть захист акаунта'],
+    ['додатку Android', 'Android-додатку'],
+  ],
+  de: [
+    [
+      'Eine Auszahlung vor erfülltem Umsatz storniert den aktiven Bonus.',
+      'Eine Auszahlung vor Erfüllung der Umsatzbedingungen kann den aktiven Bonus stornieren.',
+    ],
+    ['unfertigem Bonus', 'noch nicht vollständig umgesetztem Bonus'],
+    [
+      'Zahle nicht ein, zahle nicht aus und bestätige keine Anmeldecodes.',
+      'Veranlasse keine Einzahlung oder Auszahlung und bestätige keine Anmeldecodes.',
+    ],
+    [
+      'Spiele und Sport in einem Konto.',
+      'Casino-Spiele und Sportwetten in einem Konto.',
+    ],
+  ],
+  es: [
+    ['hasta 600 % y 500 giros gratis', 'hasta 600 % y hasta 500 giros gratis'],
+    ['hasta 600 % + 500 giros gratis', 'hasta 600 % + hasta 500 giros gratis'],
+    ['más 500 giros gratis', 'más hasta 500 giros gratis'],
+    [
+      '¿Dónde puedo obtener ayuda independiente con el juego?',
+      '¿Dónde puedo obtener ayuda independiente para problemas con el juego de azar?',
+    ],
+    [
+      'App 1win y el sitio del teléfono en Android e iOS',
+      'App 1win y sitio web móvil en Android e iOS',
+    ],
+    ['Una computadora portátil', 'Un ordenador portátil'],
+  ],
+  fr: [
+    [
+      'jusqu’à 600 % et 500 tours gratuits',
+      'jusqu’à 600 % et jusqu’à 500 tours gratuits',
+    ],
+    [
+      'jusqu’à 600 % + 500 tours gratuits',
+      'jusqu’à 600 % + jusqu’à 500 tours gratuits',
+    ],
+    ['plus 500 tours gratuits', 'plus jusqu’à 500 tours gratuits'],
+    [
+      'Où trouver une aide indépendante pour le jeu ?',
+      'Où trouver une aide indépendante pour les problèmes liés aux jeux d’argent ?',
+    ],
+    ["Fil d'Ariane", 'Fil d’Ariane'],
+  ],
+  it: [
+    ['fino al 600 % e 500 giri gratis', 'fino al 600 % e fino a 500 giri gratis'],
+    ['fino a 600 % + 500 giri gratis', 'fino al 600 % + fino a 500 giri gratis'],
+    ['più 500 giri gratis', 'più fino a 500 giri gratis'],
+    [
+      'Dove trovo supporto indipendente per il gioco?',
+      'Dove trovo assistenza indipendente per problemi di gioco d’azzardo?',
+    ],
+    [
+      'Prova anche una VPN o l’app 1win.',
+      'Prova anche l’app 1win o una VPN, ma solo se il suo utilizzo e l’accesso a 1win sono legali nel luogo in cui ti trovi. Non usarla per aggirare restrizioni.',
+    ],
+    [
+      'poi prova un altro dispositivo o una VPN.',
+      'poi prova un altro dispositivo. Usa una VPN solo se è legale nel luogo in cui ti trovi e non per aggirare restrizioni.',
+    ],
+    ['Crea account', 'Crea un account'],
+    [
+      'Aviator è un gioco crash separato di Spribe',
+      'Aviator è un gioco crash di Spribe, distinto dai 1win Originals',
+    ],
+    [
+      'Un moltiplicatore alto o basso non rende più probabile l’opposto dopo.',
+      'Un moltiplicatore alto o basso non rende più probabile il risultato opposto nella manche successiva.',
+    ],
+    [
+      'riconoscere impersonificazione e phishing',
+      'riconoscere i tentativi di impersonare 1win e il phishing',
+    ],
+    ['Una password tua', 'Una password unica'],
+    ['2FA, se c’è', '2FA, se disponibile'],
+  ],
+  az: [
+    ['lang-panel__title">Azərbaycan<', 'lang-panel__title">Azərbaycanca<'],
+    ['lang-panel__desc">Azərbaycan<', 'lang-panel__desc">Azərbaycan dili<'],
+    [
+      'Göndərən adi yoxlamaları keçməyə məcbur edir.',
+      'Göndərən sizi adi yoxlamalardan yan keçməyə məcbur edir.',
+    ],
+    ['Yalnız 18 yaşdan yuxarı şəxslər', 'Yalnız 18 və daha yuxarı yaşlı şəxslər'],
+    [
+      'yalnız 18 yaşdan yuxarı böyüklər',
+      'yalnız 18 və daha yuxarı yaşlı böyüklər',
+    ],
+    ['yerli qanunları bilməlidirlər', 'yerli qanunlara riayət etməlidirlər'],
+    ['yerli qanunları başa düşməlidir', 'yerli qanunlara riayət etməlidirlər'],
+    [
+      'bonusunun oynatması bitəndən sonra',
+      'bonus üzrə oynatma tələbi yerinə yetirildikdən sonra',
+    ],
+    [
+      'bonus oynadıldıqdan sonra',
+      'bonus üzrə oynatma tələbi yerinə yetirildikdən sonra',
+    ],
+    [
+      'bonus oynanıldıqdan sonra',
+      'bonus üzrə oynatma tələbi yerinə yetirildikdən sonra',
+    ],
+    ['500 pulsuz fırlanma', '500-dək pulsuz fırlanma'],
+    [
+      'adətən şəxsiyyət vəsiqəsi, ünvan sübutu və ya ödəniş üsulu',
+      'adətən şəxsiyyət vəsiqəsi, ünvanı təsdiqləyən sənəd və ya ödəniş üsulunu təsdiqləyən sənəd',
+    ],
+    [
+      'cüzdan sirri',
+      'kripto pul kisəsinin şəxsi açarı və ya bərpa ifadəsi',
+    ],
+    [
+      'Başlığın RNG sertifikatı və ya provably fair yoxlaması varsa',
+      'Oyunda RNG sertifikatı və ya nəticənin ədalətliliyini yoxlama aləti varsa',
+    ],
+    ['Bank və ya wallet', 'Bank və ya kripto pul kisəsi'],
+    [
+      'Android iPhone-a quraşdırılmayan APK-dan istifadə edir.',
+      'Android tətbiqi APK formatındadır və bu fayl iPhone-a quraşdırılmır.',
+    ],
+    [
+      'Yeni versiya açılıb daxil olana qədər mövcud tətbiqi silməyin.',
+      'Yeni versiyanın açıldığına və hesabınıza daxil ola bildiyinizə əmin olanadək mövcud tətbiqi silməyin.',
+    ],
+    ['əlçatanlıq hesabla regiondan asılıdır', 'əlçatanlıq hesabdan və regiondan asılıdır'],
+    ['Etibar etdiyiniz birinə danışın', 'Etibar etdiyiniz biri ilə danışın'],
+    [
+      'əsas xərclər üçün olan pulu istifadə etməyin',
+      'əsas xərclər üçün nəzərdə tutulan puldan istifadə etməyin',
+    ],
+    [
+      'Qumar imtina edə biləcəyiniz əyləncə olaraq qalmalıdır',
+      'Qumar istənilən vaxt dayandıra biləcəyiniz əyləncə olaraq qalmalıdır',
+    ],
+    [
+      'Kimsənin qumarı sizi narahat edirsə, sakit və şəxsi vaxt seçin.',
+      'Kiminsə qumar oynaması sizi narahat edirsə, sakit, təkbətək söhbət üçün uyğun vaxt seçin.',
+    ],
+    [
+      'Nəzarəti ələ almadan əlaqə qurmağa kömək edin.',
+      'Şəxsin nəzarətini əlindən almadan yardım xidməti ilə əlaqə saxlamasına kömək edin.',
+    ],
+    ['itkiləri geri qaytarmağa çalışmayın', 'itkiləri geri qazanmağa çalışmayın'],
+    ['itkiləri qaytarmaq təzyiqi', 'itkiləri geri qazanmaq təzyiqi'],
+    ['1win hamı üçün dayanıb', '1win hamıda işləmir'],
+    ['bu təlimatı əlfəcinə əlavə edin', 'bu təlimatı əlfəcin kimi saxlayın'],
+    ['giriş yenə alınmırsa', 'yenə daxil ola bilmirsinizsə'],
+    [
+      'aşağı komissiya və ya az təsdiq',
+      'aşağı şəbəkə komissiyası və ya kifayət qədər təsdiqin olmaması',
+    ],
+    ['mövcud nəticəni qeyd edin', 'mövcud seçimlərdən birini seçin'],
+    [
+      'Bir uduzma qalib kombinasiya saxlaya bilər.',
+      'Bir seçim uduzsa belə, digər kombinasiyalar qalib qala bilər.',
+    ],
+    [
+      'İstənilən uduzan seçim ekspressi uduzmuş edir və bonusu silir.',
+      'Seçimlərdən hər hansı biri uduzarsa, ekspress uduzur və bonus ləğv olunur.',
+    ],
+    ['çoxoyunçulu crash oyunu', 'çoxnəfərlik crash oyunu'],
+    [
+      'RTP çoxsaylı mərclər üzrə nəzəri uzunmüddətli gəlirdir',
+      'RTP çoxsaylı mərclər üzrə oyunçuya nəzəri uzunmüddətli geri qaytarılma faizidir',
+    ],
+    ['nəzəri gəliri', 'oyunçuya nəzəri geri qaytarılma faizini'],
+    ['lobisində', 'lobbisində'],
+    [' lobi', ' lobbi'],
+    ['Matçöncəsi', 'Matçdan əvvəl'],
+    ['Matç öncəsi', 'Matçdan əvvəl'],
+    ['Spribe-in', 'Spribe şirkətinin'],
+    ['Spribe-ın', 'Spribe şirkətinin'],
+    ['Aviator vs Lucky Jet', 'Aviator və Lucky Jet'],
+    ['Lucky Jet vs Aviator', 'Lucky Jet və Aviator'],
+    ['hədəf əmsal təyin edin', 'hədəf əmsalı təyin edin'],
+    ['e-cüzdan', 'elektron pul kisəsi'],
+  ],
+  bn: [
+    ['এই সাইট শুধু প্রাপ্তবয়স্কদের।', 'এই সাইট শুধু প্রাপ্তবয়স্কদের জন্য।'],
+    [
+      'এই তথ্য থেকে সম্ভাব্য আর্থিক ক্ষতির দায় আমরা নিই না।',
+      'এই তথ্য ব্যবহারের ফলে কোনো আর্থিক ক্ষতি হলে তার দায় আমরা নিই না।',
+    ],
+    [
+      '© 2026 <a href="/bn">1Win</a>, 1Win N.V. পরিচালিত, Curaçao Gaming Authority লাইসেন্স <a href="/bn/safety#licensing">OGL/2024/587/0621</a>',
+      '© 2026 <a href="/bn">1Win</a>। Curaçao Gaming Authority-এর B2C লাইসেন্স <a href="/bn/safety#licensing">OGL/2024/587/0621</a>-এর অধীনে সাইটটি 1Win N.V. দ্বারা পরিচালিত।',
+    ],
+    [
+      'Curaçao Gaming Authority-এর B2C লাইসেন্স <a href="/bn/safety#licensing">OGL/2024/587/0621</a>-এর অধীনে 1Win N.V. পরিচালিত।',
+      'Curaçao Gaming Authority-এর B2C লাইসেন্স <a href="/bn/safety#licensing">OGL/2024/587/0621</a>-এর অধীনে সাইটটি 1Win N.V. দ্বারা পরিচালিত।',
+    ],
+    ['সর্বোচ্চ 600% + 500 ফ্রি স্পিন', 'সর্বোচ্চ 600% + সর্বোচ্চ 500 ফ্রি স্পিন'],
+    ['কার্ড বা ওয়ালেটে', 'যোগ্য কার্ড বা ই-ওয়ালেটে'],
+    ['উইথড্র করলে চালু বোনাস বাতিল হয়', 'উইথড্র করলে চালু বোনাস বাতিল হতে পারে'],
+    ['বাদ দেওয়া গেমের খেলা', 'বাদ দেওয়া গেমে খেলা'],
+    [
+      'যোগ্য কম্বো জয়ে 7–15% যোগ হতে পারে',
+      'যোগ্য অ্যাকুমুলেটরের নিট মুনাফায় ৭–১৫% যোগ হতে পারে',
+    ],
+    ['নিরাপদ খেলার ব্যবহারিক নিয়ম', 'ঝুঁকি কমিয়ে খেলার ব্যবহারিক নিয়ম'],
+    [
+      'লিমিট দিন, বিরতি নিন বা সেলফ-এক্সক্লুড করুন',
+      'সীমা নির্ধারণ করুন, বিরতি নিন বা সেলফ-এক্সক্লুশন চালু করুন',
+    ],
+    ['অ্যাকাউন্ট কেড়ে নেওয়া হয়েছে', 'অ্যাকাউন্টের নিয়ন্ত্রণ অন্যের হাতে গেছে'],
+    ['স্ক্যাম ধরুন', 'এটি প্রতারণা বলে ধরে নিন'],
+    ['না-চাওয়া সাপোর্ট মেসেজ', 'অনাকাঙ্ক্ষিত সাপোর্ট বার্তা'],
+    ['কেউ 1win সাজার চেষ্টা', 'কেউ 1win সেজে প্রতারণার চেষ্টা'],
+    ['এটা ফি দিয়ে উইথড্র খোলার প্রতারণা', 'এটি অগ্রিম ফি আদায়ের প্রতারণা'],
+    [
+      'সাধারণ চেক এড়াতে চাপ দিচ্ছে',
+      'স্বাভাবিক যাচাই এড়িয়ে দ্রুত সিদ্ধান্ত নিতে চাপ দিচ্ছে',
+    ],
+    ['KYC অ্যাকাউন্টে আপলোড করুন', 'KYC নথি অ্যাকাউন্টে আপলোড করুন'],
+    [
+      'ক্রিপ্টোতে পেমেন্ট করলে কি KYC লাগে না?',
+      'ক্রিপ্টো দিয়ে পেমেন্ট করলে কি KYC এড়ানো যায়?',
+    ],
+    ['শেষ সময়', 'কাট-অফ সময়'],
+    ['দুবার টাকা কাটতে', 'দুবার টাকা কাটা যেতে পারে'],
+    ['দুবার টাকা কাটা যেতে বা', 'দুবার টাকা কাটা যেতে পারে বা'],
+    [
+      'প্রাপক ও বর্তমান সময় নিশ্চিত করে',
+      'প্রাপক ও বর্তমান আনুমানিক সময় নিশ্চিত করুন এবং',
+    ],
+    ['পেটেবল প্যানেল', 'পে-টেবিল প্যানেল'],
+    ['সর্বোচ্চ জিত', 'সর্বোচ্চ পেআউট'],
+    [
+      'প্লেন উড়তে থাকা অবস্থায় সেটি পৌঁছালে গেম বাজিটি বন্ধ করে',
+      'লক্ষ্য মাল্টিপ্লায়ারে পৌঁছালে গেমটি বাজিটি স্বয়ংক্রিয়ভাবে ক্যাশ আউট করে',
+    ],
+    [
+      'ওই মানে Lucky Joe উড়তে থাকলে বাজিটি নিজে ক্যাশ আউট হবে; এই সেটিং ফলে প্রভাব ফেলে না।',
+      'Lucky Joe ওই মানে পৌঁছালে বাজিটি স্বয়ংক্রিয়ভাবে ক্যাশ আউট হবে; এই সেটিং ফলকে প্রভাবিত করে না।',
+    ],
+    [
+      'ক্যাসিনো, স্পোর্টস ও ক্যাশিয়ার একই অ্যাকাউন্ট ব্যবহার করে।',
+      'ক্যাসিনো, স্পোর্টস ও ক্যাশিয়ার—সবই একই অ্যাকাউন্টে ব্যবহার করা যায়।',
+    ],
+    ['একবার উইথড্র করে অপেক্ষা করুন', 'একটি ট্রান্সফার পাঠিয়ে অপেক্ষা করুন'],
+    ['memo/tag', 'মেমো বা ট্যাগ'],
+    ['seed phrase', 'রিকভারি ফ্রেজ'],
+    ['vs Lucky Jet', 'Lucky Jet-এর সঙ্গে তুলনা'],
+    ['>Demo<', '>ডেমো<'],
+    ['অ্যাপ মুছার', 'অ্যাপ মোছার'],
+    ['ভাগ্যনির্ভর খেলায় আসল টাকা হারাতে পারে', 'ভাগ্যনির্ভর খেলায় খেলোয়াড় আসল টাকা হারাতে পারে'],
+    ['4 ডিপোজিট', 'চারটি ডিপোজিট'],
+  ],
+};
+
+function applyCopyReplacements(content, relativePath) {
+  const locale = relativePath.includes('/') ? relativePath.split('/')[0] : 'en';
+  for (const [from, to] of localeCopyReplacements[locale] ?? []) {
+    content = content.replaceAll(from, to);
+  }
+  return content;
+}
 
 function escapeHtml(value) {
   return value
@@ -535,6 +857,8 @@ for (const relativePath of pages) {
     .replaceAll('зі статусом Active', 'зі статусом «Active» (активна)')
     .replaceAll('si le site ne charge pas', 'si le site ne se charge pas')
     .replaceAll('le site ne charge pas', 'le site ne se charge pas');
+
+  content = applyCopyReplacements(content, relativePath);
 
   if (errorImageAltUpdates[relativePath]) {
     content = content.replace(

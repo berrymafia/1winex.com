@@ -31,6 +31,34 @@ const assert = (condition, message) => {
   if (!condition) failures.push(message);
 };
 
+const decodeHtmlText = (value) =>
+  value
+    ?.replaceAll('&amp;', '&')
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#39;', "'")
+    .replaceAll('&apos;', "'");
+
+const staleLocalizedCopy = [
+  'Göndərən adi yoxlamaları keçməyə məcbur edir.',
+  '18 yaşdan yuxarı',
+  'yerli qanunları başa düşməlidir',
+  '500 pulsuz fırlanma',
+  'এই সাইট শুধু প্রাপ্তবয়স্কদের।',
+  '1Win N.V. পরিচালিত, Curaçao Gaming Authority লাইসেন্স',
+  'এই তথ্য থেকে সম্ভাব্য আর্থিক ক্ষতির দায় আমরা নিই না।',
+  'up to 600% + 500 free spins',
+  'до 600% и 500 фриспинов',
+  'до 600% і 500 фріспінів',
+  'hasta 600 % y 500 giros gratis',
+  'jusqu’à 600 % et 500 tours gratuits',
+  'fino al 600 % e 500 giri gratis',
+  '¿Dónde puedo obtener ayuda independiente con el juego?',
+  'Où trouver une aide indépendante pour le jeu ?',
+  'Dove trovo supporto indipendente per il gioco?',
+  'Prova anche una VPN o l’app 1win.',
+  'Eine Auszahlung vor erfülltem Umsatz storniert den aktiven Bonus.',
+];
+
 const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8');
 const publicSitemap = await readFile(resolve(root, 'public/sitemap.xml'), 'utf8');
 assert(sitemap === publicSitemap, 'Root and public sitemap.xml differ');
@@ -181,12 +209,21 @@ for (const url of expectedUrls) {
       /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,
     ),
   ];
+  const visibleHtml = html.replace(
+    /<script type="application\/ld\+json">[\s\S]*?<\/script>/g,
+    '',
+  );
   for (const [index, match] of jsonLd.entries()) {
     try {
       const data = JSON.parse(match[1]);
       if (data['@type'] === 'Organization') organizationNodes += 1;
       if (data['@type'] === 'WebSite') websiteNodes += 1;
       if (data['@type'] === 'WebPage' || data['@type'] === 'CollectionPage') {
+        assert(
+          data.name === decodeHtmlText(title) &&
+            data.description === decodeHtmlText(description),
+          `${relativePath} has WebPage metadata that differs from title or description`,
+        );
         if (data.isPartOf) {
           assert(
             data.isPartOf['@id'] === 'https://1winex.com/#website',
@@ -197,6 +234,15 @@ for (const url of expectedUrls) {
           assert(
             data.author['@id'] === 'https://1winex.com/#organization',
             `${relativePath} has a duplicated Organization entity`,
+          );
+        }
+      }
+      if (data['@type'] === 'FAQPage') {
+        for (const question of data.mainEntity ?? []) {
+          assert(
+            typeof question.name === 'string' &&
+              visibleHtml.includes(question.name),
+            `${relativePath} FAQ JSON-LD question is missing from visible copy: ${question.name}`,
           );
         }
       }
@@ -244,6 +290,28 @@ for (const locale of ['', ...locales]) {
       `${relativePath} still labels French as Côte d’Ivoire`,
     );
     assert(!html.includes('©2026'), `${relativePath} is missing a space after ©`);
+    for (const stale of staleLocalizedCopy) {
+      assert(
+        !html.includes(stale),
+        `${relativePath} still contains stale localized copy: ${stale}`,
+      );
+    }
+    if (relativePath === 'az/safety.html') {
+      assert(
+        html.includes(
+          'Göndərən sizi adi yoxlamalardan yan keçməyə məcbur edir.',
+        ),
+        'az/safety.html is missing the corrected anti-phishing warning',
+      );
+    }
+    if (relativePath.startsWith('bn/')) {
+      assert(
+        html.includes(
+          'Curaçao Gaming Authority-এর B2C লাইসেন্স',
+        ),
+        `${relativePath} is missing the corrected Bengali licence footer`,
+      );
+    }
     if (relativePath.startsWith('fr/')) {
       assert(
         !html.includes('Recommandés'),
@@ -282,6 +350,16 @@ assert(
   !/RewriteRule \^ (?:ru|es|fr|de|uk|it|az|bn)\/404\.html/.test(htaccess),
   '.htaccess still contains localized soft-404 rewrites',
 );
+
+for (const asset of ['site.js', 'chat-widget-loader.js', 'chat-widget.js']) {
+  const rootAsset = await readFile(resolve(root, `js/${asset}`), 'utf8');
+  const publicAsset = await readFile(resolve(root, `public/js/${asset}`), 'utf8');
+  assert(
+    rootAsset === publicAsset,
+    `Root and public js/${asset} differ`,
+  );
+}
+
 for (const line of htaccess.split(/\r?\n/)) {
   if (line.includes('[R=301')) {
     const substitution = line.trim().split(/\s+/)[2];

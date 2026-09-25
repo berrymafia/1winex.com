@@ -99,7 +99,7 @@ export async function streamChat(
             error?: string;
           };
           if (evt.type === 'delta' && evt.delta) handlers.onDelta(evt.delta);
-          else if (evt.type === 'error') handlers.onError(chatErr('Assistant error.', 'Ошибка помощника.', 'Error del asistente.', 'Erreur de l’assistant.', 'Fehler des Assistenten.', 'Помилка помічника.', 'Errore dell’assistente.', 'Köməkçi xətası.', 'সহকারীর সমস্যা।'));
+          else if (evt.type === 'error') handlers.onError(chatErr('Assistant error.', 'Ошибка помощника.', 'Error del asistente.', 'Erreur de l’assistant.', 'Fehler des Assistenten.', 'Помилка помічника.', 'Errore dell’assistente.', 'Köməkçi ilə bağlı xəta baş verdi.', 'সহকারীর সমস্যা।'));
           else if (evt.type === 'done') {
             /* final frame may still send [DONE] */
           }

@@ -1,6 +1,7 @@
 /**
  * Builds the chat widget as an ES module into ./js for static hosting.
- * Set CHAT_WIDGET_OUT_DIR=public to rebuild the mirrored public/js assets.
+ * The npm build:chat script runs this config again with --outDir public/js
+ * so the mirrored assets stay in sync.
  * Code-splits marked / DOMPurify / highlight.js into separate chunks.
  */
 import { defineConfig } from 'vite';

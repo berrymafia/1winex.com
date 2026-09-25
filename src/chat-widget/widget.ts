@@ -118,7 +118,7 @@ function chatCopy() {
   if (lang === 'fr') {
     return {
       name: 'Anna',
-      subtitle: 'Assistante d’information 1win',
+      subtitle: 'Assistante d’information de 1win',
       close: 'Fermer le chat',
       placeholder: 'Posez une question sur 1win…',
       message: 'Message',
@@ -210,7 +210,7 @@ function chatCopy() {
   if (lang === 'az') {
     return {
       name: 'Anna',
-      subtitle: '1win məlumat köməkçisi',
+      subtitle: '1win məlumat bələdçisi',
       close: 'Söhbəti bağla',
       placeholder: '1win haqqında soruşun…',
       message: 'Mesaj',
@@ -222,8 +222,8 @@ function chatCopy() {
       typing: 'Anna yazır',
       hello: 'Salam, mən Anna, 1win bələdçinizəm.',
       intro:
-        'Bu saytdakı məlumata əsasən bonusları, oyunları, idmanı, ödənişləri və tətbiq quraşdırmasını izah edə bilərəm. Hesabınıza girişim yoxdur və depozit qoya, vəsait çıxara, limitləri dəyişə və ya KYC prosesini idarə edə bilmirəm.',
-      suggests: 'Tez-tez verilən sualı seçin',
+        'Bu saytdakı məlumata əsasən bonusları, oyunları, idmanı, ödənişləri və tətbiqin quraşdırılmasını izah edə bilərəm. Hesabınıza girişim yoxdur və depozit qoya, vəsait çıxara, limitləri dəyişə və ya KYC prosesini idarə edə bilmirəm.',
+      suggests: 'Tez-tez verilən suallardan birini seçin',
       noResponse: 'Cavab alınmadı. Yenidən cəhd edin.',
       copied: 'Kopyalandı',
       copy: 'Kopyala',
@@ -245,7 +245,7 @@ function chatCopy() {
       typing: 'Anna লিখছেন',
       hello: 'হ্যালো, আমি Anna, আপনার 1win গাইড।',
       intro:
-        'এই সাইটের তথ্য ব্যবহার করে আমি বোনাস, গেম, স্পোর্টস, পেমেন্ট ও অ্যাপ ইনস্টলেশন সম্পর্কে বুঝিয়ে বলতে পারি। আপনার অ্যাকাউন্টে আমার অ্যাক্সেস নেই, তাই আমি ডিপোজিট বা উইথড্রয়াল করতে, লিমিট বদলাতে বা KYC পরিচালনা করতে পারি না।',
+        'এই সাইটের তথ্য ব্যবহার করে আমি বোনাস, গেম, স্পোর্টস, পেমেন্ট ও অ্যাপ ইনস্টলেশন সম্পর্কে বুঝিয়ে বলতে পারি। আপনার অ্যাকাউন্টে আমার অ্যাক্সেস নেই, তাই আমি আপনার হয়ে ডিপোজিট বা উইথড্রয়াল করতে, লিমিট বদলাতে বা KYC যাচাই সম্পন্ন করতে পারি না।',
       suggests: 'একটি সাধারণ প্রশ্ন বেছে নিন',
       noResponse: 'উত্তর পাওয়া যায়নি। আবার চেষ্টা করুন।',
       copied: 'কপি হয়েছে',
@@ -267,7 +267,7 @@ function chatCopy() {
     typing: 'Anna is typing',
     hello: 'Hi, I’m Anna, your 1win guide.',
     intro:
-      'I can explain bonuses, games, sports, payments and app installation using this site. I cannot access your account or change deposits, withdrawals, limits or KYC.',
+      'I can explain bonuses, games, sports, payments and app installation using this site. I cannot access your account, make deposits or withdrawals, change limits, or manage KYC.',
     suggests: 'Choose a common question',
     noResponse: 'I could not get a response. Please try again.',
     copied: 'Copied',

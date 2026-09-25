@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:chat": "vite build --config vite.chat-widget.config.js",
+    "build:chat": "vite build --config vite.chat-widget.config.js && vite build --config vite.chat-widget.config.js --outDir public/js",
     "build:corpus": "node scripts/build-site-corpus.mjs",
     "build:all": "npm run check:seo && npm run build:chat && npm run build:corpus && npm run build",
     "fix:seo": "node scripts/apply-seo-fixes.mjs",
