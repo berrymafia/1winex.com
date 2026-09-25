@@ -1,4 +1,4 @@
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' {
   if (typeof document === 'undefined') return 'en';
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
@@ -9,11 +9,12 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' 
   if (raw.startsWith('it')) return 'it';
   if (raw.startsWith('az')) return 'az';
   if (raw.startsWith('bn')) return 'bn';
+  if (raw.startsWith('hi')) return 'hi';
   return 'en';
 }
 
 function pick<T>(
-  lang: 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn',
+  lang: 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi',
   en: T,
   ru: T,
   es: T,
@@ -98,6 +99,88 @@ const GLOBAL_SUGGESTIONS_BN = [
   'অ্যাপ কীভাবে ইনস্টল করব?',
 ] as const;
 
+const GLOBAL_SUGGESTIONS_HI = [
+  '1win का लाइसेंस क्या है?',
+  'WINEX600 में क्या मिलता है?',
+  'निकासी में कितना समय लगता है?',
+  'ऐप कैसे इंस्टॉल करें?',
+] as const;
+
+const HI_SUGGESTIONS: Record<string, readonly string[]> = {
+  bonuses: [
+    'WINEX600 में क्या मिलता है?',
+    'वेजरिंग की शर्तें क्या हैं?',
+    'WINEX600 कब डालें?',
+    'वेलकम बोनस कैसे पाएँ?',
+  ],
+  payments: [
+    'निकासी में कितना समय लगता है?',
+    'कौन से भुगतान तरीके हैं?',
+    'KYC कब माँगा जाता है?',
+    'डिपॉजिट नहीं पहुँचा तो क्या करें?',
+  ],
+  mobile: [
+    'ऐप कैसे इंस्टॉल करें?',
+    'Android APK कहाँ से डाउनलोड करें?',
+    'iPhone पर 1win कैसे खोलें?',
+    'ऐप और ब्राउज़र में क्या फर्क है?',
+  ],
+  games: [
+    '1win पर कौन से गेम हैं?',
+    'Aviator और Lucky Jet में क्या फर्क है?',
+    'लाइव कैसीनो कैसे काम करता है?',
+    'RTP का मतलब क्या है?',
+  ],
+  aviator: [
+    'Aviator कैसे खेलें?',
+    'Aviator किसका गेम है?',
+    'कैश आउट कैसे करें?',
+    'Aviator में बोनस लगता है?',
+  ],
+  'lucky-jet': [
+    'Lucky Jet कैसे खेलें?',
+    'Lucky Jet 1win Original है?',
+    'कैश आउट कैसे करें?',
+    'Lucky Jet और Aviator में क्या फर्क है?',
+  ],
+  sports: [
+    'स्पोर्ट्स बेट कैसे लगाएँ?',
+    'लाइव बेटिंग कैसे काम करती है?',
+    'कैश आउट कब मिलता है?',
+    'स्पोर्ट्स बोनस अलग है?',
+  ],
+  safety: [
+    '1win का लाइसेंस क्या है?',
+    '2FA कैसे चालू करें?',
+    'फ़िशिंग कैसे पहचानें?',
+    'KYC दस्तावेज़ कहाँ अपलोड करें?',
+  ],
+  faq: [
+    '1win का लाइसेंस क्या है?',
+    'WINEX600 में क्या मिलता है?',
+    'निकासी में कितना समय लगता है?',
+    'ऐप कैसे इंस्टॉल करें?',
+  ],
+  'responsible-gambling': [
+    'डिपॉजिट लिमिट कैसे लगाएँ?',
+    'सेल्फ-एक्सक्लूजन कैसे करें?',
+    'मदद कहाँ मिलेगी?',
+    'जुआ बंद कैसे करें?',
+  ],
+  'crypto-casino': [
+    'कौन सी क्रिप्टो चलती है?',
+    'क्या क्रिप्टो इस्तेमाल करने पर KYC से बच सकते हैं?',
+    'USDT डिपॉजिट कैसे करें?',
+    'क्रिप्टो निकासी कितनी देर में होती है?',
+  ],
+  'not-working': [
+    '1win क्यों नहीं खुल रहा?',
+    'साइट न खुले तो क्या करें?',
+    'साइट बंद हो तो ऐप चलेगा?',
+    'ब्लॉक होने पर लॉगिन कैसे करें?',
+  ],
+};
+
 function uniqueSuggestions(items: string[], max = 4): string[] {
   const out: string[] = [];
   const seen = new Set<string>();
@@ -118,7 +201,7 @@ export function pageSlugFromLocation(pathname = location.pathname): string {
   const parts = p.split('/').filter(Boolean);
   if (!parts.length) return 'index';
   let i = 0;
-  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it' || parts[0] === 'az' || parts[0] === 'bn') i = 1;
+  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it' || parts[0] === 'az' || parts[0] === 'bn' || parts[0] === 'hi') i = 1;
   if (!parts[i] || parts[i] === 'index') return 'index';
   let slug = parts[i].replace(/\.html$/i, '');
   if (slug === 'betting') return 'sports';
@@ -135,6 +218,10 @@ export function getSuggestedQuestions(
 ): string[] {
   const slug = pageSlugFromLocation(pathname);
   const lang = uiLang();
+
+  if (lang === 'hi') {
+    return uniqueSuggestions([...(HI_SUGGESTIONS[slug] ?? GLOBAL_SUGGESTIONS_HI)]);
+  }
 
   if (slug === 'bonuses') {
     return uniqueSuggestions(

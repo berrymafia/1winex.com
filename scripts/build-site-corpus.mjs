@@ -26,7 +26,7 @@ const PAGES = [
     slug: 'bonuses',
     file: 'bonuses.html',
     name: '1win Bonuses',
-    aliases: ['bonus', 'bonuses', 'promo', 'promo code', 'промокод', 'WINEX600', 'welcome bonus', '600%', '500%', '500 FS', 'wagering', 'bono', 'código promocional', 'código promo', 'bonus de bienvenue', 'code promo', 'tours gratuits', 'Willkommensbonus', 'Promo-Code', 'Freispiele', 'bonus di benvenuto', 'codice promo', 'xoş gəldin bonusu', 'promo kod', 'oynatma', 'বোনাস', 'প্রোমো কোড', 'স্বাগতম বোনাস'],
+    aliases: ['bonus', 'bonuses', 'promo', 'promo code', 'промокод', 'WINEX600', 'welcome bonus', '600%', '500%', '500 FS', 'wagering', 'bono', 'código promocional', 'código promo', 'bonus de bienvenue', 'code promo', 'tours gratuits', 'Willkommensbonus', 'Promo-Code', 'Freispiele', 'bonus di benvenuto', 'codice promo', 'xoş gəldin bonusu', 'promo kod', 'oynatma', 'বোনাস', 'প্রোমো কোড', 'স্বাগতম বোনাস', 'बोनस', 'प्रोमो कोड', 'वेलकम बोनस'],
   },
   {
     slug: 'payments',
@@ -99,7 +99,7 @@ const PAGES = [
     slug: 'not-working',
     file: 'not-working.html',
     name: '1win Not Working',
-    aliases: ['not working', 'blocked', 'mirror', 'site down', 'does not open', 'не открывается', 'не работает', 'no abre', 'no funciona', 'ne s’ouvre pas', 'ne fonctionne pas', 'öffnet nicht', 'geht nicht', 'не відкривається', 'не працює', 'non si apre', 'non funziona', 'açılmır', 'işləmir', 'খুলছে না', 'খোলে না'],
+    aliases: ['not working', 'blocked', 'mirror', 'site down', 'does not open', 'не открывается', 'не работает', 'no abre', 'no funciona', 'ne s’ouvre pas', 'ne fonctionne pas', 'öffnet nicht', 'geht nicht', 'не відкривається', 'не працює', 'non si apre', 'non funziona', 'açılmır', 'işləmir', 'খুলছে না', 'খোলে না', 'नहीं खुल रहा', 'नहीं खुलती'],
   },
 ];
 
@@ -303,6 +303,31 @@ const BN_PAGES = PAGES.map((page) => {
   };
 });
 
+const HI_NAMES = {
+  'hi-index': '1win',
+  'hi-bonuses': 'बोनस',
+  'hi-payments': 'भुगतान',
+  'hi-crypto-casino': 'क्रिप्टो कैसीनो',
+  'hi-casino': 'कैसीनो',
+  'hi-aviator': 'Aviator',
+  'hi-lucky-jet': 'Lucky Jet',
+  'hi-betting': 'स्पोर्ट्स',
+  'hi-app': 'ऐप',
+  'hi-safety': 'सुरक्षा',
+  'hi-responsible-gambling': 'जिम्मेदार जुआ',
+  'hi-not-working': 'नहीं खुल रहा',
+};
+
+const HI_PAGES = PAGES.map((page) => {
+  const slug = page.slug === 'index' ? 'hi-index' : `hi-${page.slug}`;
+  return {
+    ...page,
+    slug,
+    file: page.slug === 'index' ? 'hi/index.html' : `hi/${page.file}`,
+    name: HI_NAMES[slug] || `${page.name} HI`,
+  };
+});
+
 const SITE_OFFERS = [
   {
     brand: '1win',
@@ -374,6 +399,7 @@ const CTA_PREFIX_UK = 'Реєстрація / вхід: https://1winex.com/go. A
 const CTA_PREFIX_IT = 'Registrati / Accedi: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_AZ = 'Qeydiyyat / giriş: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_BN = 'রেজিস্ট্রেশন / লগইন: https://1winex.com/go. APK: https://1winex.com/apk. ';
+const CTA_PREFIX_HI = 'रजिस्ट्रेशन / लॉगिन: https://1winex.com/go. APK: https://1winex.com/apk. ';
 
 function decodeEntities(s) {
   return s
@@ -410,7 +436,7 @@ function extractMetaDescription(html) {
 }
 
 const entries = [];
-for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES, ...IT_PAGES, ...AZ_PAGES, ...BN_PAGES]) {
+for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES, ...IT_PAGES, ...AZ_PAGES, ...BN_PAGES, ...HI_PAGES]) {
   const filePath = path.join(ROOT, page.file);
   if (!fs.existsSync(filePath)) {
     console.warn(`[corpus] missing ${page.file}`);
@@ -433,6 +459,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                 ? CTA_PREFIX_AZ
               : page.slug.startsWith('bn-')
                 ? CTA_PREFIX_BN
+              : page.slug.startsWith('hi-')
+                ? CTA_PREFIX_HI
           : CTA_PREFIX_EN;
   const text = (prefix + stripHtml(html)).slice(0, MAX_TEXT);
   const title = extractTitle(html) || page.name;
@@ -455,6 +483,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                     ? '/az'
                   : page.slug === 'bn-index'
                     ? '/bn'
+                  : page.slug === 'hi-index'
+                    ? '/hi'
               : page.slug.startsWith('ru-')
                 ? `/ru/${page.slug.slice(3)}`
                 : page.slug.startsWith('es-')
@@ -471,6 +501,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                             ? `/az/${page.slug.slice(3)}`
                           : page.slug.startsWith('bn-')
                             ? `/bn/${page.slug.slice(3)}`
+                          : page.slug.startsWith('hi-')
+                            ? `/hi/${page.slug.slice(3)}`
                       : `/${page.slug}`;
   const link = `${SITE_ORIGIN}${pathUrl === '/' ? '/' : pathUrl}`;
   entries.push({

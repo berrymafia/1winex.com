@@ -7,7 +7,7 @@ export interface StreamHandlers {
   onError: (message: string) => void;
 }
 
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' {
   if (typeof document === 'undefined') return 'en';
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
@@ -18,11 +18,13 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' 
   if (raw.startsWith('it')) return 'it';
   if (raw.startsWith('az')) return 'az';
   if (raw.startsWith('bn')) return 'bn';
+  if (raw.startsWith('hi')) return 'hi';
   return 'en';
 }
 
-function chatErr(en: string, ru: string, es: string, fr: string, de: string, uk: string, it: string, az: string, bn: string): string {
+function chatErr(en: string, ru: string, es: string, fr: string, de: string, uk: string, it: string, az: string, bn: string, hi: string): string {
   const lang = uiLang();
+  if (lang === 'hi') return hi;
   if (lang === 'bn') return bn;
   if (lang === 'az') return az;
   if (lang === 'it') return it;
@@ -55,18 +57,18 @@ export async function streamChat(
       handlers.onDone();
       return;
     }
-    handlers.onError(chatErr('Network error. Please try again.', 'Нет соединения. Попробуйте ещё раз.', 'No hay conexión. Inténtalo de nuevo.', 'Pas de connexion. Réessayez.', 'Netzwerkfehler. Versuch’s nochmal.', 'Немає з\'єднання. Спробуйте ще раз.', 'Nessuna connessione. Riprova.', 'Şəbəkə xətası. Yenidən cəhd edin.', 'নেটওয়ার্ক সমস্যা। আবার চেষ্টা করুন।'));
+    handlers.onError(chatErr('Network error. Please try again.', 'Нет соединения. Попробуйте ещё раз.', 'No hay conexión. Inténtalo de nuevo.', 'Pas de connexion. Réessayez.', 'Netzwerkfehler. Versuch’s nochmal.', 'Немає з\'єднання. Спробуйте ще раз.', 'Nessuna connessione. Riprova.', 'Şəbəkə xətası. Yenidən cəhd edin.', 'নেটওয়ার্ক সমস্যা। আবার চেষ্টা করুন।', 'नेटवर्क समस्या। फिर कोशिश करें।'));
     return;
   }
 
   if (!res.ok) {
-    const msg = chatErr('Request failed. Please try again.', 'Не удалось получить ответ. Попробуйте ещё раз.', 'No llegó la respuesta. Inténtalo de nuevo.', 'Pas de réponse. Réessayez.', 'Anfrage fehlgeschlagen. Versuch’s nochmal.', 'Не вдалося отримати відповідь. Спробуйте ще раз.', 'Richiesta non riuscita. Riprova.', 'Sorğu uğursuz oldu. Yenidən cəhd edin.', 'অনুরোধ ব্যর্থ হয়েছে। আবার চেষ্টা করুন।');
+    const msg = chatErr('Request failed. Please try again.', 'Не удалось получить ответ. Попробуйте ещё раз.', 'No llegó la respuesta. Inténtalo de nuevo.', 'Pas de réponse. Réessayez.', 'Anfrage fehlgeschlagen. Versuch’s nochmal.', 'Не вдалося отримати відповідь. Спробуйте ще раз.', 'Richiesta non riuscita. Riprova.', 'Sorğu uğursuz oldu. Yenidən cəhd edin.', 'অনুরোধ ব্যর্থ হয়েছে। আবার চেষ্টা করুন।', 'अनुरोध विफल रहा। फिर कोशिश करें।');
     handlers.onError(msg);
     return;
   }
 
   if (!res.body) {
-    handlers.onError(chatErr('Empty response from server.', 'Сервер вернул пустой ответ.', 'El servidor no mandó nada.', 'Le serveur n’a rien renvoyé.', 'Leere Antwort vom Server.', 'Сервер повернув порожню відповідь.', 'Il server non ha inviato nulla.', 'Server boş cavab göndərdi.', 'সার্ভার খালি উত্তর পাঠিয়েছে।'));
+    handlers.onError(chatErr('Empty response from server.', 'Сервер вернул пустой ответ.', 'El servidor no mandó nada.', 'Le serveur n’a rien renvoyé.', 'Leere Antwort vom Server.', 'Сервер повернув порожню відповідь.', 'Il server non ha inviato nulla.', 'Server boş cavab göndərdi.', 'সার্ভার খালি উত্তর পাঠিয়েছে।', 'सर्वर ने खाली जवाब भेजा।'));
     return;
   }
 
@@ -99,7 +101,7 @@ export async function streamChat(
             error?: string;
           };
           if (evt.type === 'delta' && evt.delta) handlers.onDelta(evt.delta);
-          else if (evt.type === 'error') handlers.onError(chatErr('Assistant error.', 'Ошибка помощника.', 'Error del asistente.', 'Erreur de l’assistant.', 'Fehler des Assistenten.', 'Помилка помічника.', 'Errore dell’assistente.', 'Köməkçi ilə bağlı xəta baş verdi.', 'সহকারীর সমস্যা।'));
+          else if (evt.type === 'error') handlers.onError(chatErr('Assistant error.', 'Ошибка помощника.', 'Error del asistente.', 'Erreur de l’assistant.', 'Fehler des Assistenten.', 'Помилка помічника.', 'Errore dell’assistente.', 'Köməkçi ilə bağlı xəta baş verdi.', 'সহকারীর সমস্যা।', 'सहायक से जवाब देने में समस्या हुई।'));
           else if (evt.type === 'done') {
             /* final frame may still send [DONE] */
           }
@@ -114,6 +116,6 @@ export async function streamChat(
       handlers.onDone();
       return;
     }
-    handlers.onError(chatErr('Stream interrupted. Please try again.', 'Ответ прервался. Попробуйте ещё раз.', 'Se cortó la respuesta. Inténtalo de nuevo.', 'La réponse s’est interrompue. Réessayez.', 'Antwort unterbrochen. Versuch’s nochmal.', 'Відповідь перервалася. Спробуйте ще раз.', 'Risposta interrotta. Riprova.', 'Cavab kəsildi. Yenidən cəhd edin.', 'উত্তর থেমে গেছে। আবার চেষ্টা করুন।'));
+    handlers.onError(chatErr('Stream interrupted. Please try again.', 'Ответ прервался. Попробуйте ещё раз.', 'Se cortó la respuesta. Inténtalo de nuevo.', 'La réponse s’est interrompue. Réessayez.', 'Antwort unterbrochen. Versuch’s nochmal.', 'Відповідь перервалася. Спробуйте ще раз.', 'Risposta interrotta. Riprova.', 'Cavab kəsildi. Yenidən cəhd edin.', 'উত্তর থেমে গেছে। আবার চেষ্টা করুন।', 'जवाब बीच में रुक गया। फिर कोशिश करें।'));
   }
 }

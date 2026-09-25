@@ -194,6 +194,8 @@ export async function renderMarkdown(md: string): Promise<string> {
                     ? { aria: 'Kodu kopyala', text: 'Kopyala' }
                     : raw.startsWith('bn')
                       ? { aria: 'কোড কপি করুন', text: 'কপি' }
+                      : raw.startsWith('hi')
+                        ? { aria: 'कोड कॉपी करें', text: 'कॉपी' }
                   : { aria: 'Copy code', text: 'Copy' };
         btn.setAttribute('aria-label', copyLabel.aria);
         btn.textContent = copyLabel.text;

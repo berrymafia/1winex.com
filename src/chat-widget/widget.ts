@@ -28,6 +28,7 @@ function formatTime(ts: number): string {
       it: 'it-IT',
       az: 'az-AZ',
       bn: 'bn-BD',
+      hi: 'hi-IN',
     }[uiLang()];
     return new Intl.DateTimeFormat(locale, {
       hour: 'numeric',
@@ -54,7 +55,7 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' {
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
   if (raw.startsWith('ru')) return 'ru';
@@ -64,6 +65,7 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' 
   if (raw.startsWith('it')) return 'it';
   if (raw.startsWith('az')) return 'az';
   if (raw.startsWith('bn')) return 'bn';
+  if (raw.startsWith('hi')) return 'hi';
   return 'en';
 }
 
@@ -251,6 +253,29 @@ function chatCopy() {
       copied: 'কপি হয়েছে',
       copy: 'কপি',
       failed: 'কপি হয়নি',
+    };
+  }
+  if (lang === 'hi') {
+    return {
+      name: 'Anna',
+      subtitle: '1win सहायता गाइड',
+      close: 'चैट बंद करें',
+      placeholder: '1win के बारे में पूछें…',
+      message: 'संदेश',
+      send: 'भेजें',
+      sendMessage: 'संदेश भेजें',
+      open: 'Anna के साथ चैट खोलें',
+      closeAnna: 'Anna के साथ चैट बंद करें',
+      openUnread: 'Anna के साथ चैट — नया संदेश',
+      typing: 'Anna लिख रही हैं',
+      hello: 'नमस्ते, मैं Anna हूँ, आपकी 1win गाइड।',
+      intro:
+        'इस साइट की जानकारी के आधार पर मैं बोनस, गेम, स्पोर्ट्स, भुगतान और ऐप इंस्टॉल करने का तरीका समझा सकती हूँ। आपके अकाउंट तक मेरी पहुँच नहीं है, इसलिए मैं डिपॉजिट या निकासी नहीं कर सकती, लिमिट नहीं बदल सकती और KYC पूरा नहीं कर सकती।',
+      suggests: 'एक आम सवाल चुनें',
+      noResponse: 'जवाब नहीं मिला। फिर कोशिश करें।',
+      copied: 'कॉपी किया गया',
+      copy: 'कॉपी',
+      failed: 'कॉपी नहीं किया जा सका',
     };
   }
   return {

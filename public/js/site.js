@@ -13,6 +13,7 @@
     if (raw.indexOf("it") === 0) return "it";
     if (raw.indexOf("az") === 0) return "az";
     if (raw.indexOf("bn") === 0) return "bn";
+    if (raw.indexOf("hi") === 0) return "hi";
     return "en";
   })();
   var copy = {
@@ -105,6 +106,16 @@
       copied: "কপি হয়েছে",
       aviatorDemo: "Spribe-এর Aviator ডেমো",
       spribeLang: "EN",
+    },
+    hi: {
+      openMenu: "मेनू खोलें",
+      closeMenu: "मेनू बंद करें",
+      cookieLabel: "कुकी सूचना",
+      cookieHtml:
+        '<p>साइट चलाने के लिए हम कुकी और लोकल स्टोरेज का इस्तेमाल करते हैं। अधिक जानकारी के लिए <a href="/hi/responsible-gambling#cookies">कुकी नीति</a> देखें।</p><button type="button" class="cookie-notice__ok">ठीक है</button>',
+      copied: "कॉपी किया गया",
+      aviatorDemo: "Spribe का Aviator डेमो",
+      spribeLang: "HI",
     },
   };
   var t = copy[lang] || copy.en;
@@ -433,12 +444,13 @@
       if (code === "it" || code.indexOf("it-") === 0) return "it";
       if (code === "az" || code.indexOf("az-") === 0) return "az";
       if (code === "bn" || code.indexOf("bn-") === 0) return "bn";
+      if (code === "hi" || code.indexOf("hi-") === 0) return "hi";
       if (code === "en" || code.indexOf("en-") === 0) return "en";
     }
     return "en";
   }
 
-  var LANG_ORDER = ["en", "az", "bn", "fr", "de", "it", "ru", "es", "uk"];
+  var LANG_ORDER = ["en", "az", "bn", "fr", "de", "hi", "it", "ru", "es", "uk"];
 
   function langRank(code) {
     var i = LANG_ORDER.indexOf(String(code || "").toLowerCase());

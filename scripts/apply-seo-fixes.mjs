@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
-const locales = ['ru', 'es', 'fr', 'de', 'uk', 'it', 'az', 'bn'];
+const locales = ['ru', 'es', 'fr', 'de', 'uk', 'it', 'az', 'bn', 'hi'];
 const pageNames = [
   'index.html',
   'safety.html',
@@ -693,6 +693,7 @@ const localeCopyReplacements = {
     ['ভাগ্যনির্ভর খেলায় আসল টাকা হারাতে পারে', 'ভাগ্যনির্ভর খেলায় খেলোয়াড় আসল টাকা হারাতে পারে'],
     ['4 ডিপোজিট', 'চারটি ডিপোজিট'],
   ],
+  hi: [],
 };
 
 function applyCopyReplacements(content, relativePath) {
