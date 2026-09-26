@@ -243,6 +243,31 @@ const ES_PAGES = PAGES.map((page) => {
   };
 });
 
+const ESMX_NAMES = {
+  'esmx-index': '1win',
+  'esmx-bonuses': 'Bonos',
+  'esmx-payments': 'Pagos',
+  'esmx-crypto-casino': 'Casino cripto',
+  'esmx-casino': 'Casino',
+  'esmx-aviator': 'Aviator',
+  'esmx-lucky-jet': 'Lucky Jet',
+  'esmx-betting': 'Deportes',
+  'esmx-app': 'App',
+  'esmx-safety': 'Seguridad',
+  'esmx-responsible-gambling': 'Juego responsable',
+  'esmx-not-working': 'No abre',
+};
+
+const ESMX_PAGES = PAGES.map((page) => {
+  const slug = page.slug === 'index' ? 'esmx-index' : `esmx-${page.slug}`;
+  return {
+    ...page,
+    slug,
+    file: page.slug === 'index' ? 'es-mx/index.html' : `es-mx/${page.file}`,
+    name: ESMX_NAMES[slug] || `${page.name} ES-MX`,
+  };
+});
+
 const FR_PAGES = PAGES.map((page) => {
   const slug = page.slug === 'index' ? 'fr-index' : `fr-${page.slug}`;
   return {
@@ -453,6 +478,7 @@ const SITE_OFFERS = [
 const CTA_PREFIX_EN = 'Register / Login: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_RU = 'Регистрация / вход: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_ES = 'Registrarse / Entrar: https://1winex.com/go. APK: https://1winex.com/apk. ';
+const CTA_PREFIX_ESMX = 'Inicio de sesión / Registro: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_FR = 'Inscription / Connexion : https://1winex.com/go. APK : https://1winex.com/apk. ';
 const CTA_PREFIX_DE = 'Registrieren / Anmelden: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_UK = 'Реєстрація / вхід: https://1winex.com/go. APK: https://1winex.com/apk. ';
@@ -498,7 +524,7 @@ function extractMetaDescription(html) {
 }
 
 const entries = [];
-for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES, ...IT_PAGES, ...AZ_PAGES, ...BN_PAGES, ...HI_PAGES, ...FIL_PAGES, ...EL_PAGES]) {
+for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...ESMX_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES, ...IT_PAGES, ...AZ_PAGES, ...BN_PAGES, ...HI_PAGES, ...FIL_PAGES, ...EL_PAGES]) {
   const filePath = path.join(ROOT, page.file);
   if (!fs.existsSync(filePath)) {
     console.warn(`[corpus] missing ${page.file}`);
@@ -507,6 +533,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
   const html = fs.readFileSync(filePath, 'utf8');
   const prefix = page.slug.startsWith('ru-')
     ? CTA_PREFIX_RU
+    : page.slug.startsWith('esmx-')
+      ? CTA_PREFIX_ESMX
     : page.slug.startsWith('es-')
       ? CTA_PREFIX_ES
       : page.slug.startsWith('fr-')
@@ -537,6 +565,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
         ? '/ru'
         : page.slug === 'es-index'
           ? '/es'
+          : page.slug === 'esmx-index'
+            ? '/es-mx'
           : page.slug === 'fr-index'
             ? '/fr'
             : page.slug === 'de-index'
@@ -557,6 +587,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                     ? '/el'
               : page.slug.startsWith('ru-')
                 ? `/ru/${page.slug.slice(3)}`
+                : page.slug.startsWith('esmx-')
+                  ? `/es-mx/${page.slug.slice(5)}`
                 : page.slug.startsWith('es-')
                   ? `/es/${page.slug.slice(3)}`
                   : page.slug.startsWith('fr-')

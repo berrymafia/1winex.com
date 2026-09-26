@@ -61,6 +61,9 @@ AddType application/xml .xml
   RewriteRule ^ru/games(\.html)?/?$ https://1winex.com/ru/casino [R=301,L,NE]
   RewriteRule ^ru/sports(\.html)?/?$ https://1winex.com/ru/betting [R=301,L,NE]
   RewriteRule ^ru/mobile(\.html)?/?$ https://1winex.com/ru/app [R=301,L,NE]
+  RewriteRule ^es-mx/games(\.html)?/?$ https://1winex.com/es-mx/casino [R=301,L,NE]
+  RewriteRule ^es-mx/sports(\.html)?/?$ https://1winex.com/es-mx/betting [R=301,L,NE]
+  RewriteRule ^es-mx/mobile(\.html)?/?$ https://1winex.com/es-mx/app [R=301,L,NE]
   RewriteRule ^es/games(\.html)?/?$ https://1winex.com/es/casino [R=301,L,NE]
   RewriteRule ^es/sports(\.html)?/?$ https://1winex.com/es/betting [R=301,L,NE]
   RewriteRule ^es/mobile(\.html)?/?$ https://1winex.com/es/app [R=301,L,NE]
@@ -98,6 +101,8 @@ AddType application/xml .xml
   # Locale folders are real directories; keep the public URLs without a trailing slash
   RewriteRule ^ru/$ https://1winex.com/ru [R=301,L,NE]
   RewriteRule ^ru$ ru/index.html [L]
+  RewriteRule ^es-mx/$ https://1winex.com/es-mx [R=301,L,NE]
+  RewriteRule ^es-mx$ es-mx/index.html [L]
   RewriteRule ^es/$ https://1winex.com/es [R=301,L,NE]
   RewriteRule ^es$ es/index.html [L]
   RewriteRule ^fr/$ https://1winex.com/fr [R=301,L,NE]
@@ -125,8 +130,8 @@ AddType application/xml .xml
   RewriteRule ^(.+)/$ https://1winex.com/$1 [R=301,L,NE]
 
   # Redirect root and localized index.html URLs to their canonical roots
-  RewriteCond %{THE_REQUEST} \s/+((?:ru|es|fr|de|uk|it|az|bn|hi|fil|el)/)?index(?:\.html)?[\s?] [NC]
-  RewriteRule ^(?:(ru|es|fr|de|uk|it|az|bn|hi|fil|el)/)?index(?:\.html)?$ https://1winex.com/$1 [R=301,L,NE]
+  RewriteCond %{THE_REQUEST} \s/+((?:es-mx|ru|es|fr|de|uk|it|az|bn|hi|fil|el)/)?index(?:\.html)?[\s?] [NC]
+  RewriteRule ^(?:(es-mx|ru|es|fr|de|uk|it|az|bn|hi|fil|el)/)?index(?:\.html)?$ https://1winex.com/$1 [R=301,L,NE]
 
   # Redirect /file.html to the canonical extensionless HTTPS URL
   RewriteCond %{THE_REQUEST} \s/+([^.]+)\.html[\s?] [NC]
@@ -160,4 +165,9 @@ ErrorDocument 404 /404.html
 # Keep a real 404 status while showing the Greek error page for /el requests.
 <If "%{REQUEST_URI} =~ m#^/el(?:/|$)#">
   ErrorDocument 404 /el/404.html
+</If>
+
+# Keep a real 404 status while showing the Mexican Spanish error page for /es-mx requests.
+<If "%{REQUEST_URI} =~ m#^/es-mx(?:/|$)#">
+  ErrorDocument 404 /es-mx/404.html
 </If>

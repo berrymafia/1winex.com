@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
-const locales = ['ru', 'es', 'fr', 'de', 'uk', 'it', 'az', 'bn', 'hi', 'fil', 'el'];
+const locales = ['ru', 'es', 'es-mx', 'fr', 'de', 'uk', 'it', 'az', 'bn', 'hi', 'fil', 'el'];
 const slugs = [
   '',
   'safety',
@@ -64,6 +64,7 @@ const bonusTitleKeywords = {
   ru: 'Промокод',
   uk: 'Промокод',
   es: 'Código promo',
+  'es-mx': 'Código promo',
   fr: 'Code promo',
   de: 'Promo-Code',
   it: 'Codice promo',
@@ -81,7 +82,7 @@ assert(sitemap === publicSitemap, 'Root and public sitemap.xml differ');
 const urlBlocks = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(
   (match) => match[1],
 );
-assert(urlBlocks.length === 144, `Expected 144 sitemap URLs, found ${urlBlocks.length}`);
+assert(urlBlocks.length === 156, `Expected 156 sitemap URLs, found ${urlBlocks.length}`);
 
 const sitemapUrls = new Set();
 for (const block of urlBlocks) {
@@ -95,7 +96,7 @@ for (const block of urlBlocks) {
       /<xhtml:link rel="alternate" hreflang="([^"]+)" href="([^"]+)"\/>/g,
     ),
   ].map((match) => ({ language: match[1], href: match[2] }));
-  assert(alternates.length === 13, `${loc} has ${alternates.length} alternates`);
+  assert(alternates.length === 14, `${loc} has ${alternates.length} alternates`);
 
   for (const { language, href } of alternates) {
     const pathname = new URL(href).pathname;
@@ -121,6 +122,12 @@ for (const block of urlBlocks) {
       assert(
         pathname === '/fil' || pathname.startsWith('/fil/'),
         `${loc} maps hreflang=fil to ${href}`,
+      );
+    }
+    if (language === 'es-MX') {
+      assert(
+        pathname === '/es-mx' || pathname.startsWith('/es-mx/'),
+        `${loc} maps hreflang=es-MX to ${href}`,
       );
     }
     if (language === 'el') {
@@ -153,8 +160,9 @@ for (const url of expectedUrls) {
         ? `${parts[0]}/index.html`
         : `${parts.join('/')}.html`;
   const html = await readFile(resolve(root, relativePath), 'utf8');
-  const expectedLanguage =
+  const localeKey =
     parts.length > 0 && locales.includes(parts[0]) ? parts[0] : 'en';
+  const expectedLanguage = localeKey === 'es-mx' ? 'es-MX' : localeKey;
 
   assert(
     html.includes(`<html lang="${expectedLanguage}">`),
@@ -177,8 +185,8 @@ for (const url of expectedUrls) {
     `${relativePath} must have exactly one H1`,
   );
   assert(
-    (html.match(/<link rel="alternate" hreflang=/g) ?? []).length === 13,
-    `${relativePath} must have 13 hreflang links`,
+    (html.match(/<link rel="alternate" hreflang=/g) ?? []).length === 14,
+    `${relativePath} must have 14 hreflang links`,
   );
   assert(
     html.includes(
@@ -203,7 +211,7 @@ for (const url of expectedUrls) {
   const title = html.match(/<title>([\s\S]*?)<\/title>/)?.[1];
   if (relativePath === 'bonuses.html' || relativePath.endsWith('/bonuses.html')) {
     assert(
-      title?.includes(bonusTitleKeywords[expectedLanguage]),
+      title?.includes(bonusTitleKeywords[localeKey]),
       `${relativePath} title is missing the localized promo-code keyword`,
     );
     assert(
@@ -398,6 +406,10 @@ assert(
   '.htaccess is missing the localized Greek ErrorDocument',
 );
 assert(
+  htaccess.includes('ErrorDocument 404 /es-mx/404.html'),
+  '.htaccess is missing the localized Mexican Spanish ErrorDocument',
+);
+assert(
   !/RewriteRule \^ (?:ru|es|fr|de|uk|it|az|bn|hi|fil|el)\/404\.html/.test(htaccess),
   '.htaccess still contains localized soft-404 rewrites',
 );
@@ -428,5 +440,5 @@ if (failures.length > 0) {
 }
 
 console.log(
-  `SEO validation passed: ${expectedUrls.size} URLs, 12 locales, 144 sitemap entries, ${imagesChecked} images (${decorativeImages} decorative).`,
+  `SEO validation passed: ${expectedUrls.size} URLs, 13 locales, 156 sitemap entries, ${imagesChecked} images (${decorativeImages} decorative).`,
 );

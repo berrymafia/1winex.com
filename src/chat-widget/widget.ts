@@ -22,6 +22,7 @@ function formatTime(ts: number): string {
       en: 'en',
       ru: 'ru-RU',
       es: 'es-ES',
+      'es-mx': 'es-MX',
       fr: 'fr-FR',
       de: 'de-DE',
       uk: 'uk-UA',
@@ -57,10 +58,11 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' | 'el' {
+function uiLang(): 'en' | 'ru' | 'es-mx' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' | 'el' {
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
   if (raw.startsWith('ru')) return 'ru';
+  if (raw.startsWith('es-mx')) return 'es-mx';
   if (raw.startsWith('es')) return 'es';
   if (raw.startsWith('fr')) return 'fr';
   if (raw.startsWith('de')) return 'de';
@@ -98,7 +100,7 @@ function chatCopy() {
       failed: 'Не скопировано',
     };
   }
-  if (lang === 'es') {
+  if (lang === 'es-mx' || lang === 'es') {
     return {
       name: 'Anna',
       subtitle: 'Asistente informativa de 1win',

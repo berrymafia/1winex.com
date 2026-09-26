@@ -1,8 +1,9 @@
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' | 'el' {
+function uiLang(): 'en' | 'ru' | 'es-mx' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' | 'el' {
   if (typeof document === 'undefined') return 'en';
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
   if (raw.startsWith('ru')) return 'ru';
+  if (raw.startsWith('es-mx')) return 'es-mx';
   if (raw.startsWith('es')) return 'es';
   if (raw.startsWith('fr')) return 'fr';
   if (raw.startsWith('de')) return 'de';
@@ -367,7 +368,7 @@ export function pageSlugFromLocation(pathname = location.pathname): string {
   const parts = p.split('/').filter(Boolean);
   if (!parts.length) return 'index';
   let i = 0;
-  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it' || parts[0] === 'az' || parts[0] === 'bn' || parts[0] === 'hi' || parts[0] === 'fil' || parts[0] === 'el') i = 1;
+  if (parts[0] === 'es-mx' || parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it' || parts[0] === 'az' || parts[0] === 'bn' || parts[0] === 'hi' || parts[0] === 'fil' || parts[0] === 'el') i = 1;
   if (!parts[i] || parts[i] === 'index') return 'index';
   let slug = parts[i].replace(/\.html$/i, '');
   if (slug === 'betting') return 'sports';
@@ -383,7 +384,8 @@ export function getSuggestedQuestions(
   pathname = typeof location !== 'undefined' ? location.pathname : '/'
 ): string[] {
   const slug = pageSlugFromLocation(pathname);
-  const lang = uiLang();
+  const detected = uiLang();
+  const lang = detected === 'es-mx' ? 'es' : detected;
 
   if (lang === 'hi') {
     return uniqueSuggestions([...(HI_SUGGESTIONS[slug] ?? GLOBAL_SUGGESTIONS_HI)]);

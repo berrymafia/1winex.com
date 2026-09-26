@@ -182,7 +182,7 @@ export async function renderMarkdown(md: string): Promise<string> {
           ? { aria: 'Копіювати код', text: 'Копіювати' }
           : raw.startsWith('ru')
           ? { aria: 'Копировать код', text: 'Копировать' }
-          : raw.startsWith('es')
+          : raw.startsWith('es-mx') || raw.startsWith('es')
             ? { aria: 'Copiar código', text: 'Copiar' }
             : raw.startsWith('fr')
               ? { aria: 'Copier le code', text: 'Copier' }

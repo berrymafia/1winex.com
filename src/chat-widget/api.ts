@@ -7,11 +7,12 @@ export interface StreamHandlers {
   onError: (message: string) => void;
 }
 
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' | 'el' {
+function uiLang(): 'en' | 'ru' | 'es-mx' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' | 'el' {
   if (typeof document === 'undefined') return 'en';
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
   if (raw.startsWith('ru')) return 'ru';
+  if (raw.startsWith('es-mx')) return 'es-mx';
   if (raw.startsWith('es')) return 'es';
   if (raw.startsWith('fr')) return 'fr';
   if (raw.startsWith('de')) return 'de';
@@ -26,17 +27,18 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' 
 
 function chatErr(en: string, ru: string, es: string, fr: string, de: string, uk: string, it: string, az: string, bn: string, hi: string, fil: string, el: string): string {
   const lang = uiLang();
-  if (lang === 'el') return el;
-  if (lang === 'fil') return fil;
-  if (lang === 'hi') return hi;
-  if (lang === 'bn') return bn;
-  if (lang === 'az') return az;
-  if (lang === 'it') return it;
-  if (lang === 'uk') return uk;
-  if (lang === 'de') return de;
-  if (lang === 'fr') return fr;
-  if (lang === 'es') return es;
-  if (lang === 'ru') return ru;
+  const copy = lang === 'es-mx' ? 'es' : lang;
+  if (copy === 'el') return el;
+  if (copy === 'fil') return fil;
+  if (copy === 'hi') return hi;
+  if (copy === 'bn') return bn;
+  if (copy === 'az') return az;
+  if (copy === 'it') return it;
+  if (copy === 'uk') return uk;
+  if (copy === 'de') return de;
+  if (copy === 'fr') return fr;
+  if (copy === 'es') return es;
+  if (copy === 'ru') return ru;
   return en;
 }
 

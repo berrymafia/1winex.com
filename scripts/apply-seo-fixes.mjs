@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
-const locales = ['ru', 'es', 'fr', 'de', 'uk', 'it', 'az', 'bn', 'hi', 'fil', 'el'];
+const locales = ['ru', 'es', 'es-mx', 'fr', 'de', 'uk', 'it', 'az', 'bn', 'hi', 'fil', 'el'];
 const pageNames = [
   'index.html',
   'safety.html',

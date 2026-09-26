@@ -7,6 +7,7 @@
     var raw = (document.documentElement.lang || "").toLowerCase();
     if (raw.indexOf("ru") === 0) return "ru";
     if (raw.indexOf("uk") === 0) return "uk";
+    if (raw.indexOf("es-mx") === 0) return "es-mx";
     if (raw.indexOf("es") === 0) return "es";
     if (raw.indexOf("fr") === 0) return "fr";
     if (raw.indexOf("de") === 0) return "de";
@@ -45,6 +46,16 @@
       cookieLabel: "Aviso de cookies",
       cookieHtml:
         '<p>Usamos cookies y almacenamiento local para que el sitio funcione. Más información en la <a href="/es/responsible-gambling#cookies">política de cookies</a>.</p><button type="button" class="cookie-notice__ok">Entendido</button>',
+      copied: "Copiado",
+      aviatorDemo: "Demo de Aviator por Spribe",
+      spribeLang: "ES",
+    },
+    "es-mx": {
+      openMenu: "Abrir menú",
+      closeMenu: "Cerrar menú",
+      cookieLabel: "Aviso de cookies",
+      cookieHtml:
+        '<p>Usamos cookies y almacenamiento local para que el sitio funcione. Más información en la <a href="/es-mx/responsible-gambling#cookies">política de cookies</a>.</p><button type="button" class="cookie-notice__ok">Entendido</button>',
       copied: "Copiado",
       aviatorDemo: "Demo de Aviator por Spribe",
       spribeLang: "ES",
@@ -458,6 +469,7 @@
     var code;
     for (i = 0; i < list.length; i++) {
       code = String(list[i] || "").toLowerCase();
+      if (code === "es-mx" || code.indexOf("es-mx") === 0) return "es-mx";
       if (code === "es" || code.indexOf("es-") === 0) return "es";
       if (code === "uk" || code.indexOf("uk-") === 0) return "uk";
       if (code === "ru" || code.indexOf("ru-") === 0) return "ru";
@@ -474,7 +486,7 @@
     return "en";
   }
 
-  var LANG_ORDER = ["en", "az", "bn", "fr", "de", "el", "hi", "it", "ru", "es", "fil", "uk"];
+  var LANG_ORDER = ["en", "az", "bn", "fr", "de", "el", "hi", "it", "ru", "es", "es-mx", "fil", "uk"];
 
   function langRank(code) {
     var i = LANG_ORDER.indexOf(String(code || "").toLowerCase());

@@ -71,6 +71,35 @@ function htmlRewritePlugin() {
           res.end();
           return;
         }
+        if (url === '/es-mx/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/es-mx');
+          res.end();
+          return;
+        }
+        if (url === '/es-mx') {
+          req.url = '/es-mx/index.html';
+          next();
+          return;
+        }
+        if (url === '/es-mx/games' || url === '/es-mx/games/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/es-mx/casino');
+          res.end();
+          return;
+        }
+        if (url === '/es-mx/sports' || url === '/es-mx/sports/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/es-mx/betting');
+          res.end();
+          return;
+        }
+        if (url === '/es-mx/mobile' || url === '/es-mx/mobile/') {
+          res.statusCode = 301;
+          res.setHeader('Location', '/es-mx/app');
+          res.end();
+          return;
+        }
         if (url === '/es/') {
           res.statusCode = 301;
           res.setHeader('Location', '/es');
@@ -372,6 +401,11 @@ function htmlRewritePlugin() {
           } else if (url.startsWith('/ru/')) {
             req.url = '/ru/404.html';
             res.statusCode = 404;
+          } else if (url.startsWith('/es-mx/')) {
+            res.statusCode = 404;
+            res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            res.end(readFileSync(resolve(__dirname, 'es-mx/404.html'), 'utf8'));
+            return;
           } else if (url.startsWith('/es/')) {
             req.url = '/es/404.html';
             res.statusCode = 404;
@@ -588,6 +622,19 @@ export default defineConfig({
         'el-responsible-gambling': resolve(__dirname, 'el/responsible-gambling.html'),
         'el-not-working': resolve(__dirname, 'el/not-working.html'),
         'el-404': resolve(__dirname, 'el/404.html'),
+        'es-mx-main': resolve(__dirname, 'es-mx/index.html'),
+        'es-mx-safety': resolve(__dirname, 'es-mx/safety.html'),
+        'es-mx-bonuses': resolve(__dirname, 'es-mx/bonuses.html'),
+        'es-mx-casino': resolve(__dirname, 'es-mx/casino.html'),
+        'es-mx-aviator': resolve(__dirname, 'es-mx/aviator.html'),
+        'es-mx-lucky-jet': resolve(__dirname, 'es-mx/lucky-jet.html'),
+        'es-mx-betting': resolve(__dirname, 'es-mx/betting.html'),
+        'es-mx-payments': resolve(__dirname, 'es-mx/payments.html'),
+        'es-mx-crypto-casino': resolve(__dirname, 'es-mx/crypto-casino.html'),
+        'es-mx-app': resolve(__dirname, 'es-mx/app.html'),
+        'es-mx-responsible-gambling': resolve(__dirname, 'es-mx/responsible-gambling.html'),
+        'es-mx-not-working': resolve(__dirname, 'es-mx/not-working.html'),
+        'es-mx-404': resolve(__dirname, 'es-mx/404.html'),
       },
     },
   },
