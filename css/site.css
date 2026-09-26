@@ -2949,22 +2949,50 @@ a.page-card:hover {
 }
 
 .welcome-card__claim {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 44px;
+  padding: 0 10px;
   border-radius: 12px;
-  background: #fff;
-  color: #000;
-  font-size: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #f2f4f7 100%);
+  color: #16181d;
+  font-size: 13px;
   font-weight: 600;
-  line-height: 20px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 6px 14px rgba(0, 0, 0, 0.16);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
 }
 
 .welcome-card__claim:hover {
-  color: #000;
-  background: #f3f5f8;
+  color: #16181d;
+  background: #fff;
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-card__claim:active {
+  color: #16181d;
+  background: #e8ebf0;
+  transform: translateY(0);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-card__claim:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .welcome-card__lock {
