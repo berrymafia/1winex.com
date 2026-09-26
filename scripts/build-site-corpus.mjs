@@ -353,6 +353,31 @@ const FIL_PAGES = PAGES.map((page) => {
   };
 });
 
+const EL_NAMES = {
+  'el-index': '1win',
+  'el-bonuses': 'Μπόνους',
+  'el-payments': 'Πληρωμές',
+  'el-crypto-casino': 'Καζίνο crypto',
+  'el-casino': 'Καζίνο',
+  'el-aviator': 'Aviator',
+  'el-lucky-jet': 'Lucky Jet',
+  'el-betting': 'Στοίχημα',
+  'el-app': 'Εφαρμογή',
+  'el-safety': 'Ασφάλεια',
+  'el-responsible-gambling': 'Υπεύθυνο παιχνίδι',
+  'el-not-working': 'Δεν ανοίγει',
+};
+
+const EL_PAGES = PAGES.map((page) => {
+  const slug = page.slug === 'index' ? 'el-index' : `el-${page.slug}`;
+  return {
+    ...page,
+    slug,
+    file: page.slug === 'index' ? 'el/index.html' : `el/${page.file}`,
+    name: EL_NAMES[slug] || `${page.name} EL`,
+  };
+});
+
 const SITE_OFFERS = [
   {
     brand: '1win',
@@ -408,6 +433,13 @@ const SITE_OFFERS = [
       'rehistrasyon',
       'kodigong promo',
       'welcome bonus',
+      'μπόνους',
+      'προσφορά καλωσορίσματος',
+      'κωδικός προσφοράς',
+      'εγγραφή',
+      'είσοδος',
+      'δωρεάν περιστροφές',
+      'κατάθεση',
     ],
   },
   {
@@ -415,7 +447,7 @@ const SITE_OFFERS = [
     url: 'https://1winex.com/apk',
     label: 'Download APK',
     kind: 'apk',
-    aliases: ['apk', 'android', 'download apk', 'скачать apk', 'приложение', 'app', 'descargar apk', 'télécharger apk', 'APK herunterladen', 'завантажити apk', 'додаток', 'scarica apk', 'tətbiq', 'yüklə apk', 'android apk', 'অ্যাপ', 'APK ডাউনলোড'],
+    aliases: ['apk', 'android', 'download apk', 'скачать apk', 'приложение', 'app', 'descargar apk', 'télécharger apk', 'APK herunterladen', 'завантажити apk', 'додаток', 'scarica apk', 'tətbiq', 'yüklə apk', 'android apk', 'অ্যাপ', 'APK ডাউনলোড', 'εφαρμογή', 'λήψη apk', 'λήψη εφαρμογής', 'κατεβάστε apk', 'εγκατάσταση apk'],
   },
 ];
 const CTA_PREFIX_EN = 'Register / Login: https://1winex.com/go. APK: https://1winex.com/apk. ';
@@ -429,6 +461,7 @@ const CTA_PREFIX_AZ = 'Qeydiyyat / giriş: https://1winex.com/go. APK: https://1
 const CTA_PREFIX_BN = 'রেজিস্ট্রেশন / লগইন: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_HI = 'रजिस्ट्रेशन / लॉगिन: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_FIL = 'Rehistrasyon / Login: https://1winex.com/go. APK: https://1winex.com/apk. ';
+const CTA_PREFIX_EL = 'Εγγραφή / Είσοδος: https://1winex.com/go. APK: https://1winex.com/apk. ';
 
 function decodeEntities(s) {
   return s
@@ -465,7 +498,7 @@ function extractMetaDescription(html) {
 }
 
 const entries = [];
-for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES, ...IT_PAGES, ...AZ_PAGES, ...BN_PAGES, ...HI_PAGES, ...FIL_PAGES]) {
+for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES, ...IT_PAGES, ...AZ_PAGES, ...BN_PAGES, ...HI_PAGES, ...FIL_PAGES, ...EL_PAGES]) {
   const filePath = path.join(ROOT, page.file);
   if (!fs.existsSync(filePath)) {
     console.warn(`[corpus] missing ${page.file}`);
@@ -492,6 +525,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                 ? CTA_PREFIX_HI
               : page.slug.startsWith('fil-')
                 ? CTA_PREFIX_FIL
+              : page.slug.startsWith('el-')
+                ? CTA_PREFIX_EL
           : CTA_PREFIX_EN;
   const text = (prefix + stripHtml(html)).slice(0, MAX_TEXT);
   const title = extractTitle(html) || page.name;
@@ -518,6 +553,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                     ? '/hi'
                   : page.slug === 'fil-index'
                     ? '/fil'
+                  : page.slug === 'el-index'
+                    ? '/el'
               : page.slug.startsWith('ru-')
                 ? `/ru/${page.slug.slice(3)}`
                 : page.slug.startsWith('es-')
@@ -538,6 +575,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                             ? `/hi/${page.slug.slice(3)}`
                           : page.slug.startsWith('fil-')
                             ? `/fil/${page.slug.slice(4)}`
+                          : page.slug.startsWith('el-')
+                            ? `/el/${page.slug.slice(3)}`
                       : `/${page.slug}`;
   const link = `${SITE_ORIGIN}${pathUrl === '/' ? '/' : pathUrl}`;
   entries.push({

@@ -88,6 +88,9 @@ AddType application/xml .xml
   RewriteRule ^fil/games(\.html)?/?$ https://1winex.com/fil/casino [R=301,L,NE]
   RewriteRule ^fil/sports(\.html)?/?$ https://1winex.com/fil/betting [R=301,L,NE]
   RewriteRule ^fil/mobile(\.html)?/?$ https://1winex.com/fil/app [R=301,L,NE]
+  RewriteRule ^el/games(\.html)?/?$ https://1winex.com/el/casino [R=301,L,NE]
+  RewriteRule ^el/sports(\.html)?/?$ https://1winex.com/el/betting [R=301,L,NE]
+  RewriteRule ^el/mobile(\.html)?/?$ https://1winex.com/el/app [R=301,L,NE]
 
   # Chat API is Node — never map /api/chat to a .html 404
   RewriteRule ^api/ - [L]
@@ -113,6 +116,8 @@ AddType application/xml .xml
   RewriteRule ^hi$ hi/index.html [L]
   RewriteRule ^fil/$ https://1winex.com/fil [R=301,L,NE]
   RewriteRule ^fil$ fil/index.html [L]
+  RewriteRule ^el/$ https://1winex.com/el [R=301,L,NE]
+  RewriteRule ^el$ el/index.html [L]
 
   # Trailing slash on a file URL (/casino/) makes relative ./images and ./css
   # resolve to /casino/images — 404. Keep real directories as-is.
@@ -120,8 +125,8 @@ AddType application/xml .xml
   RewriteRule ^(.+)/$ https://1winex.com/$1 [R=301,L,NE]
 
   # Redirect root and localized index.html URLs to their canonical roots
-  RewriteCond %{THE_REQUEST} \s/+((?:ru|es|fr|de|uk|it|az|bn|hi|fil)/)?index(?:\.html)?[\s?] [NC]
-  RewriteRule ^(?:(ru|es|fr|de|uk|it|az|bn|hi|fil)/)?index(?:\.html)?$ https://1winex.com/$1 [R=301,L,NE]
+  RewriteCond %{THE_REQUEST} \s/+((?:ru|es|fr|de|uk|it|az|bn|hi|fil|el)/)?index(?:\.html)?[\s?] [NC]
+  RewriteRule ^(?:(ru|es|fr|de|uk|it|az|bn|hi|fil|el)/)?index(?:\.html)?$ https://1winex.com/$1 [R=301,L,NE]
 
   # Redirect /file.html to the canonical extensionless HTTPS URL
   RewriteCond %{THE_REQUEST} \s/+([^.]+)\.html[\s?] [NC]
@@ -150,4 +155,9 @@ ErrorDocument 404 /404.html
 # Keep a real 404 status while showing the Tagalog error page for /fil requests.
 <If "%{REQUEST_URI} =~ m#^/fil(?:/|$)#">
   ErrorDocument 404 /fil/404.html
+</If>
+
+# Keep a real 404 status while showing the Greek error page for /el requests.
+<If "%{REQUEST_URI} =~ m#^/el(?:/|$)#">
+  ErrorDocument 404 /el/404.html
 </If>

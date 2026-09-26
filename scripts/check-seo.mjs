@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
-const locales = ['ru', 'es', 'fr', 'de', 'uk', 'it', 'az', 'bn', 'hi', 'fil'];
+const locales = ['ru', 'es', 'fr', 'de', 'uk', 'it', 'az', 'bn', 'hi', 'fil', 'el'];
 const slugs = [
   '',
   'safety',
@@ -71,6 +71,7 @@ const bonusTitleKeywords = {
   bn: 'প্রোমো কোড',
   hi: 'प्रोमो कोड',
   fil: 'Kodigong promo',
+  el: 'Κωδικός προσφοράς',
 };
 
 const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8');
@@ -80,7 +81,7 @@ assert(sitemap === publicSitemap, 'Root and public sitemap.xml differ');
 const urlBlocks = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(
   (match) => match[1],
 );
-assert(urlBlocks.length === 132, `Expected 132 sitemap URLs, found ${urlBlocks.length}`);
+assert(urlBlocks.length === 144, `Expected 144 sitemap URLs, found ${urlBlocks.length}`);
 
 const sitemapUrls = new Set();
 for (const block of urlBlocks) {
@@ -94,7 +95,7 @@ for (const block of urlBlocks) {
       /<xhtml:link rel="alternate" hreflang="([^"]+)" href="([^"]+)"\/>/g,
     ),
   ].map((match) => ({ language: match[1], href: match[2] }));
-  assert(alternates.length === 12, `${loc} has ${alternates.length} alternates`);
+  assert(alternates.length === 13, `${loc} has ${alternates.length} alternates`);
 
   for (const { language, href } of alternates) {
     const pathname = new URL(href).pathname;
@@ -120,6 +121,12 @@ for (const block of urlBlocks) {
       assert(
         pathname === '/fil' || pathname.startsWith('/fil/'),
         `${loc} maps hreflang=fil to ${href}`,
+      );
+    }
+    if (language === 'el') {
+      assert(
+        pathname === '/el' || pathname.startsWith('/el/'),
+        `${loc} maps hreflang=el to ${href}`,
       );
     }
   }
@@ -170,8 +177,8 @@ for (const url of expectedUrls) {
     `${relativePath} must have exactly one H1`,
   );
   assert(
-    (html.match(/<link rel="alternate" hreflang=/g) ?? []).length === 12,
-    `${relativePath} must have 12 hreflang links`,
+    (html.match(/<link rel="alternate" hreflang=/g) ?? []).length === 13,
+    `${relativePath} must have 13 hreflang links`,
   );
   assert(
     html.includes(
@@ -387,7 +394,11 @@ assert(
   '.htaccess is missing the localized Tagalog ErrorDocument',
 );
 assert(
-  !/RewriteRule \^ (?:ru|es|fr|de|uk|it|az|bn|hi|fil)\/404\.html/.test(htaccess),
+  htaccess.includes('ErrorDocument 404 /el/404.html'),
+  '.htaccess is missing the localized Greek ErrorDocument',
+);
+assert(
+  !/RewriteRule \^ (?:ru|es|fr|de|uk|it|az|bn|hi|fil|el)\/404\.html/.test(htaccess),
   '.htaccess still contains localized soft-404 rewrites',
 );
 
@@ -417,5 +428,5 @@ if (failures.length > 0) {
 }
 
 console.log(
-  `SEO validation passed: ${expectedUrls.size} URLs, 11 locales, 132 sitemap entries, ${imagesChecked} images (${decorativeImages} decorative).`,
+  `SEO validation passed: ${expectedUrls.size} URLs, 12 locales, 144 sitemap entries, ${imagesChecked} images (${decorativeImages} decorative).`,
 );

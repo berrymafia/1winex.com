@@ -30,6 +30,7 @@ function formatTime(ts: number): string {
       bn: 'bn-BD',
       hi: 'hi-IN',
       fil: 'fil-PH',
+      el: 'el-GR',
     }[uiLang()];
     return new Intl.DateTimeFormat(locale, {
       hour: 'numeric',
@@ -56,7 +57,7 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' | 'el' {
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
   if (raw.startsWith('ru')) return 'ru';
@@ -68,6 +69,7 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' 
   if (raw.startsWith('bn')) return 'bn';
   if (raw.startsWith('hi')) return 'hi';
   if (raw.startsWith('fil') || raw.startsWith('tl')) return 'fil';
+  if (raw.startsWith('el')) return 'el';
   return 'en';
 }
 
@@ -301,6 +303,29 @@ function chatCopy() {
       copied: 'Nakopya',
       copy: 'Kopyahin',
       failed: 'Hindi nakopya',
+    };
+  }
+  if (lang === 'el') {
+    return {
+      name: 'Anna',
+      subtitle: 'Οδηγός πληροφοριών της 1win',
+      close: 'Κλείσιμο συνομιλίας',
+      placeholder: 'Ρωτήστε για την 1win…',
+      message: 'Μήνυμα',
+      send: 'Αποστολή',
+      sendMessage: 'Αποστολή μηνύματος',
+      open: 'Άνοιγμα συνομιλίας με την Anna',
+      closeAnna: 'Κλείσιμο συνομιλίας με την Anna',
+      openUnread: 'Άνοιγμα συνομιλίας με την Anna — νέο μήνυμα',
+      typing: 'Η Anna γράφει',
+      hello: 'Γεια σας, είμαι η Anna, ο οδηγός σας για την 1win.',
+      intro:
+        'Μπορώ να εξηγήσω μπόνους, παιχνίδια, στοίχημα, πληρωμές και εγκατάσταση της εφαρμογής με βάση αυτόν τον ιστότοπο. Δεν έχω πρόσβαση στον λογαριασμό σας, οπότε δεν μπορώ να κάνω καταθέσεις ή αναλήψεις, να αλλάξω όρια ή να διαχειριστώ το KYC.',
+      suggests: 'Επιλέξτε μια συχνή ερώτηση',
+      noResponse: 'Δεν ελήφθη απάντηση. Δοκιμάστε ξανά.',
+      copied: 'Αντιγράφηκε',
+      copy: 'Αντιγραφή',
+      failed: 'Δεν αντιγράφηκε',
     };
   }
   return {

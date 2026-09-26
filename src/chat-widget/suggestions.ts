@@ -1,4 +1,4 @@
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' | 'el' {
   if (typeof document === 'undefined') return 'en';
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
@@ -11,11 +11,12 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' 
   if (raw.startsWith('bn')) return 'bn';
   if (raw.startsWith('hi')) return 'hi';
   if (raw.startsWith('fil') || raw.startsWith('tl')) return 'fil';
+  if (raw.startsWith('el')) return 'el';
   return 'en';
 }
 
 function pick<T>(
-  lang: 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil',
+  lang: 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' | 'el',
   en: T,
   ru: T,
   es: T,
@@ -112,6 +113,13 @@ const GLOBAL_SUGGESTIONS_FIL = [
   'Ano ang kasama sa WINEX600?',
   'Gaano katagal ang pag-withdraw?',
   'Paano i-install ang app?',
+] as const;
+
+const GLOBAL_SUGGESTIONS_EL = [
+  'Τι άδεια έχει η 1win;',
+  'Τι περιλαμβάνει το WINEX600;',
+  'Πόσο χρόνο παίρνει η ανάληψη;',
+  'Πώς εγκαθιστώ την εφαρμογή;',
 ] as const;
 
 const HI_SUGGESTIONS: Record<string, readonly string[]> = {
@@ -264,6 +272,81 @@ const FIL_SUGGESTIONS: Record<string, readonly string[]> = {
   ],
 };
 
+const EL_SUGGESTIONS: Record<string, readonly string[]> = {
+  bonuses: [
+    'Τι περιλαμβάνει το WINEX600;',
+    'Ποιοι είναι οι όροι στοιχήματος;',
+    'Πότε βάζω τον WINEX600;',
+    'Πώς παίρνω το μπόνους καλωσορίσματος;',
+  ],
+  payments: [
+    'Πόσο χρόνο παίρνει η ανάληψη;',
+    'Ποιες μέθοδοι πληρωμής υπάρχουν;',
+    'Πότε ζητείται το KYC;',
+    'Τι κάνω αν δεν έφτασε η κατάθεση;',
+  ],
+  mobile: [
+    'Πώς εγκαθιστώ την εφαρμογή;',
+    'Από πού κατεβάζω το Android APK;',
+    'Πώς ανοίγω την 1win σε iPhone;',
+    'Ποια είναι η διαφορά εφαρμογής και browser;',
+  ],
+  games: [
+    'Ποια παιχνίδια έχει η 1win;',
+    'Ποια είναι η διαφορά Aviator και Lucky Jet;',
+    'Πώς λειτουργεί το ζωντανό καζίνο;',
+    'Τι σημαίνει το RTP;',
+  ],
+  aviator: [
+    'Πώς παίζεται το Aviator;',
+    'Ποιανού παιχνίδι είναι το Aviator;',
+    'Πώς κάνω εξαργύρωση;',
+    'Ισχύει μπόνους στο Aviator;',
+  ],
+  'lucky-jet': [
+    'Πώς παίζεται το Lucky Jet;',
+    'Το Lucky Jet είναι 1win Original;',
+    'Πώς κάνω εξαργύρωση;',
+    'Ποια είναι η διαφορά Lucky Jet και Aviator;',
+  ],
+  sports: [
+    'Πώς στοιχηματίζω σε αθλήματα;',
+    'Πώς λειτουργεί το ζωντανό στοίχημα;',
+    'Πότε υπάρχει εξαργύρωση;',
+    'Το μπόνους στοιχήματος είναι ξεχωριστό;',
+  ],
+  safety: [
+    'Τι άδεια έχει η 1win;',
+    'Πώς ενεργοποιώ το 2FA;',
+    'Πώς αναγνωρίζω το phishing;',
+    'Πού ανεβάζω έγγραφα KYC;',
+  ],
+  faq: [
+    'Τι άδεια έχει η 1win;',
+    'Τι περιλαμβάνει το WINEX600;',
+    'Πόσο χρόνο παίρνει η ανάληψη;',
+    'Πώς εγκαθιστώ την εφαρμογή;',
+  ],
+  'responsible-gambling': [
+    'Πώς ορίζω όριο κατάθεσης;',
+    'Πώς κάνω αυτοαποκλεισμό;',
+    'Πού ζητώ βοήθεια;',
+    'Πώς σταματώ το στοίχημα;',
+  ],
+  'crypto-casino': [
+    'Ποια crypto γίνονται δεκτά;',
+    'Το crypto παρακάμπτει το KYC;',
+    'Πώς καταθέτω USDT;',
+    'Πόσο χρόνο παίρνει η ανάληψη crypto;',
+  ],
+  'not-working': [
+    'Γιατί δεν ανοίγει η 1win;',
+    'Τι κάνω αν δεν φορτώνει ο ιστότοπος;',
+    'Η εφαρμογή δουλεύει αν ο ιστότοπος δεν ανοίγει;',
+    'Πώς συνδέομαι αν ο ιστότοπος είναι αποκλεισμένος;',
+  ],
+};
+
 function uniqueSuggestions(items: string[], max = 4): string[] {
   const out: string[] = [];
   const seen = new Set<string>();
@@ -284,7 +367,7 @@ export function pageSlugFromLocation(pathname = location.pathname): string {
   const parts = p.split('/').filter(Boolean);
   if (!parts.length) return 'index';
   let i = 0;
-  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it' || parts[0] === 'az' || parts[0] === 'bn' || parts[0] === 'hi' || parts[0] === 'fil') i = 1;
+  if (parts[0] === 'ru' || parts[0] === 'es' || parts[0] === 'fr' || parts[0] === 'de' || parts[0] === 'uk' || parts[0] === 'it' || parts[0] === 'az' || parts[0] === 'bn' || parts[0] === 'hi' || parts[0] === 'fil' || parts[0] === 'el') i = 1;
   if (!parts[i] || parts[i] === 'index') return 'index';
   let slug = parts[i].replace(/\.html$/i, '');
   if (slug === 'betting') return 'sports';
@@ -308,6 +391,10 @@ export function getSuggestedQuestions(
 
   if (lang === 'fil') {
     return uniqueSuggestions([...(FIL_SUGGESTIONS[slug] ?? GLOBAL_SUGGESTIONS_FIL)]);
+  }
+
+  if (lang === 'el') {
+    return uniqueSuggestions([...(EL_SUGGESTIONS[slug] ?? GLOBAL_SUGGESTIONS_EL)]);
   }
 
   if (slug === 'bonuses') {
