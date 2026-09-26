@@ -29,6 +29,7 @@ function formatTime(ts: number): string {
       az: 'az-AZ',
       bn: 'bn-BD',
       hi: 'hi-IN',
+      fil: 'fil-PH',
     }[uiLang()];
     return new Intl.DateTimeFormat(locale, {
       hour: 'numeric',
@@ -55,7 +56,7 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
-function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' {
+function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' | 'hi' | 'fil' {
   const raw = (document.documentElement.lang || '').toLowerCase();
   if (raw.startsWith('uk')) return 'uk';
   if (raw.startsWith('ru')) return 'ru';
@@ -66,6 +67,7 @@ function uiLang(): 'en' | 'ru' | 'es' | 'fr' | 'de' | 'uk' | 'it' | 'az' | 'bn' 
   if (raw.startsWith('az')) return 'az';
   if (raw.startsWith('bn')) return 'bn';
   if (raw.startsWith('hi')) return 'hi';
+  if (raw.startsWith('fil') || raw.startsWith('tl')) return 'fil';
   return 'en';
 }
 
@@ -276,6 +278,29 @@ function chatCopy() {
       copied: 'कॉपी किया गया',
       copy: 'कॉपी',
       failed: 'कॉपी नहीं किया जा सका',
+    };
+  }
+  if (lang === 'fil') {
+    return {
+      name: 'Anna',
+      subtitle: 'Gabay sa impormasyon ng 1win',
+      close: 'Isara ang chat',
+      placeholder: 'Magtanong tungkol sa 1win…',
+      message: 'Mensahe',
+      send: 'Ipadala',
+      sendMessage: 'Ipadala ang mensahe',
+      open: 'Buksan ang chat kasama si Anna',
+      closeAnna: 'Isara ang chat kasama si Anna',
+      openUnread: 'Buksan ang chat kasama si Anna — bagong mensahe',
+      typing: 'Nagsusulat si Anna',
+      hello: 'Kumusta, ako si Anna, ang gabay mo sa 1win.',
+      intro:
+        'Maaari kong ipaliwanag ang mga bonus, laro, sports, bayad at pag-install ng app gamit ang impormasyon sa site na ito. Wala akong access sa account mo, kaya hindi ako makakapagdeposito o makakapag-withdraw, makakapagbago ng limitasyon, o makakapamahala ng KYC.',
+      suggests: 'Pumili ng karaniwang tanong',
+      noResponse: 'Walang natanggap na sagot. Subukan muli.',
+      copied: 'Nakopya',
+      copy: 'Kopyahin',
+      failed: 'Hindi nakopya',
     };
   }
   return {

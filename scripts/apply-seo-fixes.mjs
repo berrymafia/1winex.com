@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
-const locales = ['ru', 'es', 'fr', 'de', 'uk', 'it', 'az', 'bn', 'hi'];
+const locales = ['ru', 'es', 'fr', 'de', 'uk', 'it', 'az', 'bn', 'hi', 'fil'];
 const pageNames = [
   'index.html',
   'safety.html',
@@ -694,6 +694,7 @@ const localeCopyReplacements = {
     ['4 ডিপোজিট', 'চারটি ডিপোজিট'],
   ],
   hi: [],
+  fil: [],
 };
 
 function applyCopyReplacements(content, relativePath) {

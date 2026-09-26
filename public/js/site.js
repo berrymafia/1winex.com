@@ -14,6 +14,7 @@
     if (raw.indexOf("az") === 0) return "az";
     if (raw.indexOf("bn") === 0) return "bn";
     if (raw.indexOf("hi") === 0) return "hi";
+    if (raw.indexOf("fil") === 0 || raw.indexOf("tl") === 0) return "fil";
     return "en";
   })();
   var copy = {
@@ -116,6 +117,16 @@
       copied: "कॉपी किया गया",
       aviatorDemo: "Spribe का Aviator डेमो",
       spribeLang: "HI",
+    },
+    fil: {
+      openMenu: "Buksan ang menu",
+      closeMenu: "Isara ang menu",
+      cookieLabel: "Abiso sa cookie",
+      cookieHtml:
+        '<p>Gumagamit kami ng cookie at local storage para patakbuhin ang site. Alamin pa sa aming <a href="/fil/responsible-gambling#cookies">patakaran sa cookie</a>.</p><button type="button" class="cookie-notice__ok">Sige</button>',
+      copied: "Nakopya",
+      aviatorDemo: "Demo ng Aviator mula sa Spribe",
+      spribeLang: "EN",
     },
   };
   var t = copy[lang] || copy.en;
@@ -445,12 +456,13 @@
       if (code === "az" || code.indexOf("az-") === 0) return "az";
       if (code === "bn" || code.indexOf("bn-") === 0) return "bn";
       if (code === "hi" || code.indexOf("hi-") === 0) return "hi";
+      if (code === "fil" || code.indexOf("fil-") === 0 || code === "tl" || code.indexOf("tl-") === 0) return "fil";
       if (code === "en" || code.indexOf("en-") === 0) return "en";
     }
     return "en";
   }
 
-  var LANG_ORDER = ["en", "az", "bn", "fr", "de", "hi", "it", "ru", "es", "uk"];
+  var LANG_ORDER = ["en", "az", "bn", "fr", "de", "hi", "it", "ru", "es", "fil", "uk"];
 
   function langRank(code) {
     var i = LANG_ORDER.indexOf(String(code || "").toLowerCase());

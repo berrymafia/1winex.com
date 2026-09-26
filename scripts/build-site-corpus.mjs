@@ -328,6 +328,31 @@ const HI_PAGES = PAGES.map((page) => {
   };
 });
 
+const FIL_NAMES = {
+  'fil-index': '1win',
+  'fil-bonuses': 'Mga Bonus',
+  'fil-payments': 'Mga Bayad',
+  'fil-crypto-casino': 'Crypto Casino',
+  'fil-casino': 'Casino',
+  'fil-aviator': 'Aviator',
+  'fil-lucky-jet': 'Lucky Jet',
+  'fil-betting': 'Sports',
+  'fil-app': 'App',
+  'fil-safety': 'Kaligtasan',
+  'fil-responsible-gambling': 'Responsableng Pagsusugal',
+  'fil-not-working': 'Hindi bumubukas',
+};
+
+const FIL_PAGES = PAGES.map((page) => {
+  const slug = page.slug === 'index' ? 'fil-index' : `fil-${page.slug}`;
+  return {
+    ...page,
+    slug,
+    file: page.slug === 'index' ? 'fil/index.html' : `fil/${page.file}`,
+    name: FIL_NAMES[slug] || `${page.name} FIL`,
+  };
+});
+
 const SITE_OFFERS = [
   {
     brand: '1win',
@@ -380,6 +405,9 @@ const SITE_OFFERS = [
       'লগইন',
       'স্বাগতম বোনাস',
       'প্রোমো কোড',
+      'rehistrasyon',
+      'kodigong promo',
+      'welcome bonus',
     ],
   },
   {
@@ -400,6 +428,7 @@ const CTA_PREFIX_IT = 'Registrati / Accedi: https://1winex.com/go. APK: https://
 const CTA_PREFIX_AZ = 'Qeydiyyat / giriş: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_BN = 'রেজিস্ট্রেশন / লগইন: https://1winex.com/go. APK: https://1winex.com/apk. ';
 const CTA_PREFIX_HI = 'रजिस्ट्रेशन / लॉगिन: https://1winex.com/go. APK: https://1winex.com/apk. ';
+const CTA_PREFIX_FIL = 'Rehistrasyon / Login: https://1winex.com/go. APK: https://1winex.com/apk. ';
 
 function decodeEntities(s) {
   return s
@@ -436,7 +465,7 @@ function extractMetaDescription(html) {
 }
 
 const entries = [];
-for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES, ...IT_PAGES, ...AZ_PAGES, ...BN_PAGES, ...HI_PAGES]) {
+for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES, ...UK_PAGES, ...IT_PAGES, ...AZ_PAGES, ...BN_PAGES, ...HI_PAGES, ...FIL_PAGES]) {
   const filePath = path.join(ROOT, page.file);
   if (!fs.existsSync(filePath)) {
     console.warn(`[corpus] missing ${page.file}`);
@@ -461,6 +490,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                 ? CTA_PREFIX_BN
               : page.slug.startsWith('hi-')
                 ? CTA_PREFIX_HI
+              : page.slug.startsWith('fil-')
+                ? CTA_PREFIX_FIL
           : CTA_PREFIX_EN;
   const text = (prefix + stripHtml(html)).slice(0, MAX_TEXT);
   const title = extractTitle(html) || page.name;
@@ -485,6 +516,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                     ? '/bn'
                   : page.slug === 'hi-index'
                     ? '/hi'
+                  : page.slug === 'fil-index'
+                    ? '/fil'
               : page.slug.startsWith('ru-')
                 ? `/ru/${page.slug.slice(3)}`
                 : page.slug.startsWith('es-')
@@ -503,6 +536,8 @@ for (const page of [...PAGES, ...RU_PAGES, ...ES_PAGES, ...FR_PAGES, ...DE_PAGES
                             ? `/bn/${page.slug.slice(3)}`
                           : page.slug.startsWith('hi-')
                             ? `/hi/${page.slug.slice(3)}`
+                          : page.slug.startsWith('fil-')
+                            ? `/fil/${page.slug.slice(4)}`
                       : `/${page.slug}`;
   const link = `${SITE_ORIGIN}${pathUrl === '/' ? '/' : pathUrl}`;
   entries.push({
